@@ -2,8 +2,11 @@
 using HRSystem.DataBase;
 using HRSystem.Extend;
 using HRSystem.Filters;
+using HRSystem.Services.AttendanceServices;
 using HRSystem.Services.AuthenticationServices;
 using HRSystem.Services.EmailServices;
+using HRSystem.Services.LeaveServices;
+using HRSystem.Services.RolesServices;
 using HRSystem.Services.UsersServices;
 using HRSystem.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -127,6 +130,10 @@ builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection(
 builder.Services.AddScoped<IAuthenticationServices, AuthenticationServices>();
 builder.Services.AddScoped<IEmailServices, EmailServices>();
 builder.Services.AddScoped<IUsersServices, UsersServices>();
+builder.Services.AddScoped<IRolesServices, RolesServices>();
+builder.Services.AddScoped<IAttendanceServices, AttendanceServices>();
+builder.Services.AddScoped<ILeaveServices, LeaveServices>();
+
 
 #endregion
 

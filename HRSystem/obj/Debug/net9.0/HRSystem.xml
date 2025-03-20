@@ -4,6 +4,186 @@
         <name>HRSystem</name>
     </assembly>
     <members>
+        <member name="M:HR_System_API.Controllers.AttendanceController.AddAttendance(HRSystem.DTO.AttendanceDto)">
+            <summary>
+            Adds a new attendance record for an employee in the system.
+            This endpoint allows recording an employee's attendance by providing the necessary details such as time, location coordinates, and employee ID.
+            </summary>
+            <param name="attendanceDto">
+            The data required to record attendance (as defined in AttendanceDto).
+            Example Request (AttendanceDto):
+            <code>
+            {
+                "timeOfAttend": "2025-03-20T08:30:00Z",
+                "latitude": 40.7128,
+                "longitude": -74.0060,
+                "radius": 100,
+                "employeeId": "EMP12345"
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the attendance addition operation.
+            </returns>
+            <response code="201">
+            Attendance recorded successfully. Returns the employee ID and a success message.
+            Example Response (Success):
+            <code>
+            {
+                "employeeId": "EMP12345",
+                "message": "Attendance added successfully."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the provided model is invalid (e.g., missing required fields or invalid coordinates).
+            Example Response (Invalid Model):
+            <code>
+            {
+                "errors": {
+                    "TimeOfAttend": ["Time of attendance is required."],
+                    "Latitude": ["Latitude must be between -90 and 90."]
+                }
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs during the operation or if attendance recording fails.
+            Example Response (Operation Failed):
+            <code>
+            {
+                "success": false,
+                "message": "Error adding attendance. Please try again later."
+            }
+            </code>
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An internal server error occurred."
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HR_System_API.Controllers.AttendanceController.GetAttendances">
+            <summary>
+            Retrieves all attendance records from the system.
+            This endpoint returns a list of all recorded employee attendances.
+            </summary>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of attendance records or an error message.
+            </returns>
+            <response code="200">
+            Successfully retrieved attendance records. Returns a list of attendance details.
+            Example Response (Success):
+            <code>
+            [
+                {
+                    "timeOfAttend": "2025-03-20T08:30:00Z",
+                    "latitude": 40.7128,
+                    "longitude": -74.0060,
+                    "radius": 100,
+                    "employeeId": "EMP12345"
+                },
+                {
+                    "timeOfAttend": "2025-03-20T09:00:00Z",
+                    "latitude": 34.0522,
+                    "longitude": -118.2437,
+                    "radius": 50,
+                    "employeeId": "EMP67890"
+                }
+            ]
+            </code>
+            </response>
+            <response code="404">
+            No attendance records found in the system.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "No attendance records found."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs while retrieving attendance records.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An internal server error occurred."
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HR_System_API.Controllers.AttendanceController.GetEmployeeAttendances(System.String)">
+            <summary>
+            Retrieves all attendance records for a specific employee based on their employee ID.
+            This endpoint returns a list of attendance records associated with the provided employee ID.
+            </summary>
+            <param name="empId">
+            The unique identifier of the employee whose attendance records are to be retrieved.
+            Example: "EMP12345"
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of attendance records for the specified employee or an error message.
+            </returns>
+            <response code="200">
+            Successfully retrieved attendance records for the employee. Returns a success flag and the attendance data.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "data": [
+                    {
+                        "timeOfAttend": "2025-03-20T08:30:00Z",
+                        "latitude": 40.7128,
+                        "longitude": -74.0060,
+                        "radius": 100,
+                        "employeeId": "EMP12345"
+                    },
+                    {
+                        "timeOfAttend": "2025-03-21T09:00:00Z",
+                        "latitude": 40.7128,
+                        "longitude": -74.0060,
+                        "radius": 100,
+                        "employeeId": "EMP12345"
+                    }
+                ]
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the employee ID is missing or invalid.
+            Example Response (Invalid Input):
+            <code>
+            {
+                "success": false,
+                "message": "Employee ID is required."
+            }
+            </code>
+            </response>
+            <response code="404">
+            No attendance records found for the specified employee.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "No attendance records found for the given employee."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs while retrieving the attendance records.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An internal server error occurred."
+            }
+            </code>
+            </response>
+        </member>
         <member name="M:HRSystem.Controllers.AuthenticationController.Login(HRSystem.DTO.LoginDTO)">
             <summary>
             Authenticates a user by verifying their credentials and returns authentication details.
@@ -197,6 +377,157 @@
             }
             </code>
             </response>        
+        </member>
+        <member name="M:HRSystem.Controllers.LeaveController.AddLeave(HRSystem.DTO.LeaveDTO)">
+            <summary>
+            Adds a new leave request for an employee in the system.
+            This endpoint allows recording an employee's leave request by providing details such as the leave dates and employee ID.
+            </summary>
+            <param name="leaveDto">
+            The data required to record a leave request (as defined in LeaveDTO).
+            Example Request (LeaveDTO):
+            <code>
+            {
+                "employeeId": "EMP12345",
+                "startDate": "2025-04-01T00:00:00Z",
+                "endDate": "2025-04-05T00:00:00Z",
+                "reason": "Vacation"
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the leave addition operation.
+            </returns>
+            <response code="201">
+            Leave recorded successfully. Returns the employee ID and a success message.
+            Example Response (Success):
+            <code>
+            {
+                "employeeId": "EMP12345",
+                "message": "Leave added successfully."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the provided model is invalid (e.g., missing required fields or invalid dates).
+            Example Response (Invalid Model):
+            <code>
+            {
+                "errors": {
+                    "StartDate": ["The start date is required."],
+                    "EndDate": ["The end date must be after the start date."]
+                }
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs or if leave recording fails.
+            Example Response (Operation Failed):
+            <code>
+            "Error adding leave."
+            </code>
+            Example Response (Server Error):
+            <code>
+            "An internal server error occurred."
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.LeaveController.GetLeaves">
+            <summary>
+            Retrieves all leave records from the system.
+            This endpoint returns a list of all recorded employee leave requests.
+            </summary>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of leave records or an error message.
+            </returns>
+            <response code="200">
+            Successfully retrieved leave records. Returns a list of leave details.
+            Example Response (Success):
+            <code>
+            [
+                {
+                    "employeeId": "EMP12345",
+                    "startDate": "2025-04-01T00:00:00Z",
+                    "endDate": "2025-04-05T00:00:00Z",
+                    "reason": "Vacation"
+                },
+                {
+                    "employeeId": "EMP67890",
+                    "startDate": "2025-05-10T00:00:00Z",
+                    "endDate": "2025-05-12T00:00:00Z",
+                    "reason": "Medical"
+                }
+            ]
+            </code>
+            </response>
+            <response code="404">
+            No leave records found in the system.
+            Example Response (Not Found):
+            <code>
+            "No leave records found."
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs while retrieving leave records.
+            Example Response (Server Error):
+            <code>
+            "An internal server error occurred."
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.LeaveController.GetEmployeeLeaves(System.String)">
+            <summary>
+            Retrieves all leave records for a specific employee based on their employee ID.
+            This endpoint returns a list of leave records associated with the provided employee ID.
+            </summary>
+            <param name="empId">
+            The unique identifier of the employee whose leave records are to be retrieved.
+            Example: "EMP12345"
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of leave records for the specified employee or an error message.
+            </returns>
+            <response code="200">
+            Successfully retrieved leave records for the employee. Returns a list of leave details.
+            Example Response (Success):
+            <code>
+            [
+                {
+                    "employeeId": "EMP12345",
+                    "startDate": "2025-04-01T00:00:00Z",
+                    "endDate": "2025-04-05T00:00:00Z",
+                    "reason": "Vacation"
+                },
+                {
+                    "employeeId": "EMP12345",
+                    "startDate": "2025-06-10T00:00:00Z",
+                    "endDate": "2025-06-12T00:00:00Z",
+                    "reason": "Medical"
+                }
+            ]
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the employee ID is missing or invalid.
+            Example Response (Invalid Input):
+            <code>
+            "Employee ID is required."
+            </code>
+            </response>
+            <response code="404">
+            No leave records found for the specified employee.
+            Example Response (Not Found):
+            <code>
+            "No leave records found for the given employee."
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs while retrieving the leave records, including the exception message.
+            Example Response (Server Error):
+            <code>
+            "An internal server error occurred: Database connection failed."
+            </code>
+            </response>
         </member>
         <member name="M:HRSystem.Controllers.RoleController.Create(HRSystem.DTO.RoleCreateDTO)">
             <summary>

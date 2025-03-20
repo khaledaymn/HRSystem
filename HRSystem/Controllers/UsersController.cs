@@ -1,4 +1,5 @@
 ﻿using HRSystem.DTO;
+using HRSystem.Helper;
 using HRSystem.Services.UsersServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ namespace HRSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUsersServices _usersService;
@@ -101,6 +103,7 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpPost]
         [Route("~/Users/Create")]
+        [Authorize(StaticClass.Admin)]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDTO model)
         {
             if (!ModelState.IsValid)
@@ -198,6 +201,7 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpGet]
         [Route("~/Users/GetAll")]
+        [Authorize(Roles = StaticClass.Admin)]
         public async Task<IActionResult> GetUsers()
         {
             try
@@ -278,6 +282,7 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpGet]
         [Route("~/Users/GetById/{id}")]
+        [Authorize(Roles = StaticClass.Admin+","+StaticClass.User)]
         public async Task<IActionResult> GetById(string id)
         {
             try
@@ -378,6 +383,7 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpPut]
         [Route("~/Users/Edit/{id}")]
+        [Authorize(Roles = StaticClass.Admin + "," + StaticClass.User)]
         public async Task<IActionResult> Edit(string id, [FromBody] UpdateUserDTO model)
         {
             if (!ModelState.IsValid)
@@ -444,6 +450,7 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpDelete]
         [Route("~/Users/Delete/{id}")]
+        [Authorize(Roles = StaticClass.Admin + "," + StaticClass.User)]
         public async Task<IActionResult> DeleteUser(string id)
         {
             try
@@ -511,6 +518,7 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpPost]
         [Route("~/Users/AddUserToRole/{userId}/{roleName}")]
+        [Authorize(Roles = StaticClass.Admin)]
         public async Task<IActionResult> AddUserToRole(string userId, string roleName)
         {
             try
