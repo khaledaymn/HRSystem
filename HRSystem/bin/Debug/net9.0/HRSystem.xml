@@ -4,5 +4,856 @@
         <name>HRSystem</name>
     </assembly>
     <members>
+        <member name="M:HRSystem.Controllers.AuthenticationController.Login(HRSystem.DTO.LoginDTO)">
+            <summary>
+            Authenticates a user by verifying their credentials and returns authentication details.
+            This endpoint allows users to log in to the system using their username and password.
+            </summary>
+            <param name="model">
+            The login details, which must include a valid username and password (as defined in LoginDTO).
+            Example Request (LoginDTO):
+            <code>
+            {
+                "email": "user@example.com",
+                "password": "P@ssw0rd123"
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:HRSystem.DTO.AuthenticationDTO"/> object containing:
+            - IsAuthenticated: A boolean indicating if the login was successful.
+            - Message: A string describing the result of the login attempt.
+            - User details (e.g., Id, Name, Email, etc.) if the login is successful.
+            </returns>
+            <response code="200">
+            Login successful. Returns the <see cref="T:HRSystem.DTO.AuthenticationDTO"/> with user details.
+            Example Response (Success):
+            <code>
+            {
+                "message": "Login successful",
+                "id": "12345",
+                "name": "John Doe",
+                "email": "user@example.com",
+                "userName": "johndoe",
+                "phoneNumber": "123-456-7890",
+                "address": "123 Main St",
+                "nationalId": "987654321",
+                "salary": 50000,
+                "timeOfAttend": "09:00",
+                "timeOfLeave": "17:00",
+                "gender": "Male",
+                "dateOfWork": "2023/01/15",
+                "dateOfBirth": "1990/05/20",
+                "roles": ["User"]
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the model is invalid (e.g., missing email or password) or authentication fails (e.g., incorrect credentials).
+            Example Response (Invalid Model):
+            <code>
+            {
+                "errors": {
+                    "username": ["The username field is required."],
+                    "password": ["The password field is required."]
+                }
+            }
+            </code>
+            Example Response (Authentication Failed):
+            <code>
+            "Invalid username or password."
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server, with a JSON object containing 'message' and 'error' properties.
+            Example Response (Server Error):
+            <code>
+            {
+                "message": "An error occurred",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.AuthenticationController.ForgetPassword(HRSystem.DTO.ForgetPasswordDTO)">
+            <summary>
+            Initiates the password reset process by sending a reset link to the user's email.
+            This endpoint allows users to request a password reset by providing their email address.
+            </summary>
+            <param name="model">
+            The data containing the user's email address (as defined in ForgetPasswordDTO).
+            Example Request (ForgetPasswordDTO):
+            <code>
+            {
+                "email": "user@example.com"
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the password reset request.
+            </returns>
+            <response code="200">
+            Password reset initiated successfully. Returns a success message indicating the reset link was sent.
+            Example Response (Success):
+            <code>
+            "success"
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the provided model is invalid (e.g., missing or invalid email).
+            Example Response (Invalid Model):
+            <code>
+            {
+                "errors": {
+                    "email": ["The email field is required."]
+                }
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when the email is not registered or the reset process fails (e.g., email sending failed).
+            Example Response (Email Not Registered):
+            <code>
+            "Email is not registered!"
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server, with a JSON object containing a message.
+            Example Response (Server Error):
+            <code>
+            "An error occurred while processing the request: Database connection failed"
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.AuthenticationController.ResetPassword(HRSystem.DTO.ResetPasswordDTO)">
+            <summary>
+            Resets a user's password using a reset token.
+            This endpoint allows users to reset their password by providing the necessary details, including the reset token, email, and new password.
+            </summary>
+            <param name="model">
+            The data containing the reset token, email, and new password (as defined in ResetPasswordDTO).
+            Example Request (ResetPasswordDTO):
+            <code>
+            {
+                "email": "user@example.com",
+                "token": "abc123xyz456",
+                "newPassword": "NewP@ssw0rd123"
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the password reset operation.
+            </returns>
+            <response code="200">
+            Password reset successful. Returns the <see cref="T:HRSystem.DTO.AuthenticationDTO"/> with updated user details.
+            Example Response (Success):
+            <code>
+            {
+                "message": "Password reset successful",
+                "id": "12345",
+                "name": "John Doe",
+                "email": "user@example.com",
+                "userName": "johndoe",
+                "phoneNumber": "123-456-7890",
+                "address": "123 Main St",
+                "nationalId": "987654321",
+                "salary": 50000,
+                "timeOfAttend": "09:00",
+                "timeOfLeave": "17:00",
+                "gender": "Male",
+                "dateOfWork": "2023-01-15",
+                "dateOfBirth": "1990-05-20",
+                "roles": ["User"]
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the provided model is invalid (e.g., missing token, email, or new password).
+            Example Response (Invalid Model):
+            <code>
+            {
+                "errors": {
+                    "email": ["The email field is required."],
+                    "token": ["The token field is required."],
+                    "newPassword": ["The new password field is required."]
+                }
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when the reset token is invalid, the email is not registered, or the reset process fails.
+            Example Response (Invalid Token):
+            <code>
+            "Invalid or expired token."
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server, with a JSON object containing a message.
+            Example Response (Server Error):
+            <code>
+            {
+                "message": "An error occurred while resetting the password",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>        
+        </member>
+        <member name="M:HRSystem.Controllers.RoleController.Create(HRSystem.DTO.RoleCreateDTO)">
+            <summary>
+            Creates a new role in the system.
+            This endpoint allows an admin or authorized user to create a new role by providing the role name.
+            </summary>
+            <param name="model">
+            The data required to create a new role (as defined in RoleCreateDTO).
+            Example Request (RoleCreateDTO):
+            <code>
+            {
+                "roleName": "Editor"
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the role creation operation.
+            </returns>
+            <response code="200">
+            Role created successfully. Returns a success message and the created role details.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "message": "Role created successfully.",
+                "role": {
+                    "id": "role-123",
+                    "name": "Editor"
+                }
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the provided model is invalid or role creation fails (e.g., role name already exists).
+            Example Response (Invalid Model):
+            <code>
+            {
+                "errors": {
+                    "roleName": ["Role name is required."]
+                }
+            }
+            </code>
+            Example Response (Creation Failed):
+            <code>
+            {
+                "success": false,
+                "message": "Error creating role."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while creating the role.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.RoleController.GetRoles">
+            <summary>
+            Retrieves a list of all roles in the system.
+            This endpoint allows an admin or authorized user to fetch all role details.
+            </summary>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of roles or an error message.
+            </returns>
+            <response code="200">
+            Roles retrieved successfully. Returns a success message and the list of roles.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "roles": [
+                    {
+                        "id": "role-123",
+                        "name": "Admin"
+                    },
+                    {
+                        "id": "role-456",
+                        "name": "Editor"
+                    },
+                    {
+                        "id": "role-789",
+                        "name": "User"
+                    }
+                ]
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when no roles are found in the system.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "No roles found."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while retrieving roles.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.RoleController.GetRoleById(System.String)">
+            <summary>
+            Retrieves a role by its ID.
+            This endpoint allows an admin or authorized user to fetch the details of a specific role using its ID.
+            </summary>
+            <param name="id">The ID of the role to retrieve.</param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the role details or an error message.
+            </returns>
+            <response code="200">
+            Role retrieved successfully. Returns a success message and the role's details.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "role": {
+                    "id": "role-123",
+                    "name": "Admin"
+                }
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when the role with the specified ID does not exist.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "Role not found."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while retrieving the role.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.RoleController.Update(HRSystem.DTO.RoleUpdateDTO)">
+            <summary>
+            Updates an existing role in the system.
+            This endpoint allows an admin or authorized user to update a role's details by providing the role ID and new name.
+            </summary>
+            <param name="model">
+            The data required to update a role (as defined in RoleUpdateDTO).
+            Example Request (RoleUpdateDTO):
+            <code>
+            {
+                "roleId": "role-123",
+                "roleName": "SeniorEditor"
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the role update operation.
+            </returns>
+            <response code="200">
+            Role updated successfully. Returns a success message.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "message": "Role updated successfully."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the provided model is invalid or role update fails (e.g., role not found or name already exists).
+            Example Response (Invalid Model):
+            <code>
+            {
+                "errors": {
+                    "roleId": ["The role ID is required."],
+                    "roleName": ["The role name is required."]
+                }
+            }
+            </code>
+            Example Response (Update Failed):
+            <code>
+            {
+                "success": false,
+                "message": "Error updating role."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while updating the role.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.RoleController.Delete(System.String)">
+            <summary>
+            Deletes a role by its ID.
+            This endpoint allows an admin or authorized user to delete a role from the system using its ID.
+            </summary>
+            <param name="id">The ID of the role to delete.</param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the delete operation.
+            </returns>
+            <response code="200">
+            Role deleted successfully. Returns a success message.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "message": "Role deleted successfully."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the role cannot be deleted (e.g., role is in use or has associated users).
+            Example Response (Delete Failed):
+            <code>
+            {
+                "success": false,
+                "message": "Error deleting role. The role may be in use or has associated users."
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when the role with the specified ID does not exist.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "Role not found."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while deleting the role.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.UsersController.CreateUser(HRSystem.DTO.CreateUserDTO)">
+            <summary>
+            Creates a new user in the system and returns authentication details.
+            This endpoint allows an admin or authorized user to create a new user by providing the necessary details.
+            </summary>
+            <param name="model">
+            The data required to create a new user (as defined in CreateUserDTO).
+            Example Request (CreateUserDTO):
+            <code>
+            {
+                "name": "John Doe",
+                "email": "john.doe@example.com",
+                "userName": "johndoe",
+                "password": "P@ssw0rd123",
+                "phoneNumber": "123-456-7890",
+                "address": "123 Main St",
+                "nationalId": "987654321",
+                "salary": 50000,
+                "timeOfAttend": "09:00:00",
+                "timeOfLeave": "17:00:00",
+                "gender": "male",
+                "dateOfWork": "2023-01-15",
+                "dateOfBirth": "1990-05-20",
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the user creation operation.
+            </returns>
+            <response code="200">
+            User created successfully. Returns a success message and the created user's details.
+            Example Response (Success):
+            <code>
+            {
+                "message": "User created successfully",
+                "user": {
+                    "message": "User created successfully",
+                    "id": "12345",
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "userName": "johndoe",
+                    "phoneNumber": "123-456-7890",
+                    "address": "123 Main St",
+                    "nationalId": "987654321",
+                    "salary": 50000,
+                    "timeOfAttend": "09:00",
+                    "timeOfLeave": "17:00",
+                    "gender": "Male",
+                    "dateOfWork": "2023-01-15",
+                    "dateOfBirth": "1990-05-20",
+                    "roles": ["User"]
+                }
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the provided model is invalid or user creation fails (e.g., duplicate email or username).
+            Example Response (Invalid Model):
+            <code>
+            {
+                "errors": {
+                    "email": ["The email field is required."],
+                    "userName": ["The username field is required."],
+                    "password": ["The password field is required."]
+                }
+            }
+            </code>
+            Example Response (Creation Failed):
+            <code>
+            {
+                "message": "Email or username already exists."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "message": "An error occurred while creating the user",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.UsersController.GetUsers">
+            <summary>
+            Retrieves a list of all users in the system.
+            This endpoint allows an admin or authorized user to fetch all user details.
+            </summary>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of users or an error message.
+            </returns>
+            <response code="200">
+            Users retrieved successfully. Returns a success message and the list of users.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "data": [
+                    {
+                        "id": "12345",
+                        "name": "John Doe",
+                        "email": "john.doe@example.com",
+                        "userName": "johndoe",
+                        "phoneNumber": "123-456-7890",
+                        "address": "123 Main St",
+                        "nationalId": "987654321",
+                        "salary": 50000,
+                        "timeOfAttend": "09:00",
+                        "timeOfLeave": "17:00",
+                        "gender": "Male",
+                        "dateOfWork": "2023-01-15",
+                        "dateOfBirth": "1990-05-20",
+                        "roles": ["User"]
+                    },
+                    {
+                        "id": "67890",
+                        "name": "Jane Smith",
+                        "email": "jane.smith@example.com",
+                        "userName": "janesmith",
+                        "phoneNumber": "987-654-3210",
+                        "address": "456 Oak St",
+                        "nationalId": "123456789",
+                        "salary": 60000,
+                        "timeOfAttend": "08:30",
+                        "timeOfLeave": "16:30",
+                        "gender": "Female",
+                        "dateOfWork": "2022-06-10",
+                        "dateOfBirth": "1985-03-15",
+                        "roles": ["Admin"]
+                    }
+                ]
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when no users are found in the system.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "No users found."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while retrieving users.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.UsersController.GetById(System.String)">
+            <summary>
+            Retrieves a user by their ID.
+            This endpoint allows an admin or authorized user to fetch the details of a specific user using their ID.
+            </summary>
+            <param name="id">The ID of the user to retrieve.</param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the user details or an error message.
+            </returns>
+            <response code="200">
+            User retrieved successfully. Returns a success message and the user's details.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "data": {
+                    "id": "12345",
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "userName": "johndoe",
+                    "phoneNumber": "123-456-7890",
+                    "address": "123 Main St",
+                    "nationalId": "987654321",
+                    "salary": 50000,
+                    "timeOfAttend": "09:00",
+                    "timeOfLeave": "17:00",
+                    "gender": "Male",
+                    "dateOfWork": "2023-01-15",
+                    "dateOfBirth": "1990-05-20",
+                    "roles": ["User"]
+                }
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when the user with the specified ID does not exist.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "User not found."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while retrieving the user.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.UsersController.Edit(System.String,HRSystem.DTO.UpdateUserDTO)">
+            <summary>
+            Updates an existing user's details by their ID.
+            This endpoint allows an admin or authorized user to update a user's information using their ID and updated details.
+            </summary>
+            <param name="id">The ID of the user to update.</param>
+            <param name="model">
+            The updated user details (as defined in UpdateUserDTO).
+            Example Request (UpdateUserDTO):
+            <code>
+            {
+                "name": "John Smith",
+                "email": "john.smith@example.com",
+                "userName": "johnsmith",
+                "phoneNumber": "123-456-7890",
+                "address": "456 Main St",
+                "nationalId": "987654321",
+                "salary": 55000,
+                "timeOfAttend": "08:30",
+                "timeOfLeave": "16:30",
+                "gender": "Male",
+                "dateOfWork": "2023-01-15",
+                "dateOfBirth": "1990-05-20",
+                "roles": ["User"]
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the update operation.
+            </returns>
+            <response code="200">
+            User updated successfully. Returns a success message.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "message": "User updated successfully."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the provided model is invalid.
+            Example Response (Invalid Model):
+            <code>
+            {
+                "success": false,
+                "message": "Invalid data.",
+                "errors": [
+                    "The email field is required.",
+                    "The userName field is required."
+                ]
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when the user with the specified ID does not exist or the update process fails.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "User not found or update failed."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while updating the user.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.UsersController.DeleteUser(System.String)">
+            <summary>
+            Deletes a user by their ID.
+            This endpoint allows an admin or authorized user to delete a user from the system using their ID.
+            </summary>
+            <param name="id">The ID of the user to delete.</param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the delete operation.
+            </returns>
+            <response code="200">
+            User deleted successfully. Returns a success message.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "message": "User deleted successfully."
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not found. Returned when the user with the specified ID does not exist or could not be deleted.
+            Example Response (Not Found):
+            <code>
+            {
+                "success": false,
+                "message": "User not found or could not be deleted."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while deleting the user.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.UsersController.AddUserToRole(System.String,System.String)">
+            <summary>
+            Adds a user to a specific role by their ID and role name.
+            This endpoint allows an admin or authorized user to assign a role to a user in the system.
+            </summary>
+            <param name="userId">The ID of the user to add to the role.</param>
+            <param name="roleName">The name of the role to assign to the user.</param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the role assignment operation.
+            </returns>
+            <response code="200">
+            Role assigned successfully. Returns a success message.
+            Example Response (Success):
+            <code>
+            {
+                "success": true,
+                "message": "User added to role successfully."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad request. Returned when the role assignment fails (e.g., user or role not found, or user already in role).
+            Example Response (Failure):
+            <code>
+            {
+                "success": false,
+                "message": "Failed to add user to role.",
+                "errors": [
+                    "User with ID 12345 not found.",
+                    "Role 'Admin' does not exist."
+                ]
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server error. Returned when an unexpected error occurs on the server.
+            Example Response (Server Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while adding the user to the role.",
+                "error": "Database connection failed"
+            }
+            </code>
+            </response>
+        </member>
+        <member name="T:HRSystem.Migrations.initialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.initialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.initialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.initialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>
