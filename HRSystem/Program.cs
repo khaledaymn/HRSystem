@@ -66,12 +66,22 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 })
  .AddEntityFrameworkStores<ApplicationDbContext>()
  .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider)
- .AddUserValidator<ArabicUsernameValidator<ApplicationUser>>(); 
+ .AddUserValidator<ArabicUsernameValidator<ApplicationUser>>();
 
 #endregion
 
 
 #region CORS Configration
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 #endregion
 
@@ -235,7 +245,7 @@ app.UseSwaggerUI(options =>
 #endregion
 
 #region Cors Meddelwere
-
+app.UseCors();
 #endregion
 
 #region HTTPS Meddleware

@@ -52,7 +52,10 @@ namespace HRSystem.Services.UsersServices
                     };
                 }
 
-                await _userManager.AddToRoleAsync(user, "User");
+                if(model.Name == "Admin")
+                    await _userManager.AddToRoleAsync(user, "Admin");
+                else
+                    await _userManager.AddToRoleAsync(user, "User");
 
                 return new()
                 {
@@ -272,6 +275,39 @@ namespace HRSystem.Services.UsersServices
                 return (false, $"An error occurred while adding user with ID '{userId}' to role '{roleName}': {ex.Message}", null);
             }
         }
+
+        #endregion
+
+        #region Delete User from Role
+
+        public async Task<(bool Success, string Message, IEnumerable<IdentityError>? Errors)> DeleteUserFromRoleAsync(string userId, string roleName)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                    return (false, $"User with ID '{userId}' not found.", null);
+
+                var roleExists = await _roleManager.RoleExistsAsync(roleName);
+                if (!roleExists)
+                    return (false, $"Role '{roleName}' does not exist.", null);
+
+                var isInRole = await _userManager.IsInRoleAsync(user, roleName);
+                if (!isInRole)
+                    return (false, $"User with ID '{userId}' is not in role '{roleName}'.", null);
+
+                var result = await _userManager.RemoveFromRoleAsync(user, roleName);
+                if (result.Succeeded)
+                    return (true, $"User with ID '{userId}' removed from role '{roleName}' successfully.", null);
+
+                return (false, $"Failed to remove user with ID '{userId}' from role '{roleName}'.", result.Errors);
+            }
+            catch (Exception ex)
+            {
+                return (false, $"An error occurred while removing user with ID '{userId}' from role '{roleName}': {ex.Message}", null);
+            }
+        }
+
 
         #endregion
 

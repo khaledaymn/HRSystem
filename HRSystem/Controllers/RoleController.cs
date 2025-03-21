@@ -71,6 +71,12 @@ namespace HRSystem.Controllers
         /// }
         /// </code>
         /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
+        /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.
         /// Example Response (Server Error):
@@ -149,6 +155,12 @@ namespace HRSystem.Controllers
         /// }
         /// </code>
         /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
+        /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.
         /// Example Response (Server Error):
@@ -216,6 +228,12 @@ namespace HRSystem.Controllers
         ///     "message": "Role not found."
         /// }
         /// </code>
+        /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
         /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.
@@ -300,6 +318,12 @@ namespace HRSystem.Controllers
         /// }
         /// </code>
         /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
+        /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.
         /// Example Response (Server Error):
@@ -379,6 +403,12 @@ namespace HRSystem.Controllers
         ///     "message": "Role not found."
         /// }
         /// </code>
+        /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
         /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.

@@ -1,6 +1,7 @@
 ﻿using HRSystem.DTO;
 using HRSystem.Extend;
 using HRSystem.Services.EmailServices;
+using HRSystem.Services.UsersServices;
 using HRSystem.Settings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -18,13 +19,15 @@ namespace HRSystem.Services.AuthenticationServices
         private readonly IEmailServices _emailServices;
         private readonly AdminLogin _adminLogin;
         private readonly JWT _jwt;
-        public AuthenticationServices(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailServices emailServices, IOptions<AdminLogin> adminLogin, IOptions<JWT> jwt)
+        private readonly IUsersServices _usersServices;
+        public AuthenticationServices(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailServices emailServices, IOptions<AdminLogin> adminLogin, IOptions<JWT> jwt, IUsersServices usersServices)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailServices = emailServices;
             _adminLogin = adminLogin.Value;
             _jwt = jwt.Value;
+            _usersServices = usersServices;
         }
 
         #region Login
@@ -33,17 +36,26 @@ namespace HRSystem.Services.AuthenticationServices
             var user = await _userManager.FindByEmailAsync(data.Email);
 
             // If admin credentials are provided and user is not found, create the admin user
-            //if (user == null && data.Email == _adminLogin.Email && data.Password == _adminLogin.Password)
-            //{
-            //    var admin = new AddUserDTO
-            //    {
-            //        Name = "Admin",
-            //        UserName = "admin",
-            //        Email = _adminLogin.Email,
-            //        Password = _adminLogin.Password
-            //    };
-            //    return await AddAdmin(admin);
-            //}
+            if (user == null && data.Email == _adminLogin.Email && data.Password == _adminLogin.Password)
+            {
+                var admin = new CreateUserDTO
+                {
+                    Name = "Admin",
+                    UserName = "admin",
+                    Email = _adminLogin.Email,
+                    Password = _adminLogin.Password,
+                    Address = "Egypt",
+                    DateOfBarth = DateTime.Now,
+                    PhoneNumber = "+201098684485",
+                    Nationalid = "string",
+                    Salary = 10000,
+                    TimeOfAttend = "09:00:00",
+                    TimeOfLeave = "17:00:00",
+                    Gender = Gender.male.ToString(),
+                    DateOfWork =DateTime.Now
+                };
+                await _usersServices.Create(admin);
+            }
 
             // Validate the user and password
             if (user == null || !await _userManager.CheckPasswordAsync(user, data.Password))

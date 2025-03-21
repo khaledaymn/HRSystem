@@ -48,6 +48,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "HRSystem.Controllers.UsersController",
+    "Method": "DeleteUserFromRole",
+    "RelativePath": "api/Users/users/{userId}/roles/{roleName}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "HR_System_API.Controllers.AttendanceController",
     "Method": "GetEmployeeAttendances",
     "RelativePath": "Attendance/{empId}",

@@ -16,5 +16,6 @@ namespace HRSystem.Services.UsersServices
         Task<bool> Delete(string id);
         Task<AuthenticationDTO> Create(CreateUserDTO model);
         Task<(bool Success, string Message, IEnumerable<IdentityError>? Errors)> AddUserToRoleAsync(string userId, string roleName);
+        Task<(bool Success, string Message, IEnumerable<IdentityError>? Errors)> DeleteUserFromRoleAsync(string userId, string roleName);
     }
 }

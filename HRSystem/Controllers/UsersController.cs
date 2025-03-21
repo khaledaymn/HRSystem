@@ -91,6 +91,12 @@ namespace HRSystem.Controllers
         /// }
         /// </code>
         /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
+        /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.
         /// Example Response (Server Error):
@@ -103,7 +109,7 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpPost]
         [Route("~/Users/Create")]
-        [Authorize(StaticClass.Admin)]
+        [Authorize(Roles = StaticClass.Admin)]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDTO model)
         {
             if (!ModelState.IsValid)
@@ -177,6 +183,12 @@ namespace HRSystem.Controllers
         ///     ]
         /// }
         /// </code>
+        /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
         /// </response>
         /// <response code="404">
         /// Not found. Returned when no users are found in the system.
@@ -269,6 +281,9 @@ namespace HRSystem.Controllers
         /// }
         /// </code>
         /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.
         /// Example Response (Server Error):
@@ -360,6 +375,9 @@ namespace HRSystem.Controllers
         /// }
         /// </code>
         /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
         /// <response code="404">
         /// Not found. Returned when the user with the specified ID does not exist or the update process fails.
         /// Example Response (Not Found):
@@ -437,6 +455,9 @@ namespace HRSystem.Controllers
         /// }
         /// </code>
         /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.
         /// Example Response (Server Error):
@@ -505,6 +526,12 @@ namespace HRSystem.Controllers
         /// }
         /// </code>
         /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
+        /// </response>
         /// <response code="500">
         /// Server error. Returned when an unexpected error occurs on the server.
         /// Example Response (Server Error):
@@ -535,6 +562,84 @@ namespace HRSystem.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { Success = false, Message = "An error occurred while adding the user to the role.", Error = ex.Message });
+            }
+        }
+
+        #endregion
+
+
+        #region Delete User From Role
+
+        /// <summary>
+        /// Removes a user from a specific role by their ID and role name.
+        /// This endpoint allows an admin to remove a user from a role in the system.
+        /// </summary>
+        /// <param name="userId">The ID of the user to remove from the role.</param>
+        /// <param name="roleName">The name of the role to remove the user from.</param>
+        /// <returns>
+        /// Returns an <see cref="IActionResult"/> indicating the result of the role removal operation.
+        /// </returns>
+        /// <response code="200">
+        /// Role removed successfully. Returns a success message.
+        /// Example Response (Success):
+        /// <code>
+        /// {
+        ///     "success": true,
+        ///     "message": "User with ID '12345' removed from role 'Editor' successfully."
+        /// }
+        /// </code>
+        /// </response>
+        /// <response code="400">
+        /// Bad request. Returned when the role removal fails (e.g., user or role not found, or user not in role).
+        /// Example Response (Failure):
+        /// <code>
+        /// {
+        ///     "success": false,
+        ///     "message": "Failed to remove user from role.",
+        ///     "errors": [
+        ///         "User with ID '12345' not found.",
+        ///         "Role 'Editor' does not exist.",
+        ///         "User with ID '12345' is not in role 'Editor'."
+        ///     ]
+        /// }
+        /// </code>
+        /// </response>
+        /// <response code="401">
+        /// Unauthorized. Returned when the caller is not authenticated.
+        /// </response>
+        /// <response code="403">
+        /// Forbidden. Returned when the caller is not an admin.
+        /// </response>
+        /// <response code="500">
+        /// Server error. Returned when an unexpected error occurs on the server.
+        /// Example Response (Server Error):
+        /// <code>
+        /// {
+        ///     "success": false,
+        ///     "message": "An error occurred while removing the user from the role.",
+        ///     "error": "Database connection failed"
+        /// }
+        /// </code>
+        /// </response>
+        [HttpDelete]
+        [Route("users/{userId}/roles/{roleName}")]
+        [Authorize(Roles = StaticClass.Admin)]
+        public async Task<IActionResult> DeleteUserFromRole(string userId, string roleName)
+        {
+            try
+            {
+                var result = await _usersService.DeleteUserFromRoleAsync(userId, roleName);
+
+                if (!result.Success)
+                {
+                    return BadRequest(new { Success = false, Message = result.Message, Errors = result.Errors });
+                }
+
+                return Ok(new { Success = true, Message = result.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Success = false, Message = "An error occurred while removing the user from the role.", Error = ex.Message });
             }
         }
 
