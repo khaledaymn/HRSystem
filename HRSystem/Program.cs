@@ -6,6 +6,7 @@ using HRSystem.Services.AttendanceServices;
 using HRSystem.Services.AuthenticationServices;
 using HRSystem.Services.EmailServices;
 using HRSystem.Services.LeaveServices;
+using HRSystem.Services.OfficialVacationServices;
 using HRSystem.Services.RolesServices;
 using HRSystem.Services.UsersServices;
 using HRSystem.Settings;
@@ -18,6 +19,7 @@ using System.Reflection;
 using System.Text;
 
 #endregion
+
 
 #region Configiration Services
 
@@ -143,7 +145,7 @@ builder.Services.AddScoped<IUsersServices, UsersServices>();
 builder.Services.AddScoped<IRolesServices, RolesServices>();
 builder.Services.AddScoped<IAttendanceServices, AttendanceServices>();
 builder.Services.AddScoped<ILeaveServices, LeaveServices>();
-
+builder.Services.AddScoped<IOfficialVacationServices, OfficialVacationServices>();
 
 #endregion
 
@@ -222,6 +224,7 @@ var app = builder.Build();
 
 #endregion
 
+
 #region Check Environment
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -230,6 +233,7 @@ if (app.Environment.IsDevelopment())
 }
 
 #endregion
+
 
 #region Meddleware
 
