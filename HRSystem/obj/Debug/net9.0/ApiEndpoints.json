@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "HRSystem.DTO.ForgetPasswordDTO",
+        "Type": "HRSystem.DTO.AuthenticationDTOs.ForgetPasswordDTO",
         "IsRequired": true
       }
     ],
@@ -25,7 +25,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "HRSystem.DTO.LoginDTO",
+        "Type": "HRSystem.DTO.AuthenticationDTOs.LoginDTO",
         "IsRequired": true
       }
     ],
@@ -41,57 +41,10 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "HRSystem.DTO.ResetPasswordDTO",
+        "Type": "HRSystem.DTO.AuthenticationDTOs.ResetPasswordDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HRSystem.Controllers.UsersController",
-    "Method": "DeleteUserFromRole",
-    "RelativePath": "api/Users/users/{userId}/roles/{roleName}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "roleName",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HR_System_API.Controllers.AttendanceController",
-    "Method": "GetEmployeeAttendances",
-    "RelativePath": "Attendance/{empId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "empId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HR_System_API.Controllers.AttendanceController",
-    "Method": "GetAttendances",
-    "RelativePath": "Attendance/GetAll",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -111,9 +64,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "HRSystem.Controllers.LeaveController",
-    "Method": "GetEmployeeLeaves",
-    "RelativePath": "Leave/EmployeeLeaves/{empId}",
+    "ContainingType": "HR_System_API.Controllers.AttendanceController",
+    "Method": "GetEmployeeAttendances",
+    "RelativePath": "AttendanceAndLeave/{empId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -127,13 +80,129 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "HRSystem.Controllers.LeaveController",
-    "Method": "GetLeaves",
-    "RelativePath": "Leave/GetAll",
+    "ContainingType": "HR_System_API.Controllers.AttendanceController",
+    "Method": "GetAttendances",
+    "RelativePath": "AttendanceAndLeave/GetAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.BranchsController",
+    "Method": "CreateBranch",
+    "RelativePath": "Branchs/CreateBranch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchDto",
+        "Type": "HRSystem.DTO.BranchDTOs.AddBranchDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.BranchsController",
+    "Method": "DeleteBranch",
+    "RelativePath": "Branchs/DeleteBranch/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.BranchsController",
+    "Method": "GetAllBranches",
+    "RelativePath": "Branchs/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.BranchsController",
+    "Method": "GetBranchById",
+    "RelativePath": "Branchs/GetById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.BranchsController",
+    "Method": "UpdateBranch",
+    "RelativePath": "Branchs/UpdateBranch",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchDto",
+        "Type": "HRSystem.DTO.BranchDTOs.BranchDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.GeneralSettingsController",
+    "Method": "AddGeneralSetting",
+    "RelativePath": "GeneralSettings/AddGeneralSetting",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "HRSystem.DTO.GeneralSettingsDTOs.AddGeneralSettingDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.GeneralSettingsController",
+    "Method": "GetGeneralSetting",
+    "RelativePath": "GeneralSettings/GetGeneralSetting",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.GeneralSettingsController",
+    "Method": "UpdateGeneralSetting",
+    "RelativePath": "GeneralSettings/UpdateGeneralSetting",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "HRSystem.DTO.GeneralSettingsDTOs.GeneralSettingDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -162,7 +231,7 @@
     "Parameters": [
       {
         "Name": "vacation",
-        "Type": "HRSystem.DTO.CreateOfficialVacationDTO",
+        "Type": "HRSystem.DTO.OfficialVacationDTOs.CreateOfficialVacationDTO",
         "IsRequired": true
       }
     ],
@@ -187,19 +256,14 @@
   {
     "ContainingType": "HRSystem.Controllers.OfficialVacationsController",
     "Method": "UpdateOfficialVacationAsync",
-    "RelativePath": "OfficialVacations/Edit/{id}",
+    "RelativePath": "OfficialVacations/Edit",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
         "Name": "vacation",
-        "Type": "HRSystem.DTO.OfficialVacationDTO",
+        "Type": "HRSystem.DTO.OfficialVacationDTOs.OfficialVacationDTO",
         "IsRequired": true
       }
     ],
@@ -249,6 +313,27 @@
   },
   {
     "ContainingType": "HRSystem.Controllers.RoleController",
+    "Method": "DeleteUserFromRole",
+    "RelativePath": "Role/users/{userId}/roles/{roleName}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.RoleController",
     "Method": "Create",
     "RelativePath": "Roles/Create",
     "HttpMethod": "POST",
@@ -257,7 +342,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "HRSystem.DTO.RoleCreateDTO",
+        "Type": "HRSystem.DTO.RoleDTOs.RoleCreateDTO",
         "IsRequired": true
       }
     ],
@@ -315,14 +400,94 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "HRSystem.DTO.RoleUpdateDTO",
+        "Type": "HRSystem.DTO.RoleDTOs.RoleUpdateDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "HRSystem.Controllers.UsersController",
+    "ContainingType": "HRSystem.Controllers.ShiftsController",
+    "Method": "CreateShift",
+    "RelativePath": "Shifts/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "shiftDto",
+        "Type": "HRSystem.DTO.ShiftDTOs.AddShiftDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.ShiftsController",
+    "Method": "DeleteShift",
+    "RelativePath": "Shifts/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "HRSystem.DTO.ShiftDTOs.DeleteShiftDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.ShiftsController",
+    "Method": "GetShiftsByEmployeeId",
+    "RelativePath": "Shifts/GetByEmployeeId/{employeeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employeeId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.ShiftsController",
+    "Method": "GetShiftById",
+    "RelativePath": "Shifts/GetById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.ShiftsController",
+    "Method": "UpdateShift",
+    "RelativePath": "Shifts/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "shiftDto",
+        "Type": "HRSystem.DTO.ShiftDTOs.ShiftDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRSystem.Controllers.RoleController",
     "Method": "AddUserToRole",
     "RelativePath": "Users/AddUserToRole/{userId}/{roleName}",
     "HttpMethod": "POST",
@@ -352,7 +517,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "HRSystem.DTO.CreateUserDTO",
+        "Type": "HRSystem.DTO.UserDTOs.CreateUserDTO",
         "IsRequired": true
       }
     ],
@@ -377,19 +542,14 @@
   {
     "ContainingType": "HRSystem.Controllers.UsersController",
     "Method": "Edit",
-    "RelativePath": "Users/Edit/{id}",
+    "RelativePath": "Users/Edit",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
         "Name": "model",
-        "Type": "HRSystem.DTO.UpdateUserDTO",
+        "Type": "HRSystem.DTO.UserDTOs.UpdateUserDTO",
         "IsRequired": true
       }
     ],

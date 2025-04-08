@@ -2,19 +2,25 @@
 using HRSystem.DataBase;
 using HRSystem.Extend;
 using HRSystem.Filters;
+using HRSystem.Repository;
 using HRSystem.Services.AttendanceServices;
 using HRSystem.Services.AuthenticationServices;
+using HRSystem.Services.BranchServices;
 using HRSystem.Services.EmailServices;
+using HRSystem.Services.GeneralSettings;
 using HRSystem.Services.LeaveServices;
 using HRSystem.Services.OfficialVacationServices;
 using HRSystem.Services.RolesServices;
+using HRSystem.Services.ShiftServices;
 using HRSystem.Services.UsersServices;
 using HRSystem.Settings;
+using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Reflection;
 using System.Text;
 
@@ -23,10 +29,34 @@ using System.Text;
 
 #region Configiration Services
 
+
 #region Web Aplication
 
-
 var builder = WebApplication.CreateBuilder(args);
+
+#endregion
+
+
+#region Logging
+
+builder.Host.UseSerilog((context, configuration) =>
+{
+    configuration
+        .MinimumLevel.Information() 
+        .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning) // Microsoft logs بس Warning وأعلى
+        .WriteTo.File(
+            path: "logs/app-log-.txt",
+            rollingInterval: RollingInterval.Day,
+            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}"
+        );
+});
+
+#endregion
+
+
+#region Hosted Services
+
+//builder.Services.AddHostedService<DailyAttendanceCheckService>();
 
 #endregion
 
@@ -46,7 +76,7 @@ var connectionString = builder.Configuration.GetConnectionString(name: "DefaultC
                 throw new InvalidOperationException(message: "No connection string was found");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
 #endregion
 
@@ -79,8 +109,9 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.AllowAnyOrigin()
+        builder.WithOrigins("http://localhost:4200")
                .AllowAnyMethod()
+               .AllowCredentials()
                .AllowAnyHeader();
     });
 });
@@ -139,13 +170,12 @@ builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection(
 
 #region Dependency Injection Configration
 
-builder.Services.AddScoped<IAuthenticationServices, AuthenticationServices>();
+builder.Services.AddScoped(typeof(IGenaricRepo<>), typeof(GenaricRepo<>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailServices, EmailServices>();
-builder.Services.AddScoped<IUsersServices, UsersServices>();
-builder.Services.AddScoped<IRolesServices, RolesServices>();
 builder.Services.AddScoped<IAttendanceServices, AttendanceServices>();
 builder.Services.AddScoped<ILeaveServices, LeaveServices>();
-builder.Services.AddScoped<IOfficialVacationServices, OfficialVacationServices>();
+builder.Services.AddScoped<IGeneralSettingsServices, GeneralSettingsServices>();
 
 #endregion
 
@@ -222,6 +252,7 @@ var app = builder.Build();
 
 #endregion
 
+
 #endregion
 
 
@@ -248,12 +279,26 @@ app.UseSwaggerUI(options =>
 });
 #endregion
 
+builder.Services.AddHttpContextAccessor();
+
 #region Cors Meddelwere
 app.UseCors();
 #endregion
 
 #region HTTPS Meddleware
 app.UseHttpsRedirection();
+#endregion
+
+#region Logging
+
+app.UseSerilogRequestLogging();
+
+#endregion
+
+#region Custom Exception Meddelwere
+
+app.UseMiddleware<ExceptionMiddleware>();
+
 #endregion
 
 #region Authentication and Authorization Meddelwere

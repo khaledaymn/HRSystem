@@ -76,7 +76,7 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpPost]
         [Route("~/Leave/TakeLeave")]
-        [Authorize(Roles = StaticClass.User)]
+        [Authorize(Roles = Roles.User)]
         public async Task<IActionResult> AddLeave([FromBody] LeaveDTO leaveDto)
         {
             if (!ModelState.IsValid)
@@ -99,139 +99,139 @@ namespace HRSystem.Controllers
 
 
         #region Get All Leaves
-        /// <summary>
-        /// Retrieves all leave records from the system.
-        /// This endpoint returns a list of all recorded employee leave requests.
-        /// </summary>
-        /// <returns>
-        /// Returns an <see cref="IActionResult"/> containing the list of leave records or an error message.
-        /// </returns>
-        /// <response code="200">
-        /// Successfully retrieved leave records. Returns a list of leave details.
-        /// Example Response (Success):
-        /// <code>
-        /// [
-        ///     {
-        ///         "employeeId": "EMP12345",
-        ///         "startDate": "2025-04-01T00:00:00Z",
-        ///         "endDate": "2025-04-05T00:00:00Z",
-        ///         "reason": "Vacation"
-        ///     },
-        ///     {
-        ///         "employeeId": "EMP67890",
-        ///         "startDate": "2025-05-10T00:00:00Z",
-        ///         "endDate": "2025-05-12T00:00:00Z",
-        ///         "reason": "Medical"
-        ///     }
-        /// ]
-        /// </code>
-        /// </response>
-        /// <response code="404">
-        /// No leave records found in the system.
-        /// Example Response (Not Found):
-        /// <code>
-        /// "No leave records found."
-        /// </code>
-        /// </response>
-        /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs while retrieving leave records.
-        /// Example Response (Server Error):
-        /// <code>
-        /// "An internal server error occurred."
-        /// </code>
-        /// </response>
-        [HttpGet]
-        [Route("~/Leave/GetAll")]
-        [Authorize(Roles = StaticClass.Admin)]
-        public async Task<IActionResult> GetLeaves()
-        {
-            var leaves = await _leaveService.GetAllLeaves();
+        ///// <summary>
+        ///// Retrieves all leave records from the system.
+        ///// This endpoint returns a list of all recorded employee leave requests.
+        ///// </summary>
+        ///// <returns>
+        ///// Returns an <see cref="IActionResult"/> containing the list of leave records or an error message.
+        ///// </returns>
+        ///// <response code="200">
+        ///// Successfully retrieved leave records. Returns a list of leave details.
+        ///// Example Response (Success):
+        ///// <code>
+        ///// [
+        /////     {
+        /////         "employeeId": "EMP12345",
+        /////         "startDate": "2025-04-01T00:00:00Z",
+        /////         "endDate": "2025-04-05T00:00:00Z",
+        /////         "reason": "Vacation"
+        /////     },
+        /////     {
+        /////         "employeeId": "EMP67890",
+        /////         "startDate": "2025-05-10T00:00:00Z",
+        /////         "endDate": "2025-05-12T00:00:00Z",
+        /////         "reason": "Medical"
+        /////     }
+        ///// ]
+        ///// </code>
+        ///// </response>
+        ///// <response code="404">
+        ///// No leave records found in the system.
+        ///// Example Response (Not Found):
+        ///// <code>
+        ///// "No leave records found."
+        ///// </code>
+        ///// </response>
+        ///// <response code="500">
+        ///// Server error. Returned when an unexpected error occurs while retrieving leave records.
+        ///// Example Response (Server Error):
+        ///// <code>
+        ///// "An internal server error occurred."
+        ///// </code>
+        ///// </response>
+        //[HttpGet]
+        //[Route("~/Leave/GetAll")]
+        //[Authorize(Roles = Roles.Admin)]
+        //public async Task<IActionResult> GetLeaves()
+        //{
+        //    var leaves = await _leaveService.GetAllLeaves();
 
-            if (!leaves.Any())
-                return NotFound("No leave records found.");
+        //    if (!leaves.Any())
+        //        return NotFound("No leave records found.");
 
-            return Ok(leaves);
-        }
+        //    return Ok(leaves);
+        //}
 
         #endregion
 
 
         #region Get Employee Leaves
 
-        /// <summary>
-        /// Retrieves all leave records for a specific employee based on their employee ID.
-        /// This endpoint returns a list of leave records associated with the provided employee ID.
-        /// </summary>
-        /// <param name="empId">
-        /// The unique identifier of the employee whose leave records are to be retrieved.
-        /// Example: "EMP12345"
-        /// </param>
-        /// <returns>
-        /// Returns an <see cref="IActionResult"/> containing the list of leave records for the specified employee or an error message.
-        /// </returns>
-        /// <response code="200">
-        /// Successfully retrieved leave records for the employee. Returns a list of leave details.
-        /// Example Response (Success):
-        /// <code>
-        /// [
-        ///     {
-        ///         "employeeId": "EMP12345",
-        ///         "startDate": "2025-04-01T00:00:00Z",
-        ///         "endDate": "2025-04-05T00:00:00Z",
-        ///         "reason": "Vacation"
-        ///     },
-        ///     {
-        ///         "employeeId": "EMP12345",
-        ///         "startDate": "2025-06-10T00:00:00Z",
-        ///         "endDate": "2025-06-12T00:00:00Z",
-        ///         "reason": "Medical"
-        ///     }
-        /// ]
-        /// </code>
-        /// </response>
-        /// <response code="400">
-        /// Bad request. Returned when the employee ID is missing or invalid.
-        /// Example Response (Invalid Input):
-        /// <code>
-        /// "Employee ID is required."
-        /// </code>
-        /// </response>
-        /// <response code="404">
-        /// No leave records found for the specified employee.
-        /// Example Response (Not Found):
-        /// <code>
-        /// "No leave records found for the given employee."
-        /// </code>
-        /// </response>
-        /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs while retrieving the leave records, including the exception message.
-        /// Example Response (Server Error):
-        /// <code>
-        /// "An internal server error occurred: Database connection failed."
-        /// </code>
-        /// </response>
-        [HttpGet]
-        [Route("~/Leave/EmployeeLeaves/{empId}")]
-        [Authorize(StaticClass.Admin + "," + StaticClass.User)]
-        public async Task<IActionResult> GetEmployeeLeaves(string empId)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(empId))
-                    return BadRequest("Employee ID is required.");
+        ///// <summary>
+        ///// Retrieves all leave records for a specific employee based on their employee ID.
+        ///// This endpoint returns a list of leave records associated with the provided employee ID.
+        ///// </summary>
+        ///// <param name="empId">
+        ///// The unique identifier of the employee whose leave records are to be retrieved.
+        ///// Example: "EMP12345"
+        ///// </param>
+        ///// <returns>
+        ///// Returns an <see cref="IActionResult"/> containing the list of leave records for the specified employee or an error message.
+        ///// </returns>
+        ///// <response code="200">
+        ///// Successfully retrieved leave records for the employee. Returns a list of leave details.
+        ///// Example Response (Success):
+        ///// <code>
+        ///// [
+        /////     {
+        /////         "employeeId": "EMP12345",
+        /////         "startDate": "2025-04-01T00:00:00Z",
+        /////         "endDate": "2025-04-05T00:00:00Z",
+        /////         "reason": "Vacation"
+        /////     },
+        /////     {
+        /////         "employeeId": "EMP12345",
+        /////         "startDate": "2025-06-10T00:00:00Z",
+        /////         "endDate": "2025-06-12T00:00:00Z",
+        /////         "reason": "Medical"
+        /////     }
+        ///// ]
+        ///// </code>
+        ///// </response>
+        ///// <response code="400">
+        ///// Bad request. Returned when the employee ID is missing or invalid.
+        ///// Example Response (Invalid Input):
+        ///// <code>
+        ///// "Employee ID is required."
+        ///// </code>
+        ///// </response>
+        ///// <response code="404">
+        ///// No leave records found for the specified employee.
+        ///// Example Response (Not Found):
+        ///// <code>
+        ///// "No leave records found for the given employee."
+        ///// </code>
+        ///// </response>
+        ///// <response code="500">
+        ///// Server error. Returned when an unexpected error occurs while retrieving the leave records, including the exception message.
+        ///// Example Response (Server Error):
+        ///// <code>
+        ///// "An internal server error occurred: Database connection failed."
+        ///// </code>
+        ///// </response>
+        //[HttpGet]
+        //[Route("~/Leave/EmployeeLeaves/{empId}")]
+        //[Authorize(Roles.Admin + "," + Roles.User)]
+        //public async Task<IActionResult> GetEmployeeLeaves(string empId)
+        //{
+        //    try
+        //    {
+        //        if (string.IsNullOrWhiteSpace(empId))
+        //            return BadRequest("Employee ID is required.");
 
-                var leaves = await _leaveService.GetEmployeeLeaves(empId);
+        //        var leaves = await _leaveService.GetEmployeeLeaves(empId);
 
-                if (leaves == null || !leaves.Any())
-                    return NotFound("No leave records found for the given employee.");
+        //        if (leaves == null || !leaves.Any())
+        //            return NotFound("No leave records found for the given employee.");
 
-                return Ok(leaves);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An internal server error occurred: {ex.Message}");
-            }
-        }
+        //        return Ok(leaves);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"An internal server error occurred: {ex.Message}");
+        //    }
+        //}
 
         #endregion
 

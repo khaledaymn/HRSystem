@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HRSystem.Models;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRSystem.Extend
 {
@@ -9,15 +11,12 @@ namespace HRSystem.Extend
         public Gender Gender { get; set; }
         public DateTime DateOfBarth { get; set; }
         public string Nationalid { get; set; } = string.Empty;
-        public double Salary { get; set; }
-        public DateTime DateOfWork { get; set; }
-        public DateTime TimeOfAttend { get; set; }
-        public DateTime TimeOfLeave { get; set; }
+        public double BaseSalary { get; set; }
+        public DateTime HiringDate { get; set; }
         public bool IsDeleted { get; set; }
-    }
-    public enum Gender
-    {
-        male,
-        female
+
+        [ForeignKey(nameof(Branch))]
+        public int? BranchId { get; set; }
+        public virtual Branch Branch { get; set; }
     }
 }

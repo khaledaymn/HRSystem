@@ -1,5 +1,6 @@
-﻿using HRSystem.DTO;
+﻿using HRSystem.DTO.AuthenticationDTOs;
 using HRSystem.Services.AuthenticationServices;
+using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,78 +10,87 @@ namespace HRSystem.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationServices _authenticationServices;
-        public AuthenticationController(IAuthenticationServices authenticationService) => _authenticationServices = authenticationService;
+        private readonly ILogger<AuthenticationServices> _logger;
+        private readonly IUnitOfWork _unitOfWork;
+        public AuthenticationController(ILogger<AuthenticationServices> logger, IUnitOfWork unitOfWork)
+        {
+            _logger = logger;
+            _unitOfWork = unitOfWork;
+        }
 
         #region Login
         /// <summary>
-        /// Authenticates a user by verifying their credentials and returns authentication details.
-        /// This endpoint allows users to log in to the system using their username and password.
+        /// Authenticates a user and returns authentication details including a token if successful.
         /// </summary>
-        /// <param name="model">
-        /// The login details, which must include a valid username and password (as defined in LoginDTO).
-        /// Example Request (LoginDTO):
-        /// <code>
-        /// {
-        ///     "email": "user@example.com",
-        ///     "password": "P@ssw0rd123"
-        /// }
-        /// </code>
-        /// </param>
+        /// <param name="model">The login data transfer object containing the user's email and password.</param>
         /// <returns>
-        /// Returns an <see cref="AuthenticationDTO"/> object containing:
-        /// - IsAuthenticated: A boolean indicating if the login was successful.
-        /// - Message: A string describing the result of the login attempt.
-        /// - User details (e.g., Id, Name, Email, etc.) if the login is successful.
+        /// Returns an authentication result with a token if successful, or an error message if authentication fails.
         /// </returns>
+        /// <remarks>
+        /// This endpoint validates the user's credentials and returns an authentication token if the login is successful.
+        /// The request body must contain a valid email and password.
+        /// 
+        /// Example Request:
+        /// ```json
+        /// {
+        ///   "email": "user@example.com",
+        ///   "password": "P@ssw0rd123"
+        /// }
+        /// ```
+        /// </remarks>
         /// <response code="200">
-        /// Login successful. Returns the <see cref="AuthenticationDTO"/> with user details.
-        /// Example Response (Success):
-        /// <code>
+        /// Returns the authentication details including token when login is successful.
+        /// Successful Response (200 OK):
+        /// ```json
         /// {
-        ///     "message": "Login successful",
-        ///     "id": "12345",
-        ///     "name": "John Doe",
-        ///     "email": "user@example.com",
-        ///     "userName": "johndoe",
-        ///     "phoneNumber": "123-456-7890",
-        ///     "address": "123 Main St",
-        ///     "nationalId": "987654321",
-        ///     "salary": 50000,
-        ///     "timeOfAttend": "09:00",
-        ///     "timeOfLeave": "17:00",
-        ///     "gender": "Male",
-        ///     "dateOfWork": "2023/01/15",
-        ///     "dateOfBirth": "1990/05/20",
-        ///     "roles": ["User"]
-        /// }
-        /// </code>
-        /// </response>
-        /// <response code="400">
-        /// Bad request. Returned when the model is invalid (e.g., missing email or password) or authentication fails (e.g., incorrect credentials).
-        /// Example Response (Invalid Model):
-        /// <code>
-        /// {
-        ///     "errors": {
-        ///         "username": ["The username field is required."],
-        ///         "password": ["The password field is required."]
+        ///   "message": "Login successful",
+        ///   "id": "12345",
+        ///   "name": "John Doe",
+        ///   "email": "user@example.com",
+        ///   "phoneNumber": "123-456-7890",
+        ///   "address": "123 Main St",
+        ///   "nationalId": "ABC123456",
+        ///   "baseSalary": 50000.0,
+        ///   "shift": [
+        ///     {
+        ///       "id": 1,
+        ///       "startTime": "08:00",
+        ///       "endTime": "16:00",
+        ///       "employeeId": "12345"
         ///     }
+        ///   ],
+        ///   "gender": "Male",
+        ///   "branch": {
+        ///     "id": 1,
+        ///     "name": "Main Branch",
+        ///     "latitude": 40.7128,
+        ///     "longitude": -74.0060
+        ///   },
+        ///   "hiringDate": "2023-01-15",
+        ///   "dateOfBarth": "1990-05-20",
+        ///   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        ///   "roles": ["User"]
         /// }
-        /// </code>
-        /// Example Response (Authentication Failed):
-        /// <code>
-        /// "Invalid username or password."
-        /// </code>
+        /// </response>
+        /// ```
+        /// <response code="400">
+        /// Returned when the login credentials are invalid or the request is malformed.
+        /// Bad Request Response (400):
+        /// ```json
+        /// {
+        ///   "message": "Invalid email or password"
+        /// }
         /// </response>
         /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server, with a JSON object containing 'message' and 'error' properties.
-        /// Example Response (Server Error):
-        /// <code>
+        /// Returned when an unexpected server error occurs during processing.
+        /// ```
+        /// Server Error Response (500):
+        /// ```json
         /// {
-        ///     "message": "An error occurred",
-        ///     "error": "Database connection failed"
+        ///   "message": "An error occurred while processing your request",
+        ///   "error": "Exception details here"
         /// }
-        /// </code>
+        /// ```
         /// </response>
         [HttpPost]
         [Route("~/Account/Login")]
@@ -89,18 +99,25 @@ namespace HRSystem.Controllers
             try
             {
                 if (!ModelState.IsValid)
-                    return BadRequest(ModelState); // Returns validation errors
-
-                var result = await _authenticationServices.Login(model);
+                {
+                    _logger.LogWarning("Invalid login model state for email: {Email}", model.Email);
+                    return BadRequest(ModelState);
+                }
+                var result = await _unitOfWork.AuthenticationService.Login(model);
 
                 if (!result.IsAuthenticated)
-                    return BadRequest(result.Message); // Returns authentication failure message
+                {
+                    _logger.LogWarning("Authentication failed for email: {Email}. Message: {Message}", model.Email, result.Message);
+                    return BadRequest(result.Message);
+                }
 
-                return Ok(result); // Returns successful authentication details
+                _logger.LogInformation("Login successful for email: {Email}", model.Email);
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "An error occurred", error = ex.Message }); // Returns server error
+                _logger.LogError(ex, "Error processing login request for email: {Email}", model.Email);
+                return StatusCode(500, new { message = "An error occurred while processing your request", error = ex.Message });
             }
         }
 
@@ -109,52 +126,53 @@ namespace HRSystem.Controllers
 
         #region Forget Password
         /// <summary>
-        /// Initiates the password reset process by sending a reset link to the user's email.
-        /// This endpoint allows users to request a password reset by providing their email address.
+        /// Initiates a password reset process for a user based on their email.
         /// </summary>
-        /// <param name="model">
-        /// The data containing the user's email address (as defined in ForgetPasswordDTO).
-        /// Example Request (ForgetPasswordDTO):
-        /// <code>
-        /// {
-        ///     "email": "user@example.com"
-        /// }
-        /// </code>
-        /// </param>
+        /// <param name="model">The forget password data transfer object containing the user's email.</param>
         /// <returns>
-        /// Returns an <see cref="IActionResult"/> indicating the result of the password reset request.
+        /// Returns a success message if the request is processed successfully, or an error message if it fails.
         /// </returns>
+        /// <remarks>
+        /// This endpoint triggers a password reset process for the specified email. If the email exists, a reset link or code will be sent.
+        /// The request body must contain a valid email.
+        /// 
+        /// Example Request:
+        /// ```json
+        /// {
+        ///   "email": "user@example.com"
+        /// }
+        /// ```
+        /// </remarks>
         /// <response code="200">
-        /// Password reset initiated successfully. Returns a success message indicating the reset link was sent.
-        /// Example Response (Success):
-        /// <code>
+        /// Returns a success message when the forget password request is processed successfully.
+        /// ```json
         /// "success"
-        /// </code>
+        /// ```
         /// </response>
         /// <response code="400">
-        /// Bad request. Returned when the provided model is invalid (e.g., missing or invalid email).
-        /// Example Response (Invalid Model):
-        /// <code>
+        /// Returned when the request model is invalid or malformed.
+        /// ```json
         /// {
-        ///     "errors": {
-        ///         "email": ["The email field is required."]
-        ///     }
+        ///   "email": [
+        ///     "The Email field is required."
+        ///   ]
         /// }
-        /// </code>
+        /// ```
         /// </response>
         /// <response code="404">
-        /// Not found. Returned when the email is not registered or the reset process fails (e.g., email sending failed).
-        /// Example Response (Email Not Registered):
-        /// <code>
-        /// "Email is not registered!"
-        /// </code>
+        /// Returned when the email is not found or the forget password process fails.
+        /// ```json
+        /// "Email not found"
+        /// ```
         /// </response>
         /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server, with a JSON object containing a message.
-        /// Example Response (Server Error):
-        /// <code>
-        /// "An error occurred while processing the request: Database connection failed"
-        /// </code>
+        /// Returned when an unexpected server error occurs during processing.
+        /// ```json
+        /// {
+        ///   "message": "An error occurred while processing your request",
+        ///   "error": "Exception details here"
+        /// }
+        /// ```
         /// </response>
         [HttpPost]
         [Route("~/Account/ForgetPassword")]
@@ -162,20 +180,27 @@ namespace HRSystem.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    var result = await _authenticationServices.ForgetPassword(model);
-
-                    if (result != "success")
-                        return NotFound(result);
-
-                    return Ok(result);
+                    _logger.LogWarning("Invalid forget password model state for email: {Email}", model.Email);
+                    return BadRequest(ModelState);
                 }
-                return BadRequest(ModelState);
+
+                var result = await _unitOfWork.AuthenticationService.ForgetPassword(model);
+
+                if (result != "success")
+                {
+                    _logger.LogWarning("Forget password failed for email: {Email}. Message: {Message}", model.Email, result);
+                    return NotFound(result);
+                }
+
+                _logger.LogInformation("Forget password request completed successfully for email: {Email}", model.Email);
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred while processing the request: {ex.Message}");
+                _logger.LogError(ex, "Error processing forget password request for email: {Email}", model.Email);
+                return StatusCode(500, new { message = "An error occurred while processing your request", error = ex.Message });
             }
         }
 
@@ -184,75 +209,85 @@ namespace HRSystem.Controllers
 
         #region Reset Password
         /// <summary>
-        /// Resets a user's password using a reset token.
-        /// This endpoint allows users to reset their password by providing the necessary details, including the reset token, email, and new password.
+        /// Resets a user's password using provided credentials and returns authentication details if successful.
         /// </summary>
-        /// <param name="model">
-        /// The data containing the reset token, email, and new password (as defined in ResetPasswordDTO).
-        /// Example Request (ResetPasswordDTO):
-        /// <code>
-        /// {
-        ///     "email": "user@example.com",
-        ///     "token": "abc123xyz456",
-        ///     "newPassword": "NewP@ssw0rd123"
-        /// }
-        /// </code>
-        /// </param>
+        /// <param name="model">The reset password data transfer object containing the user's email, reset token, and new password.</param>
         /// <returns>
-        /// Returns an <see cref="IActionResult"/> indicating the result of the password reset operation.
+        /// Returns an authentication result with a token if the reset is successful, or an error message if it fails.
         /// </returns>
-        /// <response code="200">
-        /// Password reset successful. Returns the <see cref="AuthenticationDTO"/> with updated user details.
-        /// Example Response (Success):
-        /// <code>
+        /// <remarks>
+        /// This endpoint validates the reset token and updates the user's password. The request body must contain a valid email, reset token, and new password.
+        /// 
+        /// Example Request:
+        /// ```json
         /// {
-        ///     "message": "Password reset successful",
-        ///     "id": "12345",
-        ///     "name": "John Doe",
-        ///     "email": "user@example.com",
-        ///     "userName": "johndoe",
-        ///     "phoneNumber": "123-456-7890",
-        ///     "address": "123 Main St",
-        ///     "nationalId": "987654321",
-        ///     "salary": 50000,
-        ///     "timeOfAttend": "09:00",
-        ///     "timeOfLeave": "17:00",
-        ///     "gender": "Male",
-        ///     "dateOfWork": "2023-01-15",
-        ///     "dateOfBirth": "1990-05-20",
-        ///     "roles": ["User"]
+        ///   "email": "user@example.com",
+        ///   "token": "reset-token-123",
+        ///   "newPassword": "NewP@ssw0rd123"
         /// }
-        /// </code>
+        /// ```
+        /// </remarks>
+        /// <response code="200">
+        /// Returns the authentication details including token when the password reset is successful.
+        /// ```json
+        /// {
+        ///   "message": "Password reset successful",
+        ///   "id": "12345",
+        ///   "name": "John Doe",
+        ///   "email": "user@example.com",
+        ///   "phoneNumber": "123-456-7890",
+        ///   "address": "123 Main St",
+        ///   "nationalId": "ABC123456",
+        ///   "baseSalary": 50000.0,
+        ///   "shift": [
+        ///     {
+        ///       "id": 1,
+        ///       "startTime": "08:00",
+        ///       "endTime": "16:00",
+        ///       "employeeId": "12345"
+        ///     }
+        ///   ],
+        ///   "gender": "Male",
+        ///   "branch": {
+        ///     "id": 1,
+        ///     "name": "Main Branch",
+        ///     "latitude": 40.7128,
+        ///     "longitude": -74.0060
+        ///   },
+        ///   "hiringDate": "2023-01-15",
+        ///   "dateOfBarth": "1990-05-20",
+        ///   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        ///   "roles": ["User"]
+        /// }
+        /// ```
         /// </response>
         /// <response code="400">
-        /// Bad request. Returned when the provided model is invalid (e.g., missing token, email, or new password).
-        /// Example Response (Invalid Model):
-        /// <code>
+        /// Returned when the request model is invalid or malformed.
+        /// ```json
         /// {
-        ///     "errors": {
-        ///         "email": ["The email field is required."],
-        ///         "token": ["The token field is required."],
-        ///         "newPassword": ["The new password field is required."]
-        ///     }
+        ///   "email": [
+        ///     "The Email field is required."
+        ///   ],
+        ///   "newPassword": [
+        ///     "The NewPassword field is required."
+        ///   ]
         /// }
-        /// </code>
+        /// ```
         /// </response>
         /// <response code="404">
-        /// Not found. Returned when the reset token is invalid, the email is not registered, or the reset process fails.
-        /// Example Response (Invalid Token):
-        /// <code>
-        /// "Invalid or expired token."
-        /// </code>
+        /// Returned when the reset token is invalid or the email is not found.
+        /// ```json
+        /// "Invalid token or email"
+        /// ```
         /// </response>
         /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server, with a JSON object containing a message.
-        /// Example Response (Server Error):
-        /// <code>
+        /// Returned when an unexpected server error occurs during processing.
+        /// ```json
         /// {
-        ///     "message": "An error occurred while resetting the password",
-        ///     "error": "Database connection failed"
+        ///   "message": "An error occurred while resetting your password",
+        ///   "error": "Exception details here"
         /// }
-        /// </code>
+        /// ```
         /// </response>        
         [HttpPost]
         [Route("~/Account/ResetPassword")]
@@ -260,18 +295,27 @@ namespace HRSystem.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    var result = await _authenticationServices.ResetPassword(model);
-                    if (result.IsAuthenticated)
-                        return Ok(result); // Returns AuthenticationDTO on success
-                    return NotFound(result.Message); // Returns failure message
+                    _logger.LogWarning("Invalid reset password model state for email: {Email}", model.Email);
+                    return BadRequest(ModelState);
                 }
-                return BadRequest(ModelState); // Returns validation errors
+
+                var result = await _unitOfWork.AuthenticationService.ResetPassword(model);
+
+                if (!result.IsAuthenticated)
+                {
+                    _logger.LogWarning("Reset password failed for email: {Email}. Message: {Message}", model.Email, result.Message);
+                    return NotFound(result.Message);
+                }
+
+                _logger.LogInformation("Reset password completed successfully for email: {Email}", model.Email);
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred while resetting the password: {ex.Message}");
+                _logger.LogError(ex, "Error processing reset password request for email: {Email}", model.Email);
+                return StatusCode(500, new { message = "An error occurred while resetting your password", error = ex.Message });
             }
         }
 

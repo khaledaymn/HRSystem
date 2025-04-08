@@ -3,15 +3,9 @@
     public class GeneralSetting
     {
         public int Id { get; set; }
-
-        public float OverTimeHour {  get; set; }
-        public float LateHour {  get; set; }
-
-        public float ExtraDay {  get; set; }
-        public float AbsentDay {  get; set; }
-
-        public string FirstWeekEnd { get; set; } = default!;
-        public string SecondWeekEnd { get; set; } = default!;
-
+        public string CompanyName { get; set; }
+        public DateTime StartTimeOfDay { get; set; }
+        public int NumberOfVacationsInYear { get; set; }
+        public double RateOfExtraHour { get; set; }
     }
 }

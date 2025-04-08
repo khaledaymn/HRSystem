@@ -1,6 +1,7 @@
-﻿using HRSystem.DTO;
+﻿using HRSystem.DTO.OfficialVacationDTOs;
 using HRSystem.Helper;
 using HRSystem.Services.OfficialVacationServices;
+using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,13 @@ namespace HRSystem.Controllers
     [ApiController]
     public class OfficialVacationsController : ControllerBase
     {
-        private readonly IOfficialVacationServices _officialVacationServices;
-
-        public OfficialVacationsController(IOfficialVacationServices officialVacationServices) => _officialVacationServices = officialVacationServices;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<OfficialVacationsController> _logger;
+        public OfficialVacationsController(ILogger<OfficialVacationsController> logger, IUnitOfWork unitOfWork)
+        {
+            _logger = logger;
+            _unitOfWork = unitOfWork;
+        }
 
         #region Add Official Vacation
         /// <summary>
@@ -75,20 +80,50 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpPost]
         [Route("~/OfficialVacations/Create")]
-        [Authorize(Roles = StaticClass.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult> AddOfficialVacationAsync([FromBody] CreateOfficialVacationDTO vacation)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            {
+                _logger.LogWarning("Invalid model state for creating official vacation: {Errors}",
+                    string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
+                return BadRequest(new
+                {
+                    Success = false,
+                    Message = "Invalid data provided.",
+                    Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)
+                });
+            }
+
 
             try
             {
-                await _officialVacationServices.AddOfficialVacationAsync(vacation);
-                return Created("~/OfficialVacations/Create", new { Success = true, Message = "Official vacation added successfully." });
+                var createdVacation = await _unitOfWork.OfficialVacationServices.AddOfficialVacationAsync(vacation);
+
+                _logger.LogInformation("Successfully created official vacation with ID: {VacationId}", createdVacation.Id);
+                return Created(
+                    "",
+                    new
+                    {
+                        Success = true,
+                        Message = "Official vacation added successfully.",
+                        Data = createdVacation
+                    });
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning("Invalid data for creating official vacation: {Message}", ex.Message);
+                return BadRequest(new { Success = false, Message = ex.Message });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while adding the official vacation." });
+                _logger.LogError(ex, "Failed to create official vacation with name: {VacationName}. Error: {Message}", vacation?.VacationName, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while adding the official vacation.",
+                    Error = ex.Message 
+                });
             }
         }
 
@@ -147,21 +182,38 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpGet]
         [Route("~/OfficialVacations/GetAll")]
-        [Authorize(Roles = StaticClass.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> GetAllOfficialVacation()
         {
+            _logger.LogInformation("Received request to retrieve all official vacations.");
+
             try
             {
-                var vacations = await _officialVacationServices.GetAllOfficialVacationsAsync();
+                var vacations = await _unitOfWork.OfficialVacationServices.GetAllOfficialVacationsAsync();
 
                 if (vacations == null || !vacations.Any())
-                    return NoContent();
+                {
+                    _logger.LogInformation("No official vacations available.");
+                    return NotFound("No official vacations found in the database."); 
+                }
 
-                return Ok(vacations);
+                _logger.LogInformation("Successfully retrieved {VacationCount} official vacations.", vacations.Count());
+                return Ok(new
+                {
+                    Success = true,
+                    Message = "Official vacations retrieved successfully.",
+                    Data = vacations
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while retrieving official vacations." });
+                _logger.LogError(ex, "Failed to retrieve official vacations. Error: {Message}", ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while retrieving official vacations.",
+                    Error = ex.Message 
+                });
             }
         }
 
@@ -214,21 +266,36 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpGet]
         [Route("~/OfficialVacations/GetById/{id}")]
-        [Authorize(Roles = StaticClass.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> GetOfficialVacationByIdAsync(int id)
         {
             try
             {
-                var vacation = await _officialVacationServices.GetOfficialVacationByIdAsync(id);
+                var vacation = await _unitOfWork.OfficialVacationServices.GetOfficialVacationByIdAsync(id);
 
                 if (vacation == null)
-                    return NotFound($"No vacation found with ID {id}.");
+                {
+                    _logger.LogWarning("Official vacation with ID {VacationId} not found.", id);
+                    return NotFound(new { Success = false, Message = $"No official vacation found with ID {id}." });
+                }
 
-                return Ok(vacation);
+                _logger.LogInformation("Successfully retrieved official vacation with ID: {VacationId}", id);
+                return Ok(new
+                {
+                    Success = true,
+                    Message = "Official vacation retrieved successfully.",
+                    Data = vacation
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while retrieving the official vacation." });
+                _logger.LogError(ex, "Failed to retrieve official vacation with ID: {VacationId}. Error: {Message}", id, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while retrieving the official vacation.",
+                    Error = ex.Message 
+                });
             }
         }
 
@@ -311,29 +378,36 @@ namespace HRSystem.Controllers
         /// </code>
         /// </response>
         [HttpPut]
-        [Route("~/OfficialVacations/Edit/{id}")]
-        [Authorize(Roles = StaticClass.Admin)]
-        public async Task<IActionResult> UpdateOfficialVacationAsync(int id, [FromBody] OfficialVacationDTO vacation)
+        [Route("~/OfficialVacations/Edit")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> UpdateOfficialVacationAsync(OfficialVacationDTO vacation)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             try
             {
-                if (id != vacation.Id)
-                    return BadRequest("ID mismatch between route and body.");
+                var updatedVacation = await _unitOfWork.OfficialVacationServices.UpdateOfficialVacationAsync(vacation);
 
-                var updatedVacation = await _officialVacationServices.UpdateOfficialVacationAsync(id, vacation);
-
-                return Ok(updatedVacation);
+                _logger.LogInformation("Successfully updated official vacation with ID: {VacationId}", vacation.Id);
+                return Ok(new
+                {
+                    Success = true,
+                    Message = "Official vacation updated successfully.",
+                    Data = updatedVacation
+                });
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(ex.Message);
+                _logger.LogWarning("Official vacation with ID {VacationId} not found.", vacation.Id);
+                return NotFound(new { Success = false, Message = ex.Message });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while updating the official vacation." });
+                _logger.LogError(ex, "Failed to update official vacation with ID: {VacationId}. Error: {Message}", vacation.Id, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while updating the official vacation.",
+                    Error = ex.Message
+                });
             }
         }
 
@@ -380,21 +454,31 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpDelete]
         [Route("~/OfficialVacations/Delete/{id}")]
-        [Authorize(Roles = StaticClass.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> DeleteOfficialVacationAsync(int id)
         {
             try
             {
-                var result = await _officialVacationServices.DeleteOfficialVacationAsync(id);
+                var result = await _unitOfWork.OfficialVacationServices.DeleteOfficialVacationAsync(id);
 
                 if (!result)
-                    return NotFound($"No vacation found with ID {id}.");
+                {
+                    _logger.LogWarning("Official vacation with ID {VacationId} not found.", id);
+                    return NotFound(new { Success = false, Message = $"No official vacation found with ID {id}." });
+                }
 
-                return NoContent();
+                _logger.LogInformation("Successfully deleted official vacation with ID: {VacationId}", id);
+                return NoContent(); 
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while deleting the official vacation." });
+                _logger.LogError(ex, "Failed to delete official vacation with ID: {VacationId}. Error: {Message}", id, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while deleting the official vacation.",
+                    Error = ex.Message
+                });
             }
         }
 
@@ -453,23 +537,37 @@ namespace HRSystem.Controllers
         /// </response>
         [HttpGet]
         [Route("official-vacations/check")]
-        [Authorize(Roles = StaticClass.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> IsOfficialVacationAsync([FromQuery] DateTime date)
         {
             try
             {
-                var isVacation = await _officialVacationServices.IsOfficialVacationAsync(date);
-                return Ok(new { date, isVacation });
+                var isVacation = await _unitOfWork.OfficialVacationServices.IsOfficialVacationAsync(date);
+
+                _logger.LogInformation("Successfully checked {Date}: {Status} an official vacation.",
+                    date.ToString("yyyy-MM-dd"), isVacation ? "confirmed as" : "not");
+                return Ok(new
+                {
+                    Success = true,
+                    Message = $"Date {date:yyyy-MM-dd} is {(isVacation ? "" : "not ")}an official vacation.",
+                    Data = new { Date = date.ToString("yyyy-MM-dd"), IsVacation = isVacation }
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while checking the official vacation." });
+                _logger.LogError(ex, "Failed to check if {Date} is an official vacation. Error: {Message}",
+                    date.ToString("yyyy-MM-dd"), ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while checking the official vacation.",
+                    Error = ex.Message
+                });
             }
         }
 
 
         #endregion
-
 
     }
 }

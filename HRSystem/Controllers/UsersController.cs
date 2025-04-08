@@ -1,131 +1,189 @@
-﻿using HRSystem.DTO;
+﻿using HRSystem.DTO.UserDTOs;
 using HRSystem.Helper;
 using HRSystem.Services.UsersServices;
+using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersServices _usersService;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<UsersController> _logger;
 
-        public UsersController(IUsersServices usersService) => _usersService = usersService;
+        public UsersController(ILogger<UsersController> logger, IUnitOfWork unitOfWork)
+        {
+            _logger = logger;
+            _unitOfWork = unitOfWork;
+        }
 
         #region Create User
 
         /// <summary>
-        /// Creates a new user in the system and returns authentication details.
-        /// This endpoint allows an admin or authorized user to create a new user by providing the necessary details.
+        /// Creates a new user in the system.
+        /// This endpoint allows an admin to register a new user by providing necessary details such as name, email, and other personal information.
         /// </summary>
+        /// <remarks>
+        /// This endpoint requires admin privileges and expects a valid JSON payload conforming to the <see cref="CreateUserDTO"/> structure.
+        /// It performs validation on the input data and returns an authentication response with user details and a token upon success.
+        /// </remarks>
         /// <param name="model">
-        /// The data required to create a new user (as defined in CreateUserDTO).
-        /// Example Request (CreateUserDTO):
+        /// The user data to create, provided in the request body as a.
+        /// /// <para><strong>Example Request:</strong></para>
         /// <code>
+        /// POST /Users/Create
         /// {
         ///     "name": "John Doe",
         ///     "email": "john.doe@example.com",
+        ///     "address": "123 Main St, Springfield",
+        ///     "dateOfBarth": "1990-05-15T00:00:00",
+        ///     "phoneNumber": "+1-555-123-4567",
         ///     "userName": "johndoe",
-        ///     "password": "P@ssw0rd123",
-        ///     "phoneNumber": "123-456-7890",
-        ///     "address": "123 Main St",
-        ///     "nationalId": "987654321",
-        ///     "salary": 50000,
-        ///     "timeOfAttend": "09:00:00",
-        ///     "timeOfLeave": "17:00:00",
-        ///     "gender": "male",
-        ///     "dateOfWork": "2023-01-15",
-        ///     "dateOfBirth": "1990-05-20",
+        ///     "nationalid": "987654321",
+        ///     "salary": 50000.75,
+        ///     "shiftType": "Morning",
+        ///     "gender": "Male",
+        ///     "dateOfWork": "2025-01-01T00:00:00",
+        ///     "password": "SecurePass123!"
         /// }
         /// </code>
         /// </param>
         /// <returns>
-        /// Returns an <see cref="IActionResult"/> indicating the result of the user creation operation.
+        /// Returns an <see cref="IActionResult"/> containing the result of the user creation process.
+        /// On success, it returns HTTP 200 (OK) with user details and an authentication token.
+        /// On failure, it returns appropriate error codes with descriptive messages.
         /// </returns>
         /// <response code="200">
-        /// User created successfully. Returns a success message and the created user's details.
-        /// Example Response (Success):
+        /// Successfully created the user. Returns user details and an authentication token.
+        /// Example Response:
         /// <code>
         /// {
         ///     "message": "User created successfully",
         ///     "user": {
-        ///         "message": "User created successfully",
-        ///         "id": "12345",
+        ///         "id": "123e4567-e89b-12d3-a456-426614174000",
         ///         "name": "John Doe",
         ///         "email": "john.doe@example.com",
         ///         "userName": "johndoe",
-        ///         "phoneNumber": "123-456-7890",
-        ///         "address": "123 Main St",
-        ///         "nationalId": "987654321",
-        ///         "salary": 50000,
-        ///         "timeOfAttend": "09:00",
-        ///         "timeOfLeave": "17:00",
+        ///         "phoneNumber": "+1-555-123-4567",
+        ///         "address": "123 Main St, Springfield",
+        ///         "nationalid": "987654321",
+        ///         "salary": 50000.75,
+        ///         "shiftType": "Morning",
         ///         "gender": "Male",
-        ///         "dateOfWork": "2023-01-15",
-        ///         "dateOfBirth": "1990-05-20",
+        ///         "dateOfWork": "2025-01-01",
+        ///         "dateOfBarth": "1990-05-15",
+        ///         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
         ///         "roles": ["User"]
         ///     }
         /// }
         /// </code>
         /// </response>
         /// <response code="400">
-        /// Bad request. Returned when the provided model is invalid or user creation fails (e.g., duplicate email or username).
-        /// Example Response (Invalid Model):
+        /// Bad Request. Returned when the input data is invalid or fails validation.
+        /// Example Response (Validation Error):
         /// <code>
         /// {
-        ///     "errors": {
-        ///         "email": ["The email field is required."],
-        ///         "userName": ["The username field is required."],
-        ///         "password": ["The password field is required."]
-        ///     }
+        ///     "name": ["Name is required."],
+        ///     "email": ["Invalid email format."]
         /// }
         /// </code>
-        /// Example Response (Creation Failed):
+        /// Example Response (Business Logic Error):
         /// <code>
         /// {
-        ///     "message": "Email or username already exists."
+        ///     "message": "Email already exists in the system."
         /// }
         /// </code>
         /// </response>
         /// <response code="401">
         /// Unauthorized. Returned when the caller is not authenticated.
+        /// Example Response:
+        /// <code>
+        /// {
+        ///     "message": "Authentication required. Please provide a valid token."
+        /// }
+        /// </code>
         /// </response>
         /// <response code="403">
-        /// Forbidden. Returned when the caller is not an admin.
+        /// Forbidden. Returned when the caller lacks admin privileges.
+        /// Example Response:
+        /// <code>
+        /// {
+        ///     "message": "Access denied. Admin role required."
+        /// }
+        /// </code>
         /// </response>
         /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server.
-        /// Example Response (Server Error):
+        /// Server Error. Returned when an unexpected error occurs during user creation.
+        /// Example Response (Generic Error):
         /// <code>
         /// {
         ///     "message": "An error occurred while creating the user",
         ///     "error": "Database connection failed"
         /// }
         /// </code>
+        /// Example Response (Detailed Error):
+        /// <code>
+        /// {
+        ///     "message": "An error occurred while creating the user",
+        ///     "error": "User creation failed due to duplicate National ID",
+        ///     "timestamp": "2025-03-24T14:30:00Z"
+        /// }
+        /// </code>
         /// </response>
+        /// <exception cref="Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
         [HttpPost]
         [Route("~/Users/Create")]
-        [Authorize(Roles = StaticClass.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                _logger.LogWarning("Invalid model state for user creation: {Errors}", string.Join("; ", errors));
+                return BadRequest(new
+                {
+                    Success = false,
+                    Message = "Invalid user data provided.",
+                    Errors = errors
+                });
+            }
 
             try
             {
-                var createdUser = await _usersService.Create(model);
-                if (!createdUser.IsAuthenticated)
-                    return BadRequest(new { Message = createdUser.Message });
+                var createdUser = await _unitOfWork.UsersServices.Create(model);
 
-                return Ok(new { Message = createdUser.Message, User = createdUser });
+                if (!createdUser.IsAuthenticated)
+                {
+                    _logger.LogWarning("Failed to create user with email: {Email}. Reason: {Message}", model.Email, createdUser.Message);
+                    return BadRequest(new
+                    {
+                        Success = false,
+                        Message = createdUser.Message
+                    });
+                }
+
+                _logger.LogInformation("Successfully created user with ID: {UserId} and email: {Email}", createdUser.Id, createdUser.Email);
+                return Ok(new
+                {
+                    Success = true,
+                    Message = createdUser.Message,
+                    Data = createdUser
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "An error occurred while creating the user", error = ex.Message });
+                _logger.LogError(ex, "Failed to create user with email: {Email}. Error: {Message}", model?.Email, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while creating the user.",
+                    Error = ex.Message
+                });
             }
         }
 
@@ -136,49 +194,73 @@ namespace HRSystem.Controllers
 
         /// <summary>
         /// Retrieves a list of all users in the system.
-        /// This endpoint allows an admin or authorized user to fetch all user details.
+        /// This endpoint allows an admin to fetch all registered users for administrative purposes.
         /// </summary>
+        /// <remarks>
+        /// This is a GET endpoint that requires admin privileges. It returns a collection of user data if available, or an appropriate error message if no users exist or an issue occurs.
+        /// No parameters are required as it fetches all users indiscriminately.
+        /// </remarks>
         /// <returns>
-        /// Returns an <see cref="IActionResult"/> containing the list of users or an error message.
+        /// Returns an <see cref="IActionResult"/> containing the result of the user retrieval process.
+        /// On success, it returns HTTP 200 (OK) with a list of users.
+        /// On failure, it returns appropriate error codes with descriptive messages.
         /// </returns>
         /// <response code="200">
-        /// Users retrieved successfully. Returns a success message and the list of users.
-        /// Example Response (Success):
+        /// Successfully retrieved the list of users.
+        /// Example Response (Multiple Users):
         /// <code>
         /// {
         ///     "success": true,
         ///     "data": [
         ///         {
-        ///             "id": "12345",
+        ///             "id": "123e4567-e89b-12d3-a456-426614174000",
         ///             "name": "John Doe",
         ///             "email": "john.doe@example.com",
         ///             "userName": "johndoe",
-        ///             "phoneNumber": "123-456-7890",
-        ///             "address": "123 Main St",
+        ///             "phoneNumber": "+1-555-123-4567",
+        ///             "address": "123 Main St, Springfield",
         ///             "nationalId": "987654321",
-        ///             "salary": 50000,
-        ///             "timeOfAttend": "09:00",
-        ///             "timeOfLeave": "17:00",
+        ///             "salary": 50000.75,
+        ///             "shiftType": "Morning",
         ///             "gender": "Male",
-        ///             "dateOfWork": "2023-01-15",
-        ///             "dateOfBirth": "1990-05-20",
-        ///             "roles": ["User"]
+        ///             "dateOfWork": "2025-01-01",
+        ///             "dateOfBirth": "1990-05-15"
         ///         },
         ///         {
-        ///             "id": "67890",
+        ///             "id": "987fcdeb-12ab-34cd-e567-890123456789",
         ///             "name": "Jane Smith",
         ///             "email": "jane.smith@example.com",
         ///             "userName": "janesmith",
-        ///             "phoneNumber": "987-654-3210",
-        ///             "address": "456 Oak St",
+        ///             "phoneNumber": "+1-555-987-6543",
+        ///             "address": "456 Oak Ave, Riverside",
         ///             "nationalId": "123456789",
-        ///             "salary": 60000,
-        ///             "timeOfAttend": "08:30",
-        ///             "timeOfLeave": "16:30",
+        ///             "salary": 60000.00,
+        ///             "shiftType": "Evening",
         ///             "gender": "Female",
-        ///             "dateOfWork": "2022-06-10",
-        ///             "dateOfBirth": "1985-03-15",
-        ///             "roles": ["Admin"]
+        ///             "dateOfWork": "2024-11-15",
+        ///             "dateOfBirth": "1988-09-22"
+        ///         }
+        ///     ]
+        /// }
+        /// </code>
+        /// Example Response (Single User):
+        /// <code>
+        /// {
+        ///     "success": true,
+        ///     "data": [
+        ///         {
+        ///             "id": "123e4567-e89b-12d3-a456-426614174000",
+        ///             "name": "John Doe",
+        ///             "email": "john.doe@example.com",
+        ///             "userName": "johndoe",
+        ///             "phoneNumber": "+1-555-123-4567",
+        ///             "address": "123 Main St, Springfield",
+        ///             "nationalId": "987654321",
+        ///             "salary": 50000.75,
+        ///             "shiftType": "Morning",
+        ///             "gender": "Male",
+        ///             "dateOfWork": "2025-01-01",
+        ///             "dateOfBirth": "1990-05-15"
         ///         }
         ///     ]
         /// }
@@ -186,13 +268,25 @@ namespace HRSystem.Controllers
         /// </response>
         /// <response code="401">
         /// Unauthorized. Returned when the caller is not authenticated.
+        /// Example Response:
+        /// <code>
+        /// {
+        ///     "message": "Authentication required. Please provide a valid token."
+        /// }
+        /// </code>
         /// </response>
         /// <response code="403">
-        /// Forbidden. Returned when the caller is not an admin.
+        /// Forbidden. Returned when the caller lacks admin privileges.
+        /// Example Response:
+        /// <code>
+        /// {
+        ///     "message": "Access denied. Admin role required."
+        /// }
+        /// </code>
         /// </response>
         /// <response code="404">
-        /// Not found. Returned when no users are found in the system.
-        /// Example Response (Not Found):
+        /// Not Found. Returned when no users exist in the system.
+        /// Example Response:
         /// <code>
         /// {
         ///     "success": false,
@@ -201,8 +295,8 @@ namespace HRSystem.Controllers
         /// </code>
         /// </response>
         /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server.
-        /// Example Response (Server Error):
+        /// Server Error. Returned when an unexpected error occurs during retrieval.
+        /// Example Response (Generic Error):
         /// <code>
         /// {
         ///     "success": false,
@@ -210,29 +304,56 @@ namespace HRSystem.Controllers
         ///     "error": "Database connection failed"
         /// }
         /// </code>
+        /// Example Response (Detailed Error):
+        /// <code>
+        /// {
+        ///     "success": false,
+        ///     "message": "An error occurred while retrieving users.",
+        ///     "error": "Timeout occurred while querying the database",
+        ///     "timestamp": "2025-03-24T15:45:00Z"
+        /// }
+        /// </code>
         /// </response>
+        /// <exception cref="Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
         [HttpGet]
         [Route("~/Users/GetAll")]
-        [Authorize(Roles = StaticClass.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> GetUsers()
         {
             try
             {
-                var allUsers = await _usersService.GetAllAsync();
+                var allUsers = await _unitOfWork.UsersServices.GetAllAsync();
 
-                if (allUsers == null)
+                if (allUsers == null || !allUsers.Any())
                 {
-                    return NotFound(new { Success = false, Message = "No users found." });
+                    _logger.LogInformation("No users found in the system.");
+                    return Ok(new
+                    {
+                        Success = true,
+                        Message = "No users found.",
+                        Data = new List<object>()
+                    });
                 }
 
-                return Ok(new { Success = true, Data = allUsers });
+                _logger.LogInformation("Successfully retrieved {UserCount} users.", allUsers.Count());
+                return Ok(new
+                {
+                    Success = true,
+                    Message = "Users retrieved successfully.",
+                    Data = allUsers
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while retrieving users.", Error = ex.Message });
+                _logger.LogError(ex, "Failed to retrieve users. Error: {Message}", ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while retrieving users.",
+                    Error = ex.Message
+                });
             }
         }
-
         #endregion
 
 
@@ -240,80 +361,91 @@ namespace HRSystem.Controllers
 
         /// <summary>
         /// Retrieves a user by their ID.
-        /// This endpoint allows an admin or authorized user to fetch the details of a specific user using their ID.
         /// </summary>
-        /// <param name="id">The ID of the user to retrieve.</param>
+        /// <param name="id">The unique identifier of the user to retrieve.</param>
         /// <returns>
-        /// Returns an <see cref="IActionResult"/> containing the user details or an error message.
+        /// Returns the user details if found, or an error message if the user is not found or the operation fails.
         /// </returns>
+        /// <remarks>
+        /// This endpoint retrieves a user by ID and requires Admin or User role authorization.
+        /// </remarks>
         /// <response code="200">
-        /// User retrieved successfully. Returns a success message and the user's details.
-        /// Example Response (Success):
-        /// <code>
+        /// Returns the user details when the request is successful.
+        /// ```json
         /// {
-        ///     "success": true,
-        ///     "data": {
-        ///         "id": "12345",
-        ///         "name": "John Doe",
-        ///         "email": "john.doe@example.com",
-        ///         "userName": "johndoe",
-        ///         "phoneNumber": "123-456-7890",
-        ///         "address": "123 Main St",
-        ///         "nationalId": "987654321",
-        ///         "salary": 50000,
-        ///         "timeOfAttend": "09:00",
-        ///         "timeOfLeave": "17:00",
-        ///         "gender": "Male",
-        ///         "dateOfWork": "2023-01-15",
-        ///         "dateOfBirth": "1990-05-20",
-        ///         "roles": ["User"]
-        ///     }
+        ///   "success": true,
+        ///   "message": "User retrieved successfully.",
+        ///   "data": {
+        ///     "id": "12345",
+        ///     "name": "John Doe",
+        ///     "email": "john@example.com"
+        ///   }
         /// }
-        /// </code>
-        /// </response>
-        /// <response code="404">
-        /// Not found. Returned when the user with the specified ID does not exist.
-        /// Example Response (Not Found):
-        /// <code>
-        /// {
-        ///     "success": false,
-        ///     "message": "User not found."
-        /// }
-        /// </code>
+        /// ```
         /// </response>
         /// <response code="401">
-        /// Unauthorized. Returned when the caller is not authenticated.
+        /// Returned when the user is not authenticated or lacks required role authorization.
+        /// ```json
+        /// {
+        ///   "message": "Unauthorized"
+        /// }
+        /// ```
+        /// </response>
+        /// <response code="404">
+        /// Returned when the user with the specified ID is not found.
+        /// ```json
+        /// {
+        ///   "success": false,
+        ///   "message": "User with ID '12345' not found."
+        /// }
+        /// ```
         /// </response>
         /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server.
-        /// Example Response (Server Error):
-        /// <code>
+        /// Returned when an unexpected server error occurs during processing.
+        /// ```json
         /// {
-        ///     "success": false,
-        ///     "message": "An error occurred while retrieving the user.",
-        ///     "error": "Database connection failed"
+        ///   "success": false,
+        ///   "message": "An error occurred while retrieving the user.",
+        ///   "error": "Exception details here"
         /// }
-        /// </code>
+        /// ```
         /// </response>
         [HttpGet]
         [Route("~/Users/GetById/{id}")]
-        [Authorize(Roles = StaticClass.Admin+","+StaticClass.User)]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.User}")]
         public async Task<IActionResult> GetById(string id)
         {
             try
             {
-                var user = await _usersService.GetByID(id);
+                var user = await _unitOfWork.UsersServices.GetByID(id);
 
                 if (user == null)
                 {
-                    return NotFound(new { Success = false, Message = "User not found." });
+                    _logger.LogWarning("User with ID {UserId} not found.", id);
+                    return NotFound(new
+                    {
+                        Success = false,
+                        Message = $"User with ID '{id}' not found."
+                    });
                 }
 
-                return Ok(new { Success = true, Data = user });
+                _logger.LogInformation("User with ID {UserId} retrieved successfully.", id);
+                return Ok(new
+                {
+                    Success = true,
+                    Message = user.Message ?? "User retrieved successfully.",
+                    Data = user
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while retrieving the user.", Error = ex.Message });
+                _logger.LogError(ex, "Failed to retrieve user with ID: {UserId}. Error: {Message}", id, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while retrieving the user.",
+                    Error = ex.Message
+                });
             }
         }
 
@@ -323,102 +455,118 @@ namespace HRSystem.Controllers
         #region Edit User
 
         /// <summary>
-        /// Updates an existing user's details by their ID.
-        /// This endpoint allows an admin or authorized user to update a user's information using their ID and updated details.
+        /// Updates an existing user in the system.
         /// </summary>
-        /// <param name="id">The ID of the user to update.</param>
-        /// <param name="model">
-        /// The updated user details (as defined in UpdateUserDTO).
-        /// Example Request (UpdateUserDTO):
-        /// <code>
-        /// {
-        ///     "name": "John Smith",
-        ///     "email": "john.smith@example.com",
-        ///     "userName": "johnsmith",
-        ///     "phoneNumber": "123-456-7890",
-        ///     "address": "456 Main St",
-        ///     "nationalId": "987654321",
-        ///     "salary": 55000,
-        ///     "timeOfAttend": "08:30",
-        ///     "timeOfLeave": "16:30",
-        ///     "gender": "Male",
-        ///     "dateOfWork": "2023-01-15",
-        ///     "dateOfBirth": "1990-05-20",
-        ///     "roles": ["User"]
-        /// }
-        /// </code>
-        /// </param>
+        /// <param name="model">The data transfer object containing the updated user details.</param>
         /// <returns>
-        /// Returns an <see cref="IActionResult"/> indicating the result of the update operation.
+        /// Returns a success message if the user is updated, or an error message if the user is not found or the operation fails.
         /// </returns>
-        /// <response code="200">
-        /// User updated successfully. Returns a success message.
-        /// Example Response (Success):
-        /// <code>
+        /// <remarks>
+        /// This endpoint updates a user and requires Admin role authorization. The request body must contain valid user details.
+        /// 
+        /// Example Request:
+        /// ```json
         /// {
-        ///     "success": true,
-        ///     "message": "User updated successfully."
+        ///   "id": "12345",
+        ///   "name": "Updated John Doe",
+        ///   "email": "john.updated@example.com"
         /// }
-        /// </code>
+        /// ```
+        /// </remarks>
+        /// <response code="200">
+        /// Returns a success message when the user is updated successfully.
+        /// ```json
+        /// {
+        ///   "success": true,
+        ///   "message": "User updated successfully."
+        /// }
+        /// ```
         /// </response>
         /// <response code="400">
-        /// Bad request. Returned when the provided model is invalid.
-        /// Example Response (Invalid Model):
-        /// <code>
+        /// Returned when the request model is invalid.
+        /// ```json
         /// {
-        ///     "success": false,
-        ///     "message": "Invalid data.",
-        ///     "errors": [
-        ///         "The email field is required.",
-        ///         "The userName field is required."
-        ///     ]
+        ///   "success": false,
+        ///   "message": "Invalid user data provided.",
+        ///   "errors": ["The Email field is required."]
         /// }
-        /// </code>
+        /// ```
         /// </response>
         /// <response code="401">
-        /// Unauthorized. Returned when the caller is not authenticated.
+        /// Returned when the user is not authenticated or lacks Admin role authorization.
+        /// ```json
+        /// {
+        ///   "message": "Unauthorized"
+        /// }
+        /// ```
         /// </response>
         /// <response code="404">
-        /// Not found. Returned when the user with the specified ID does not exist or the update process fails.
-        /// Example Response (Not Found):
-        /// <code>
+        /// Returned when the user with the specified ID is not found or cannot be updated.
+        /// ```json
         /// {
-        ///     "success": false,
-        ///     "message": "User not found or update failed."
+        ///   "success": false,
+        ///   "message": "User with ID '12345' not found or could not be updated."
         /// }
-        /// </code>
+        /// ```
         /// </response>
         /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server.
-        /// Example Response (Server Error):
-        /// <code>
+        /// Returned when an unexpected server error occurs during processing.
+        /// ```json
         /// {
-        ///     "success": false,
-        ///     "message": "An error occurred while updating the user.",
-        ///     "error": "Database connection failed"
+        ///   "success": false,
+        ///   "message": "An error occurred while updating the user.",
+        ///   "error": "Exception details here"
         /// }
-        /// </code>
+        /// ```
         /// </response>
         [HttpPut]
-        [Route("~/Users/Edit/{id}")]
-        [Authorize(Roles = StaticClass.Admin + "," + StaticClass.User)]
-        public async Task<IActionResult> Edit(string id, [FromBody] UpdateUserDTO model)
+        [Route("~/Users/Edit")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> Edit([FromBody] UpdateUserDTO model)
         {
+           
             if (!ModelState.IsValid)
-                return BadRequest(new { Success = false, Message = "Invalid data.", Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                _logger.LogWarning("Invalid model state for user update with ID: {UserId}. Errors: {Errors}", model.Id, string.Join("; ", errors));
+                return BadRequest(new
+                {
+                    Success = false,
+                    Message = "Invalid user data provided.",
+                    Errors = errors
+                });
+            }
 
             try
             {
-                var result = await _usersService.Edit(id, model);
+                var result = await _unitOfWork.UsersServices.Edit(model);
 
-                if (result)
-                    return Ok(new { Success = true, Message = "User updated successfully." });
+                if (!result)
+                {
+                    _logger.LogWarning("User with ID {UserId} not found or could not be updated.", model.Id);
+                    return NotFound(new
+                    {
+                        Success = false,
+                        Message = $"User with ID '{model.Id}' not found or could not be updated."
+                    });
+                }
 
-                return NotFound(new { Success = false, Message = "User not found or update failed." });
+                _logger.LogInformation("User with ID {UserId} updated successfully.", model.Id);
+                return Ok(new
+                {
+                    Success = true,
+                    Message = "User updated successfully."
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while updating the user.", Error = ex.Message });
+                _logger.LogError(ex, "Failed to update user with ID: {UserId}. Error: {Message}", model.Id, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while updating the user.",
+                    Error = ex.Message
+                });
             }
         }
 
@@ -428,221 +576,115 @@ namespace HRSystem.Controllers
         #region Delete User
 
         /// <summary>
-        /// Deletes a user by their ID.
-        /// This endpoint allows an admin or authorized user to delete a user from the system using their ID.
+        /// Deletes a user from the system by their ID.
         /// </summary>
-        /// <param name="id">The ID of the user to delete.</param>
+        /// <param name="id">The unique identifier of the user to delete.</param>
         /// <returns>
-        /// Returns an <see cref="IActionResult"/> indicating the result of the delete operation.
+        /// Returns a success message if the user is deleted, or an error message if the user is not found or the operation fails.
         /// </returns>
+        /// <remarks>
+        /// This endpoint deletes a user and requires Admin or User role authorization.
+        /// </remarks>
         /// <response code="200">
-        /// User deleted successfully. Returns a success message.
-        /// Example Response (Success):
-        /// <code>
+        /// Returns a success message when the user is deleted successfully.
+        /// ```json
         /// {
-        ///     "success": true,
-        ///     "message": "User deleted successfully."
+        ///   "success": true,
+        ///   "message": "User and associated records deleted successfully."
         /// }
-        /// </code>
-        /// </response>
-        /// <response code="404">
-        /// Not found. Returned when the user with the specified ID does not exist or could not be deleted.
-        /// Example Response (Not Found):
-        /// <code>
-        /// {
-        ///     "success": false,
-        ///     "message": "User not found or could not be deleted."
-        /// }
-        /// </code>
+        /// ```
         /// </response>
         /// <response code="401">
-        /// Unauthorized. Returned when the caller is not authenticated.
+        /// Returned when the user is not authenticated or lacks required role authorization.
+        /// ```json
+        /// {
+        ///   "message": "Unauthorized"
+        /// }
+        /// ```
+        /// </response>
+        /// <response code="404">
+        /// Returned when the user with the specified ID is not found or cannot be deleted.
+        /// ```json
+        /// {
+        ///   "success": false,
+        ///   "message": "User with ID '12345' not found or could not be deleted."
+        /// }
+        /// ```
         /// </response>
         /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server.
-        /// Example Response (Server Error):
-        /// <code>
+        /// Returned when an unexpected server error occurs during processing.
+        /// ```json
         /// {
-        ///     "success": false,
-        ///     "message": "An error occurred while deleting the user.",
-        ///     "error": "Database connection failed"
+        ///   "success": false,
+        ///   "message": "An error occurred while deleting the user.",
+        ///   "error": "Exception details here"
         /// }
-        /// </code>
+        /// ```
         /// </response>
         [HttpDelete]
         [Route("~/Users/Delete/{id}")]
-        [Authorize(Roles = StaticClass.Admin + "," + StaticClass.User)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public async Task<IActionResult> DeleteUser(string id)
         {
             try
             {
-                var result = await _usersService.Delete(id);
-                if (result)
-                    return Ok(new { Success = true, Message = "User deleted successfully." });
+                var result = await _unitOfWork.UsersServices.Delete(id);
 
-                return NotFound(new { Success = false, Message = "User not found or could not be deleted." });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while deleting the user.", Error = ex.Message });
-            }
-        }
-
-        #endregion
-
-
-        #region Assign User To Role
-
-        /// <summary>
-        /// Adds a user to a specific role by their ID and role name.
-        /// This endpoint allows an admin or authorized user to assign a role to a user in the system.
-        /// </summary>
-        /// <param name="userId">The ID of the user to add to the role.</param>
-        /// <param name="roleName">The name of the role to assign to the user.</param>
-        /// <returns>
-        /// Returns an <see cref="IActionResult"/> indicating the result of the role assignment operation.
-        /// </returns>
-        /// <response code="200">
-        /// Role assigned successfully. Returns a success message.
-        /// Example Response (Success):
-        /// <code>
-        /// {
-        ///     "success": true,
-        ///     "message": "User added to role successfully."
-        /// }
-        /// </code>
-        /// </response>
-        /// <response code="400">
-        /// Bad request. Returned when the role assignment fails (e.g., user or role not found, or user already in role).
-        /// Example Response (Failure):
-        /// <code>
-        /// {
-        ///     "success": false,
-        ///     "message": "Failed to add user to role.",
-        ///     "errors": [
-        ///         "User with ID 12345 not found.",
-        ///         "Role 'Admin' does not exist."
-        ///     ]
-        /// }
-        /// </code>
-        /// </response>
-        /// <response code="401">
-        /// Unauthorized. Returned when the caller is not authenticated.
-        /// </response>
-        /// <response code="403">
-        /// Forbidden. Returned when the caller is not an admin.
-        /// </response>
-        /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server.
-        /// Example Response (Server Error):
-        /// <code>
-        /// {
-        ///     "success": false,
-        ///     "message": "An error occurred while adding the user to the role.",
-        ///     "error": "Database connection failed"
-        /// }
-        /// </code>
-        /// </response>
-        [HttpPost]
-        [Route("~/Users/AddUserToRole/{userId}/{roleName}")]
-        [Authorize(Roles = StaticClass.Admin)]
-        public async Task<IActionResult> AddUserToRole(string userId, string roleName)
-        {
-            try
-            {
-                var result = await _usersService.AddUserToRoleAsync(userId, roleName);
-
-                if (!result.Success)
+                if (!result)
                 {
-                    return BadRequest(new { Success = false, Message = result.Message, Errors = result.Errors });
+                    _logger.LogWarning("User with ID {UserId} not found or could not be deleted.", id);
+                    return NotFound(new
+                    {
+                        Success = false,
+                        Message = $"User with ID '{id}' not found or could not be deleted."
+                    });
                 }
 
-                return Ok(new { Success = true, Message = result.Message });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while adding the user to the role.", Error = ex.Message });
-            }
-        }
-
-        #endregion
-
-
-        #region Delete User From Role
-
-        /// <summary>
-        /// Removes a user from a specific role by their ID and role name.
-        /// This endpoint allows an admin to remove a user from a role in the system.
-        /// </summary>
-        /// <param name="userId">The ID of the user to remove from the role.</param>
-        /// <param name="roleName">The name of the role to remove the user from.</param>
-        /// <returns>
-        /// Returns an <see cref="IActionResult"/> indicating the result of the role removal operation.
-        /// </returns>
-        /// <response code="200">
-        /// Role removed successfully. Returns a success message.
-        /// Example Response (Success):
-        /// <code>
-        /// {
-        ///     "success": true,
-        ///     "message": "User with ID '12345' removed from role 'Editor' successfully."
-        /// }
-        /// </code>
-        /// </response>
-        /// <response code="400">
-        /// Bad request. Returned when the role removal fails (e.g., user or role not found, or user not in role).
-        /// Example Response (Failure):
-        /// <code>
-        /// {
-        ///     "success": false,
-        ///     "message": "Failed to remove user from role.",
-        ///     "errors": [
-        ///         "User with ID '12345' not found.",
-        ///         "Role 'Editor' does not exist.",
-        ///         "User with ID '12345' is not in role 'Editor'."
-        ///     ]
-        /// }
-        /// </code>
-        /// </response>
-        /// <response code="401">
-        /// Unauthorized. Returned when the caller is not authenticated.
-        /// </response>
-        /// <response code="403">
-        /// Forbidden. Returned when the caller is not an admin.
-        /// </response>
-        /// <response code="500">
-        /// Server error. Returned when an unexpected error occurs on the server.
-        /// Example Response (Server Error):
-        /// <code>
-        /// {
-        ///     "success": false,
-        ///     "message": "An error occurred while removing the user from the role.",
-        ///     "error": "Database connection failed"
-        /// }
-        /// </code>
-        /// </response>
-        [HttpDelete]
-        [Route("users/{userId}/roles/{roleName}")]
-        [Authorize(Roles = StaticClass.Admin)]
-        public async Task<IActionResult> DeleteUserFromRole(string userId, string roleName)
-        {
-            try
-            {
-                var result = await _usersService.DeleteUserFromRoleAsync(userId, roleName);
-
-                if (!result.Success)
+                _logger.LogInformation("User with ID {UserId} deleted successfully.", id);
+                return Ok(new
                 {
-                    return BadRequest(new { Success = false, Message = result.Message, Errors = result.Errors });
-                }
-
-                return Ok(new { Success = true, Message = result.Message });
+                    Success = true,
+                    Message = "User and associated records deleted successfully."
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Success = false, Message = "An error occurred while removing the user from the role.", Error = ex.Message });
+                _logger.LogError(ex, "Failed to delete user with ID: {UserId}. Error: {Message}", id, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while deleting the user.",
+                    Error = ex.Message
+                });
             }
         }
 
         #endregion
+
+
+        #region TODO: Implement the following Actions as per your requirements
+
+        #region Get Employees By Branch ID
+
+        #endregion
+
+        #region Get Employee Vacations
+
+
+        #endregion
+
+
+        #region Get Employees NetSalaries
+
+
+        #endregion
+
+
+        #region Get Net Salary Details
+
+        #endregion
+
+        #endregion
+
     }
 }

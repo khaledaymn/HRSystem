@@ -11,10 +11,16 @@ namespace HRSystem.DataBase
             : base(options)
         {
         }
-        public DbSet<Attendance> Attendance { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<EmployeeVacation> EmployeeVacations { get; set; }
+        public DbSet<AttendanceAndLeave> Attendance { get; set; }
         public DbSet<GeneralSetting> GeneralSetting { get; set; }
         public DbSet<OfficialVacation> OfficialVacation { get; set; }
-        public DbSet<Leave> Leave { get; set; }
         public DbSet<Absent> Absent { get; set; }
+        public DbSet<EmployeeSalary> EmployeeSalaries { get; set; }
+        public DbSet<EmployeeShift> EmployeeShifts { get; set; }
+        public DbSet<Shift> Shifts { get; set; }
+        public DbSet<Branch> Branch { get; set; }
+
     }
 }

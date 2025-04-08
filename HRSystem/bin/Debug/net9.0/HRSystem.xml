@@ -6,166 +6,283 @@
     <members>
         <member name="M:HR_System_API.Controllers.AttendanceController.AddAttendance(HRSystem.DTO.AttendanceDto)">
             <summary>
-            Adds a new attendance record for an employee in the system.
-            This endpoint allows recording an employee's attendance by providing the necessary details such as time, location coordinates, and employee ID.
+            Records attendance for an employee.
+            This endpoint allows a user to submit attendance details, including time and location, for an employee.
             </summary>
+            <remarks>
+            This endpoint requires user privileges and expects a valid JSON payload conforming to the <see cref="T:HRSystem.DTO.AttendanceDto"/> structure.
+            It performs validation on the input data and returns a success message with the employee ID if the attendance is recorded successfully, or an error if the operation fails.
+            </remarks>
             <param name="attendanceDto">
-            The data required to record attendance (as defined in AttendanceDto).
-            Example Request (AttendanceDto):
+            The attendance data to record, provided in the request body as an <see cref="T:HRSystem.DTO.AttendanceDto"/> object.
+            <para><strong>Example Request:</strong></para>
             <code>
+            POST /Attendance/TakeAttendance
             {
-                "timeOfAttend": "2025-03-20T08:30:00Z",
+                "timeOfAttend": "2025-03-24T08:30:00Z",
                 "latitude": 40.7128,
                 "longitude": -74.0060,
-                "radius": 100,
-                "employeeId": "EMP12345"
+                "employeeId": "123e4567-e89b-12d3-a456-426614174000",
+                "branch": "Main branch"
             }
             </code>
             </param>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the attendance addition operation.
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the attendance recording process.
+            On success, it returns HTTP 201 (Created) with the employee ID and a success message.
+            On failure, it returns appropriate error codes with descriptive messages.
             </returns>
             <response code="201">
-            Attendance recorded successfully. Returns the employee ID and a success message.
-            Example Response (Success):
+            Successfully recorded the attendance. Returns the employee ID and a confirmation message.
+            Example Response:
             <code>
             {
-                "employeeId": "EMP12345",
+                "employeeId": "123e4567-e89b-12d3-a456-426614174000",
                 "message": "Attendance added successfully."
             }
             </code>
             </response>
             <response code="400">
-            Bad request. Returned when the provided model is invalid (e.g., missing required fields or invalid coordinates).
-            Example Response (Invalid Model):
+            Bad Request. Returned when the input data is invalid or fails validation.
+            Example Response (Validation Error):
             <code>
             {
-                "errors": {
-                    "TimeOfAttend": ["Time of attendance is required."],
-                    "Latitude": ["Latitude must be between -90 and 90."]
-                }
+                "timeOfAttend": ["Time of attendance is required."],
+                "latitude": ["Latitude must be between -90 and 90."]
+            }
+            </code>
+            Example Response (Business Logic Error):
+            <code>
+            {
+                "success": false,
+                "message": "Employee ID does not exist."
+            }
+            </code>
+            </response>
+            <response code="401">
+            Unauthorized. Returned when the caller is not authenticated.
+            Example Response:
+            <code>
+            {
+                "message": "Authentication required. Please provide a valid token."
+            }
+            </code>
+            </response>
+            <response code="403">
+            Forbidden. Returned when the caller lacks user privileges.
+            Example Response:
+            <code>
+            {
+                "message": "Access denied. User role required."
             }
             </code>
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs during the operation or if attendance recording fails.
-            Example Response (Operation Failed):
-            <code>
-            {
-                "success": false,
-                "message": "Error adding attendance. Please try again later."
-            }
-            </code>
-            Example Response (Server Error):
+            Server Error. Returned when an unexpected error occurs during attendance recording.
+            Example Response (Generic Error):
             <code>
             {
                 "success": false,
                 "message": "An internal server error occurred."
             }
             </code>
+            Example Response (Detailed Error):
+            <code>
+            {
+                "success": false,
+                "message": "Error adding attendance. Please try again later.",
+                "error": "Database timeout occurred",
+                "timestamp": "2025-03-24T08:35:00Z"
+            }
+            </code>
             </response>
+            <exception cref="T:System.Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
         </member>
         <member name="M:HR_System_API.Controllers.AttendanceController.GetAttendances">
             <summary>
-            Retrieves all attendance records from the system.
-            This endpoint returns a list of all recorded employee attendances.
+            Retrieves all attendance and leave records in the system.
+            This endpoint allows an admin to fetch a list of attendance records, including leave details, for all employees.
             </summary>
+            <remarks>
+            This endpoint requires admin privileges and does not require any parameters.
+            It returns a collection of attendance records with leave details if available, or an error message if no records are found.
+            </remarks>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of attendance records or an error message.
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the attendance retrieval process.
+            On success, it returns HTTP 200 (OK) with a list of attendance records.
+            On failure, it returns appropriate error codes with descriptive messages.
             </returns>
             <response code="200">
-            Successfully retrieved attendance records. Returns a list of attendance details.
-            Example Response (Success):
+            Successfully retrieved the attendance and leave records. Returns a list of records.
+            Example Response:
             <code>
             [
                 {
-                    "timeOfAttend": "2025-03-20T08:30:00Z",
-                    "latitude": 40.7128,
-                    "longitude": -74.0060,
-                    "radius": 100,
-                    "employeeId": "EMP12345"
+                    "timeOfAttend": "2025-03-24T08:30:00",
+                    "timeOfLeave": "2025-03-24T17:00:00",
+                    "latitudeOfAttend": 40.7128,
+                    "latitudeOfLeave": 40.7130,
+                    "longitudeOfAttend": -74.0060,
+                    "longitudeOfLeave": -74.0058,
+                    "employeeName": "John Doe",
+                    "employeeId": "123e4567-e89b-12d3-a456-426614174000",
+                    "branch": "New York"
                 },
                 {
-                    "timeOfAttend": "2025-03-20T09:00:00Z",
-                    "latitude": 34.0522,
-                    "longitude": -118.2437,
-                    "radius": 50,
-                    "employeeId": "EMP67890"
+                    "timeOfAttend": "2025-03-24T09:00:00",
+                    "timeOfLeave": null,
+                    "latitudeOfAttend": 51.5074,
+                    "latitudeOfLeave": null,
+                    "longitudeOfAttend": -0.1278,
+                    "longitudeOfLeave": null,
+                    "employeeName": "Jane Smith",
+                    "employeeId": "987fcdeb-12ab-34cd-e567-890123456789",
+                    "branch": "London"
                 }
             ]
             </code>
             </response>
+            <response code="401">
+            Unauthorized. Returned when the caller is not authenticated.
+            Example Response:
+            <code>
+            {
+                "message": "Authentication required. Please provide a valid token."
+            }
+            </code>
+            </response>
+            <response code="403">
+            Forbidden. Returned when the caller lacks admin privileges.
+            Example Response:
+            <code>
+            {
+                "message": "Access denied. Admin role required."
+            }
+            </code>
+            </response>
             <response code="404">
-            No attendance records found in the system.
-            Example Response (Not Found):
+            Not Found. Returned when no attendance records are available.
+            Example Response:
             <code>
             {
                 "success": false,
-                "message": "No attendance records found."
+                "message": "No attendance records found for date."
             }
             </code>
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs while retrieving attendance records.
-            Example Response (Server Error):
+            Server Error. Returned when an unexpected error occurs during retrieval.
+            Example Response (Generic Error):
             <code>
             {
                 "success": false,
-                "message": "An internal server error occurred."
+                "message": "An error occurred while retrieving attendance records",
+                "error": "Database connection failed"
+            }
+            </code>
+            Example Response (Detailed Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while retrieving attendance records",
+                "error": "Query timeout occurred",
+                "timestamp": "2025-03-24T10:00:00Z"
             }
             </code>
             </response>
         </member>
         <member name="M:HR_System_API.Controllers.AttendanceController.GetEmployeeAttendances(System.String)">
             <summary>
-            Retrieves all attendance records for a specific employee based on their employee ID.
-            This endpoint returns a list of attendance records associated with the provided employee ID.
+            Retrieves attendance and leave records for a specific employee.
+            This endpoint allows an admin or user to fetch all attendance and leave records associated with a given employee ID.
             </summary>
+            <remarks>
+            This endpoint requires either admin or user privileges and expects a valid employee ID as a route parameter.
+            It returns a list of attendance records if found, or an error message if the employee ID is invalid, no records exist, or an issue occurs.
+            </remarks>
             <param name="empId">
-            The unique identifier of the employee whose attendance records are to be retrieved.
-            Example: "EMP12345"
+            The unique identifier of the employee whose attendance records are to be retrieved (e.g., a GUID or string-based ID).
+            <para><strong>Example Request:</strong></para>
+            <code>
+            GET /AttendanceAndLeave/123e4567-e89b-12d3-a456-426614174000
+            </code>
             </param>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of attendance records for the specified employee or an error message.
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the attendance retrieval process.
+            On success, it returns HTTP 200 (OK) with a list of attendance records.
+            On failure, it returns appropriate error codes with descriptive messages.
             </returns>
             <response code="200">
-            Successfully retrieved attendance records for the employee. Returns a success flag and the attendance data.
-            Example Response (Success):
+            Successfully retrieved the employee’s attendance and leave records. Returns a list of records.
+            Example Response:
             <code>
             {
                 "success": true,
                 "data": [
                     {
-                        "timeOfAttend": "2025-03-20T08:30:00Z",
-                        "latitude": 40.7128,
-                        "longitude": -74.0060,
-                        "radius": 100,
-                        "employeeId": "EMP12345"
+                        "timeOfAttend": "2025-03-24T08:30:00",
+                        "timeOfLeave": "2025-03-24T17:00:00",
+                        "latitudeOfAttend": 40.7128,
+                        "latitudeOfLeave": 40.7130,
+                        "longitudeOfAttend": -74.0060,
+                        "longitudeOfLeave": -74.0058,
+                        "employeeName": "John Doe",
+                        "employeeId": "123e4567-e89b-12d3-a456-426614174000",
+                        "branch": "New York"
                     },
                     {
-                        "timeOfAttend": "2025-03-21T09:00:00Z",
-                        "latitude": 40.7128,
-                        "longitude": -74.0060,
-                        "radius": 100,
-                        "employeeId": "EMP12345"
+                        "timeOfAttend": "2025-03-25T08:45:00",
+                        "timeOfLeave": null,
+                        "latitudeOfAttend": 40.7129,
+                        "latitudeOfLeave": null,
+                        "longitudeOfAttend": -74.0061,
+                        "longitudeOfLeave": null,
+                        "employeeName": "John Doe",
+                        "employeeId": "123e4567-e89b-12d3-a456-426614174000",
+                        "branch": "New York"
                     }
                 ]
             }
             </code>
             </response>
             <response code="400">
-            Bad request. Returned when the employee ID is missing or invalid.
-            Example Response (Invalid Input):
+            Bad Request. Returned when the employee ID is invalid or missing.
+            Example Response (Validation Error):
             <code>
             {
                 "success": false,
                 "message": "Employee ID is required."
             }
             </code>
+            Example Response (Business Logic Error):
+            <code>
+            {
+                "success": false,
+                "message": "Invalid employee ID format."
+            }
+            </code>
+            </response>
+            <response code="401">
+            Unauthorized. Returned when the caller is not authenticated.
+            Example Response:
+            <code>
+            {
+                "message": "Authentication required. Please provide a valid token."
+            }
+            </code>
+            </response>
+            <response code="403">
+            Forbidden. Returned when the caller lacks sufficient privileges (neither admin nor user role).
+            Example Response:
+            <code>
+            {
+                "message": "Access denied. Admin or User role required."
+            }
+            </code>
             </response>
             <response code="404">
-            No attendance records found for the specified employee.
-            Example Response (Not Found):
+            Not Found. Returned when no attendance records are found for the given employee.
+            Example Response:
             <code>
             {
                 "success": false,
@@ -174,209 +291,458 @@
             </code>
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs while retrieving the attendance records.
-            Example Response (Server Error):
+            Server Error. Returned when an unexpected error occurs during retrieval.
+            Example Response (Generic Error):
             <code>
             {
                 "success": false,
                 "message": "An internal server error occurred."
             }
             </code>
+            Example Response (Detailed Error):
+            <code>
+            {
+                "success": false,
+                "message": "An internal server error occurred.",
+                "error": "Database query failed due to timeout",
+                "timestamp": "2025-03-24T09:00:00Z"
+            }
+            </code>
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.AuthenticationController.Login(HRSystem.DTO.LoginDTO)">
+        <member name="M:HRSystem.Controllers.AuthenticationController.Login(HRSystem.DTO.AuthenticationDTOs.LoginDTO)">
             <summary>
-            Authenticates a user by verifying their credentials and returns authentication details.
-            This endpoint allows users to log in to the system using their username and password.
+            Authenticates a user and returns authentication details including a token if successful.
             </summary>
-            <param name="model">
-            The login details, which must include a valid username and password (as defined in LoginDTO).
-            Example Request (LoginDTO):
-            <code>
-            {
-                "email": "user@example.com",
-                "password": "P@ssw0rd123"
-            }
-            </code>
-            </param>
+            <param name="model">The login data transfer object containing the user's email and password.</param>
             <returns>
-            Returns an <see cref="T:HRSystem.DTO.AuthenticationDTO"/> object containing:
-            - IsAuthenticated: A boolean indicating if the login was successful.
-            - Message: A string describing the result of the login attempt.
-            - User details (e.g., Id, Name, Email, etc.) if the login is successful.
+            Returns an authentication result with a token if successful, or an error message if authentication fails.
             </returns>
+            <remarks>
+            This endpoint validates the user's credentials and returns an authentication token if the login is successful.
+            The request body must contain a valid email and password.
+            
+            Example Request:
+            ```json
+            {
+              "email": "user@example.com",
+              "password": "P@ssw0rd123"
+            }
+            ```
+            </remarks>
             <response code="200">
-            Login successful. Returns the <see cref="T:HRSystem.DTO.AuthenticationDTO"/> with user details.
-            Example Response (Success):
-            <code>
+            Returns the authentication details including token when login is successful.
+            Successful Response (200 OK):
+            ```json
             {
-                "message": "Login successful",
-                "id": "12345",
-                "name": "John Doe",
-                "email": "user@example.com",
-                "userName": "johndoe",
-                "phoneNumber": "123-456-7890",
-                "address": "123 Main St",
-                "nationalId": "987654321",
-                "salary": 50000,
-                "timeOfAttend": "09:00",
-                "timeOfLeave": "17:00",
-                "gender": "Male",
-                "dateOfWork": "2023/01/15",
-                "dateOfBirth": "1990/05/20",
-                "roles": ["User"]
-            }
-            </code>
-            </response>
-            <response code="400">
-            Bad request. Returned when the model is invalid (e.g., missing email or password) or authentication fails (e.g., incorrect credentials).
-            Example Response (Invalid Model):
-            <code>
-            {
-                "errors": {
-                    "username": ["The username field is required."],
-                    "password": ["The password field is required."]
+              "message": "Login successful",
+              "id": "12345",
+              "name": "John Doe",
+              "email": "user@example.com",
+              "phoneNumber": "123-456-7890",
+              "address": "123 Main St",
+              "nationalId": "ABC123456",
+              "baseSalary": 50000.0,
+              "shift": [
+                {
+                  "id": 1,
+                  "startTime": "08:00",
+                  "endTime": "16:00",
+                  "employeeId": "12345"
                 }
+              ],
+              "gender": "Male",
+              "branch": {
+                "id": 1,
+                "name": "Main Branch",
+                "latitude": 40.7128,
+                "longitude": -74.0060
+              },
+              "hiringDate": "2023-01-15",
+              "dateOfBarth": "1990-05-20",
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+              "roles": ["User"]
             }
-            </code>
-            Example Response (Authentication Failed):
-            <code>
-            "Invalid username or password."
-            </code>
+            </response>
+            ```
+            <response code="400">
+            Returned when the login credentials are invalid or the request is malformed.
+            Bad Request Response (400):
+            ```json
+            {
+              "message": "Invalid email or password"
+            }
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs on the server, with a JSON object containing 'message' and 'error' properties.
-            Example Response (Server Error):
-            <code>
+            Returned when an unexpected server error occurs during processing.
+            ```
+            Server Error Response (500):
+            ```json
             {
-                "message": "An error occurred",
-                "error": "Database connection failed"
+              "message": "An error occurred while processing your request",
+              "error": "Exception details here"
             }
-            </code>
+            ```
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.AuthenticationController.ForgetPassword(HRSystem.DTO.ForgetPasswordDTO)">
+        <member name="M:HRSystem.Controllers.AuthenticationController.ForgetPassword(HRSystem.DTO.AuthenticationDTOs.ForgetPasswordDTO)">
             <summary>
-            Initiates the password reset process by sending a reset link to the user's email.
-            This endpoint allows users to request a password reset by providing their email address.
+            Initiates a password reset process for a user based on their email.
             </summary>
-            <param name="model">
-            The data containing the user's email address (as defined in ForgetPasswordDTO).
-            Example Request (ForgetPasswordDTO):
-            <code>
-            {
-                "email": "user@example.com"
-            }
-            </code>
-            </param>
+            <param name="model">The forget password data transfer object containing the user's email.</param>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the password reset request.
+            Returns a success message if the request is processed successfully, or an error message if it fails.
             </returns>
+            <remarks>
+            This endpoint triggers a password reset process for the specified email. If the email exists, a reset link or code will be sent.
+            The request body must contain a valid email.
+            
+            Example Request:
+            ```json
+            {
+              "email": "user@example.com"
+            }
+            ```
+            </remarks>
             <response code="200">
-            Password reset initiated successfully. Returns a success message indicating the reset link was sent.
-            Example Response (Success):
-            <code>
+            Returns a success message when the forget password request is processed successfully.
+            ```json
             "success"
-            </code>
+            ```
             </response>
             <response code="400">
-            Bad request. Returned when the provided model is invalid (e.g., missing or invalid email).
-            Example Response (Invalid Model):
-            <code>
+            Returned when the request model is invalid or malformed.
+            ```json
             {
-                "errors": {
-                    "email": ["The email field is required."]
-                }
+              "email": [
+                "The Email field is required."
+              ]
             }
-            </code>
+            ```
             </response>
             <response code="404">
-            Not found. Returned when the email is not registered or the reset process fails (e.g., email sending failed).
-            Example Response (Email Not Registered):
-            <code>
-            "Email is not registered!"
-            </code>
+            Returned when the email is not found or the forget password process fails.
+            ```json
+            "Email not found"
+            ```
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs on the server, with a JSON object containing a message.
-            Example Response (Server Error):
-            <code>
-            "An error occurred while processing the request: Database connection failed"
-            </code>
+            Returned when an unexpected server error occurs during processing.
+            ```json
+            {
+              "message": "An error occurred while processing your request",
+              "error": "Exception details here"
+            }
+            ```
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.AuthenticationController.ResetPassword(HRSystem.DTO.ResetPasswordDTO)">
+        <member name="M:HRSystem.Controllers.AuthenticationController.ResetPassword(HRSystem.DTO.AuthenticationDTOs.ResetPasswordDTO)">
             <summary>
-            Resets a user's password using a reset token.
-            This endpoint allows users to reset their password by providing the necessary details, including the reset token, email, and new password.
+            Resets a user's password using provided credentials and returns authentication details if successful.
             </summary>
-            <param name="model">
-            The data containing the reset token, email, and new password (as defined in ResetPasswordDTO).
-            Example Request (ResetPasswordDTO):
-            <code>
-            {
-                "email": "user@example.com",
-                "token": "abc123xyz456",
-                "newPassword": "NewP@ssw0rd123"
-            }
-            </code>
-            </param>
+            <param name="model">The reset password data transfer object containing the user's email, reset token, and new password.</param>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the password reset operation.
+            Returns an authentication result with a token if the reset is successful, or an error message if it fails.
             </returns>
-            <response code="200">
-            Password reset successful. Returns the <see cref="T:HRSystem.DTO.AuthenticationDTO"/> with updated user details.
-            Example Response (Success):
-            <code>
+            <remarks>
+            This endpoint validates the reset token and updates the user's password. The request body must contain a valid email, reset token, and new password.
+            
+            Example Request:
+            ```json
             {
-                "message": "Password reset successful",
-                "id": "12345",
-                "name": "John Doe",
-                "email": "user@example.com",
-                "userName": "johndoe",
-                "phoneNumber": "123-456-7890",
-                "address": "123 Main St",
-                "nationalId": "987654321",
-                "salary": 50000,
-                "timeOfAttend": "09:00",
-                "timeOfLeave": "17:00",
-                "gender": "Male",
-                "dateOfWork": "2023-01-15",
-                "dateOfBirth": "1990-05-20",
-                "roles": ["User"]
+              "email": "user@example.com",
+              "token": "reset-token-123",
+              "newPassword": "NewP@ssw0rd123"
             }
-            </code>
+            ```
+            </remarks>
+            <response code="200">
+            Returns the authentication details including token when the password reset is successful.
+            ```json
+            {
+              "message": "Password reset successful",
+              "id": "12345",
+              "name": "John Doe",
+              "email": "user@example.com",
+              "phoneNumber": "123-456-7890",
+              "address": "123 Main St",
+              "nationalId": "ABC123456",
+              "baseSalary": 50000.0,
+              "shift": [
+                {
+                  "id": 1,
+                  "startTime": "08:00",
+                  "endTime": "16:00",
+                  "employeeId": "12345"
+                }
+              ],
+              "gender": "Male",
+              "branch": {
+                "id": 1,
+                "name": "Main Branch",
+                "latitude": 40.7128,
+                "longitude": -74.0060
+              },
+              "hiringDate": "2023-01-15",
+              "dateOfBarth": "1990-05-20",
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+              "roles": ["User"]
+            }
+            ```
             </response>
             <response code="400">
-            Bad request. Returned when the provided model is invalid (e.g., missing token, email, or new password).
-            Example Response (Invalid Model):
-            <code>
+            Returned when the request model is invalid or malformed.
+            ```json
             {
-                "errors": {
-                    "email": ["The email field is required."],
-                    "token": ["The token field is required."],
-                    "newPassword": ["The new password field is required."]
-                }
+              "email": [
+                "The Email field is required."
+              ],
+              "newPassword": [
+                "The NewPassword field is required."
+              ]
             }
-            </code>
+            ```
             </response>
             <response code="404">
-            Not found. Returned when the reset token is invalid, the email is not registered, or the reset process fails.
-            Example Response (Invalid Token):
-            <code>
-            "Invalid or expired token."
-            </code>
+            Returned when the reset token is invalid or the email is not found.
+            ```json
+            "Invalid token or email"
+            ```
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs on the server, with a JSON object containing a message.
-            Example Response (Server Error):
-            <code>
+            Returned when an unexpected server error occurs during processing.
+            ```json
             {
-                "message": "An error occurred while resetting the password",
-                "error": "Database connection failed"
+              "message": "An error occurred while resetting your password",
+              "error": "Exception details here"
             }
-            </code>
+            ```
             </response>        
+        </member>
+        <member name="M:HRSystem.Controllers.BranchsController.GetAllBranches">
+            <summary>
+            Retrieves a list of all branches in the system.
+            </summary>
+            <returns>
+            Returns a list of branch details if successful, or an error message if the operation fails.
+            </returns>
+            <remarks>
+            This endpoint retrieves all branches available in the system. It requires Admin role authorization.
+            No request body is needed as it’s a GET request.
+            </remarks>
+            <response code="200">
+            Returns a list of all branches when the request is successful.
+            ```json
+            [
+              {
+                "id": 1,
+                "name": "Main Branch",
+                "latitude": 40.7128,
+                "longitude": -74.0060
+              },
+              {
+                "id": 2,
+                "name": "Downtown Branch",
+                "latitude": 34.0522,
+                "longitude": -118.2437
+              }
+            ]
+            ```
+            </response>
+            <response code="401">
+            Returned when the user is not authenticated or lacks Admin role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
+            </response>
+            <response code="500">
+            Returned when an unexpected server error occurs during processing or if the branch service returns null.
+            ```json
+            {
+              "message": "An error occurred while retrieving branches.",
+              "error": "Exception details here"
+            }
+            ```
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.BranchsController.GetBranchById(System.Int32)">
+            <summary>
+            Retrieves the details of a specific branch by its ID.
+            </summary>
+            <param name="id">The unique identifier of the branch to retrieve.</param>
+            <returns>
+            Returns the branch details if found, or an error message if the branch does not exist or the operation fails.
+            </returns>
+            <remarks>
+            This endpoint retrieves a single branch based on the provided ID. The ID must be a valid integer.
+            </remarks>
+            <response code="200">
+            Returns the branch details when the request is successful.
+            ```json
+            {
+              "id": 1,
+              "name": "Main Branch",
+              "latitude": 40.7128,
+              "longitude": -74.0060
+            }
+            ```
+            </response>
+            <response code="404">
+            Returned when the branch with the specified ID is not found.
+            ```json
+            {
+              "message": "Branch with ID 1 not found."
+            }
+            ```
+            </response>
+            <response code="500">
+            Returned when an unexpected server error occurs during processing.
+            ```json
+            {
+              "message": "An error occurred while retrieving the branch.",
+              "error": "Exception details here"
+            }
+            ```
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.BranchsController.CreateBranch(HRSystem.DTO.BranchDTOs.AddBranchDTO)">
+            <summary>
+            Creates a new branch in the system.
+            </summary>
+            <param name="branchDto">The data transfer object containing the details of the branch to create.</param>
+            <returns>
+            Returns the created branch details with its ID if successful, or an error message if the operation fails.
+            </returns>
+            <remarks>
+            This endpoint creates a new branch and requires Admin role authorization. The request body must contain valid branch details.
+            
+            Example Request:
+            ```json
+            {
+              "name": "New Branch",
+              "latitude": 37.7749,
+              "longitude": -122.4194
+            }
+            ```
+            </remarks>
+            <response code="201">
+            Returns the created branch details when the request is successful.
+            ```json
+            {
+              "id": 3,
+              "name": "New Branch",
+              "latitude": 37.7749,
+              "longitude": -122.4194
+            }
+            ```
+            </response>
+            <response code="401">
+            Returned when the user is not authenticated or lacks Admin role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
+            </response>
+            <response code="500">
+            Returned when an unexpected server error occurs during processing or if branch creation returns null.
+            ```json
+            {
+              "message": "An error occurred while creating the branch.",
+              "error": "Exception details here"
+            }
+            ```
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.BranchsController.UpdateBranch(HRSystem.DTO.BranchDTOs.BranchDTO)">
+            <summary>
+            Updates an existing branch in the system.
+            </summary>
+            <param name="branchDto">The data transfer object containing the updated branch details.</param>
+            <returns>
+            Returns a success message and the updated branch if successful, or an error message if the branch is not found or the operation fails.
+            </returns>
+            <remarks>
+            This endpoint updates a branch based on the provided details. The request body must contain a valid branch ID and updated fields.
+            
+            Example Request:
+            ```json
+            {
+              "id": 1,
+              "name": "Updated Main Branch",
+              "latitude": 40.7128,
+              "longitude": -74.0060
+            }
+            ```
+            </remarks>
+            <response code="200">
+            Returns a success message and the updated branch details when the request is successful.
+            ```json
+            {
+              "message": "Successfully updated branch",
+              "updatedBranch": {
+                "id": 1,
+                "name": "Updated Main Branch",
+                "latitude": 40.7128,
+                "longitude": -74.0060
+              }
+            }
+            ```
+            </response>
+            <response code="404">
+            Returned when the branch with the specified ID is not found.
+            ```json
+            {
+              "message": "Branch with ID 1 not found."
+            }
+            ```
+            </response>
+            <response code="500">
+            Returned when an unexpected server error occurs during processing.
+            ```json
+            {
+              "message": "An error occurred while updating the branch.",
+              "error": "Exception details here"
+            }
+            ```
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.BranchsController.DeleteBranch(System.Int32)">
+            <summary>
+            Deletes a branch from the system by its ID.
+            </summary>
+            <param name="id">The unique identifier of the branch to delete.</param>
+            <returns>
+            Returns a success message if the branch is deleted, or an error message if the branch is not found or the operation fails.
+            </returns>
+            <remarks>
+            This endpoint deletes a branch based on the provided ID.
+            </remarks>
+            <response code="200">
+            Returns a success message when the branch is deleted successfully.
+            ```json
+            "Successfully deleted branch"
+            ```
+            </response>
+            <response code="404">
+            Returned when the branch with the specified ID is not found.
+            ```json
+            {
+              "message": "Branch with ID 1 not found."
+            }
+            ```
+            </response>
+            <response code="500">
+            Returned when an unexpected server error occurs during processing.
+            ```json
+            {
+              "message": "An error occurred while deleting the branch.",
+              "error": "Exception details here"
+            }
+            ```
+            </response>
         </member>
         <member name="M:HRSystem.Controllers.LeaveController.AddLeave(HRSystem.DTO.LeaveDTO)">
             <summary>
@@ -432,104 +798,7 @@
             </code>
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.LeaveController.GetLeaves">
-            <summary>
-            Retrieves all leave records from the system.
-            This endpoint returns a list of all recorded employee leave requests.
-            </summary>
-            <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of leave records or an error message.
-            </returns>
-            <response code="200">
-            Successfully retrieved leave records. Returns a list of leave details.
-            Example Response (Success):
-            <code>
-            [
-                {
-                    "employeeId": "EMP12345",
-                    "startDate": "2025-04-01T00:00:00Z",
-                    "endDate": "2025-04-05T00:00:00Z",
-                    "reason": "Vacation"
-                },
-                {
-                    "employeeId": "EMP67890",
-                    "startDate": "2025-05-10T00:00:00Z",
-                    "endDate": "2025-05-12T00:00:00Z",
-                    "reason": "Medical"
-                }
-            ]
-            </code>
-            </response>
-            <response code="404">
-            No leave records found in the system.
-            Example Response (Not Found):
-            <code>
-            "No leave records found."
-            </code>
-            </response>
-            <response code="500">
-            Server error. Returned when an unexpected error occurs while retrieving leave records.
-            Example Response (Server Error):
-            <code>
-            "An internal server error occurred."
-            </code>
-            </response>
-        </member>
-        <member name="M:HRSystem.Controllers.LeaveController.GetEmployeeLeaves(System.String)">
-            <summary>
-            Retrieves all leave records for a specific employee based on their employee ID.
-            This endpoint returns a list of leave records associated with the provided employee ID.
-            </summary>
-            <param name="empId">
-            The unique identifier of the employee whose leave records are to be retrieved.
-            Example: "EMP12345"
-            </param>
-            <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of leave records for the specified employee or an error message.
-            </returns>
-            <response code="200">
-            Successfully retrieved leave records for the employee. Returns a list of leave details.
-            Example Response (Success):
-            <code>
-            [
-                {
-                    "employeeId": "EMP12345",
-                    "startDate": "2025-04-01T00:00:00Z",
-                    "endDate": "2025-04-05T00:00:00Z",
-                    "reason": "Vacation"
-                },
-                {
-                    "employeeId": "EMP12345",
-                    "startDate": "2025-06-10T00:00:00Z",
-                    "endDate": "2025-06-12T00:00:00Z",
-                    "reason": "Medical"
-                }
-            ]
-            </code>
-            </response>
-            <response code="400">
-            Bad request. Returned when the employee ID is missing or invalid.
-            Example Response (Invalid Input):
-            <code>
-            "Employee ID is required."
-            </code>
-            </response>
-            <response code="404">
-            No leave records found for the specified employee.
-            Example Response (Not Found):
-            <code>
-            "No leave records found for the given employee."
-            </code>
-            </response>
-            <response code="500">
-            Server error. Returned when an unexpected error occurs while retrieving the leave records, including the exception message.
-            Example Response (Server Error):
-            <code>
-            "An internal server error occurred: Database connection failed."
-            </code>
-            </response>
-        </member>
-        <member name="M:HRSystem.Controllers.OfficialVacationsController.AddOfficialVacationAsync(HRSystem.DTO.CreateOfficialVacationDTO)">
+        <member name="M:HRSystem.Controllers.OfficialVacationsController.AddOfficialVacationAsync(HRSystem.DTO.OfficialVacationDTOs.CreateOfficialVacationDTO)">
             <summary>
             Adds a new official vacation to the system.
             This endpoint allows an admin to create an official vacation by providing the necessary details.
@@ -682,14 +951,14 @@
             </code>
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.OfficialVacationsController.UpdateOfficialVacationAsync(System.Int32,HRSystem.DTO.OfficialVacationDTO)">
+        <member name="M:HRSystem.Controllers.OfficialVacationsController.UpdateOfficialVacationAsync(HRSystem.DTO.OfficialVacationDTOs.OfficialVacationDTO)">
             <summary>
             Updates an existing official vacation by its ID.
             This endpoint allows an admin to update the details of a specific official vacation by providing its ID and updated details.
             </summary>
             <param name="id">The ID of the official vacation to update.</param>
             <param name="vacation">
-            The updated official vacation details, including the ID, name, and date (as defined in <see cref="T:HRSystem.DTO.OfficialVacationDTO"/>).
+            The updated official vacation details, including the ID, name, and date (as defined in <see cref="T:HRSystem.DTO.OfficialVacationDTOs.OfficialVacationDTO"/>).
             Example Request:
             <code>
             PUT ~/OfficialVacations/Edit/1
@@ -843,7 +1112,7 @@
             </code>
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.RoleController.Create(HRSystem.DTO.RoleCreateDTO)">
+        <member name="M:HRSystem.Controllers.RoleController.Create(HRSystem.DTO.RoleDTOs.RoleCreateDTO)">
             <summary>
             Creates a new role in the system.
             This endpoint allows an admin or authorized user to create a new role by providing the role name.
@@ -1019,7 +1288,7 @@
             </code>
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.RoleController.Update(HRSystem.DTO.RoleUpdateDTO)">
+        <member name="M:HRSystem.Controllers.RoleController.Update(HRSystem.DTO.RoleDTOs.RoleUpdateDTO)">
             <summary>
             Updates an existing role in the system.
             This endpoint allows an admin or authorized user to update a role's details by providing the role ID and new name.
@@ -1141,143 +1410,596 @@
             </code>
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.UsersController.CreateUser(HRSystem.DTO.CreateUserDTO)">
+        <member name="M:HRSystem.Controllers.RoleController.AddUserToRole(System.String,System.String)">
             <summary>
-            Creates a new user in the system and returns authentication details.
-            This endpoint allows an admin or authorized user to create a new user by providing the necessary details.
+            Assigns a role to a specific user in the system.
+            This endpoint allows an admin to add a role to a user based on their unique identifier and the role name.
             </summary>
-            <param name="model">
-            The data required to create a new user (as defined in CreateUserDTO).
-            Example Request (CreateUserDTO):
+            <remarks>
+            This endpoint requires admin privileges and expects a user ID and role name as route parameters.
+            It returns a success message if the role is assigned successfully, or an error if the operation fails or an issue occurs.
+            </remarks>
+            <param name="userId">
+            The unique identifier of the user to assign the role to (e.g., a GUID or string-based ID).
+            </param>
+            <param name="roleName">
+            The name of the role to assign to the user (e.g., "Admin", "User").
+            <para><strong>Example Request:</strong></para>
             <code>
+            POST /Users/AddUserToRole/123e4567-e89b-12d3-a456-426614174000/User
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the role assignment process.
+            On success, it returns HTTP 200 (OK) with a success message.
+            On failure, it returns appropriate error codes with descriptive messages.
+            </returns>
+            <response code="200">
+            Successfully added the user to the role. Returns a confirmation message.
+            Example Response:
+            <code>
+            {
+                "success": true,
+                "message": "User successfully added to the 'User' role."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad Request. Returned when the input data is invalid or the operation fails.
+            Example Response (Validation Error):
+            <code>
+            {
+                "success": false,
+                "message": "Invalid role assignment request.",
+                "errors": [
+                    "Role 'User' does not exist.",
+                    "User ID is invalid."
+                ]
+            }
+            </code>
+            Example Response (Business Logic Error):
+            <code>
+            {
+                "success": false,
+                "message": "User is already assigned to the 'User' role.",
+                "errors": []
+            }
+            </code>
+            </response>
+            <response code="401">
+            Unauthorized. Returned when the caller is not authenticated.
+            Example Response:
+            <code>
+            {
+                "message": "Authentication required. Please provide a valid token."
+            }
+            </code>
+            </response>
+            <response code="403">
+            Forbidden. Returned when the caller lacks admin privileges.
+            Example Response:
+            <code>
+            {
+                "message": "Access denied. Admin role required."
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not Found. Returned when the user or role does not exist.
+            Example Response:
+            <code>
+            {
+                "success": false,
+                "message": "User or role not found.",
+                "errors": []
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server Error. Returned when an unexpected error occurs during role assignment.
+            Example Response (Generic Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while adding the user to the role",
+                "error": "Database connection failed"
+            }
+            </code>
+            Example Response (Detailed Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while adding the user to the role",
+                "error": "Role assignment failed due to permission conflict",
+                "timestamp": "2025-03-24T17:00:00Z"
+            }
+            </code>
+            </response>
+            <exception cref="T:System.Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
+        </member>
+        <member name="M:HRSystem.Controllers.RoleController.DeleteUserFromRole(System.String,System.String)">
+            <summary>
+            Removes a role from a specific user in the system.
+            This endpoint allows an admin to delete a role assignment for a user based on their unique identifier and the role name.
+            </summary>
+            <remarks>
+            This endpoint requires admin privileges and expects a user ID and role name as route parameters.
+            It returns a success message if the role is removed successfully, or an error if the operation fails or an issue occurs.
+            </remarks>
+            <param name="userId">
+            The unique identifier of the user from whom the role will be removed (e.g., a GUID or string-based ID).
+            </param>
+            <param name="roleName">
+            The name of the role to remove from the user (e.g., "Admin", "User").
+            <para><strong>Example Request:</strong></para>
+            <code>
+            DELETE /users/123e4567-e89b-12d3-a456-426614174000/roles/User
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the role removal process.
+            On success, it returns HTTP 200 (OK) with a success message.
+            On failure, it returns appropriate error codes with descriptive messages.
+            </returns>
+            <response code="200">
+            Successfully removed the user from the role. Returns a confirmation message.
+            Example Response:
+            <code>
+            {
+                "success": true,
+                "message": "User successfully removed from the 'User' role."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad Request. Returned when the input data is invalid or the operation fails.
+            Example Response (Validation Error):
+            <code>
+            {
+                "success": false,
+                "message": "Invalid role removal request.",
+                "errors": [
+                    "Role 'User' does not exist.",
+                    "User ID is invalid."
+                ]
+            }
+            </code>
+            Example Response (Business Logic Error):
+            <code>
+            {
+                "success": false,
+                "message": "User is not assigned to the 'User' role.",
+                "errors": []
+            }
+            </code>
+            </response>
+            <response code="401">
+            Unauthorized. Returned when the caller is not authenticated.
+            Example Response:
+            <code>
+            {
+                "message": "Authentication required. Please provide a valid token."
+            }
+            </code>
+            </response>
+            <response code="403">
+            Forbidden. Returned when the caller lacks admin privileges.
+            Example Response:
+            <code>
+            {
+                "message": "Access denied. Admin role required."
+            }
+            </code>
+            </response>
+            <response code="404">
+            Not Found. Returned when the user or role does not exist.
+            Example Response:
+            <code>
+            {
+                "success": false,
+                "message": "User or role not found.",
+                "errors": []
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server Error. Returned when an unexpected error occurs during role removal.
+            Example Response (Generic Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while removing the user from the role",
+                "error": "Database connection failed"
+            }
+            </code>
+            Example Response (Detailed Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while removing the user from the role",
+                "error": "Role removal failed due to permission conflict",
+                "timestamp": "2025-03-24T17:15:00Z"
+            }
+            </code>
+            </response>
+            <exception cref="T:System.Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
+        </member>
+        <member name="M:HRSystem.Controllers.ShiftsController.CreateShift(HRSystem.DTO.ShiftDTOs.AddShiftDTO)">
+            <summary>
+            Creates a new shift for an employee.
+            </summary>
+            <param name="shiftDto">The data transfer object containing the shift details to create.</param>
+            <returns>
+            Returns the created shift details if successful, or an error message if the operation fails.
+            </returns>
+            <remarks>
+            This endpoint creates a new shift and requires Admin role authorization. The request body must contain valid shift details.
+            
+            Example Request:
+            ```json
+            {
+              "startTime": "09:00",
+              "endTime": "17:00",
+              "employeeId": "12345"
+            }
+            ```
+            </remarks>
+            <response code="201">
+            Returns the created shift details when the request is successful.
+            ```json
+            {
+              "startTime": "09:00",
+              "endTime": "17:00",
+              "employeeId": "12345"
+            }
+            ```
+            </response>
+            <response code="400">
+            Returned when the request model is invalid or the shift creation fails.
+            ```json
+            "Failed to create shift. Please check the provided data."
+            ```
+            </response>
+            <response code="401">
+            Returned when the user is not authenticated or lacks Admin role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.ShiftsController.UpdateShift(HRSystem.DTO.ShiftDTOs.ShiftDTO)">
+            <summary>
+            Updates an existing shift in the system.
+            </summary>
+            <param name="shiftDto">The data transfer object containing the updated shift details.</param>
+            <returns>
+            Returns a success message if the shift is updated, or an error message if the shift is not found or the operation fails.
+            </returns>
+            <remarks>
+            This endpoint updates a shift and requires Admin role authorization. The request body must contain valid shift details.
+            
+            Example Request:
+            ```json
+            {
+              "id": 1,
+              "startTime": "10:00",
+              "endTime": "18:00",
+              "employeeId": "12345"
+            }
+            ```
+            </remarks>
+            <response code="200">
+            Returns a success message when the shift is updated successfully.
+            ```json
+            "Shift updated successfully."
+            ```
+            </response>
+            <response code="400">
+            Returned when the request model is invalid.
+            ```json
+            {
+              "startTime": [
+                "The StartTime field is required."
+              ]
+            }
+            ```
+            </response>
+            <response code="401">
+            Returned when the user is not authenticated or lacks Admin role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
+            </response>
+            <response code="404">
+            Returned when the shift is not found or the update fails.
+            ```json
+            "Shift not found or update failed."
+            ```
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.ShiftsController.DeleteShift(HRSystem.DTO.ShiftDTOs.DeleteShiftDTO)">
+            <summary>
+            Deletes a shift for an employee.
+            </summary>
+            <param name="dto">The data transfer object containing the shift ID and employee ID to delete.</param>
+            <returns>
+            Returns a success message if the shift is deleted, or an error message if the shift is not found or the operation fails.
+            </returns>
+            <remarks>
+            This endpoint deletes a shift and requires Admin role authorization. The request body must contain valid shift and employee IDs.
+            
+            Example Request:
+            ```json
+            {
+              "shiftId": 1,
+              "employeeId": "12345"
+            }
+            ```
+            </remarks>
+            <response code="200">
+            Returns a success message when the shift is deleted successfully.
+            ```json
+            "Shift deleted successfully."
+            ```
+            </response>
+            <response code="400">
+            Returned when the request model is invalid.
+            ```json
+            {
+              "shiftId": [
+                "The ShiftId field is required."
+              ]
+            }
+            ```
+            </response>
+            <response code="401">
+            Returned when the user is not authenticated or lacks Admin role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
+            </response>
+            <response code="404">
+            Returned when the shift is not found or deletion fails.
+            ```json
+            "Shift with ID 1 for EmployeeId 12345 not found or deletion failed."
+            ```
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.ShiftsController.GetShiftsByEmployeeId(System.String)">
+            <summary>
+            Retrieves all shifts for a specific employee by their ID.
+            </summary>
+            <param name="employeeId">The unique identifier of the employee whose shifts are to be retrieved.</param>
+            <returns>
+            Returns a list of shifts if found, or an error message if no shifts exist or the operation fails.
+            </returns>
+            <remarks>
+            This endpoint retrieves shifts for an employee and requires Admin role authorization.
+            </remarks>
+            <response code="200">
+            Returns a list of shifts when the request is successful.
+            ```json
+            [
+              {
+                "id": 1,
+                "startTime": "09:00",
+                "endTime": "17:00",
+                "employeeId": "12345"
+              }
+            ]
+            ```
+            </response>
+            <response code="400">
+            Returned when the employee ID is empty or invalid.
+            ```json
+            "EmployeeId cannot be empty."
+            ```
+            </response>
+            <response code="401">
+            Returned when the user is not authenticated or lacks Admin role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
+            </response>
+            <response code="404">
+            Returned when no shifts are found for the specified employee ID.
+            ```json
+            "No shifts found for EmployeeId 12345."
+            ```
+            </response>
+        </member>
+        <member name="M:HRSystem.Controllers.UsersController.CreateUser(HRSystem.DTO.UserDTOs.CreateUserDTO)">
+            <summary>
+            Creates a new user in the system.
+            This endpoint allows an admin to register a new user by providing necessary details such as name, email, and other personal information.
+            </summary>
+            <remarks>
+            This endpoint requires admin privileges and expects a valid JSON payload conforming to the <see cref="T:HRSystem.DTO.UserDTOs.CreateUserDTO"/> structure.
+            It performs validation on the input data and returns an authentication response with user details and a token upon success.
+            </remarks>
+            <param name="model">
+            The user data to create, provided in the request body as a.
+            /// <para><strong>Example Request:</strong></para>
+            <code>
+            POST /Users/Create
             {
                 "name": "John Doe",
                 "email": "john.doe@example.com",
+                "address": "123 Main St, Springfield",
+                "dateOfBarth": "1990-05-15T00:00:00",
+                "phoneNumber": "+1-555-123-4567",
                 "userName": "johndoe",
-                "password": "P@ssw0rd123",
-                "phoneNumber": "123-456-7890",
-                "address": "123 Main St",
-                "nationalId": "987654321",
-                "salary": 50000,
-                "timeOfAttend": "09:00:00",
-                "timeOfLeave": "17:00:00",
-                "gender": "male",
-                "dateOfWork": "2023-01-15",
-                "dateOfBirth": "1990-05-20",
+                "nationalid": "987654321",
+                "salary": 50000.75,
+                "shiftType": "Morning",
+                "gender": "Male",
+                "dateOfWork": "2025-01-01T00:00:00",
+                "password": "SecurePass123!"
             }
             </code>
             </param>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the user creation operation.
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the user creation process.
+            On success, it returns HTTP 200 (OK) with user details and an authentication token.
+            On failure, it returns appropriate error codes with descriptive messages.
             </returns>
             <response code="200">
-            User created successfully. Returns a success message and the created user's details.
-            Example Response (Success):
+            Successfully created the user. Returns user details and an authentication token.
+            Example Response:
             <code>
             {
                 "message": "User created successfully",
                 "user": {
-                    "message": "User created successfully",
-                    "id": "12345",
+                    "id": "123e4567-e89b-12d3-a456-426614174000",
                     "name": "John Doe",
                     "email": "john.doe@example.com",
                     "userName": "johndoe",
-                    "phoneNumber": "123-456-7890",
-                    "address": "123 Main St",
-                    "nationalId": "987654321",
-                    "salary": 50000,
-                    "timeOfAttend": "09:00",
-                    "timeOfLeave": "17:00",
+                    "phoneNumber": "+1-555-123-4567",
+                    "address": "123 Main St, Springfield",
+                    "nationalid": "987654321",
+                    "salary": 50000.75,
+                    "shiftType": "Morning",
                     "gender": "Male",
-                    "dateOfWork": "2023-01-15",
-                    "dateOfBirth": "1990-05-20",
+                    "dateOfWork": "2025-01-01",
+                    "dateOfBarth": "1990-05-15",
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
                     "roles": ["User"]
                 }
             }
             </code>
             </response>
             <response code="400">
-            Bad request. Returned when the provided model is invalid or user creation fails (e.g., duplicate email or username).
-            Example Response (Invalid Model):
+            Bad Request. Returned when the input data is invalid or fails validation.
+            Example Response (Validation Error):
             <code>
             {
-                "errors": {
-                    "email": ["The email field is required."],
-                    "userName": ["The username field is required."],
-                    "password": ["The password field is required."]
-                }
+                "name": ["Name is required."],
+                "email": ["Invalid email format."]
             }
             </code>
-            Example Response (Creation Failed):
+            Example Response (Business Logic Error):
             <code>
             {
-                "message": "Email or username already exists."
+                "message": "Email already exists in the system."
             }
             </code>
             </response>
             <response code="401">
             Unauthorized. Returned when the caller is not authenticated.
+            Example Response:
+            <code>
+            {
+                "message": "Authentication required. Please provide a valid token."
+            }
+            </code>
             </response>
             <response code="403">
-            Forbidden. Returned when the caller is not an admin.
+            Forbidden. Returned when the caller lacks admin privileges.
+            Example Response:
+            <code>
+            {
+                "message": "Access denied. Admin role required."
+            }
+            </code>
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs on the server.
-            Example Response (Server Error):
+            Server Error. Returned when an unexpected error occurs during user creation.
+            Example Response (Generic Error):
             <code>
             {
                 "message": "An error occurred while creating the user",
                 "error": "Database connection failed"
             }
             </code>
+            Example Response (Detailed Error):
+            <code>
+            {
+                "message": "An error occurred while creating the user",
+                "error": "User creation failed due to duplicate National ID",
+                "timestamp": "2025-03-24T14:30:00Z"
+            }
+            </code>
             </response>
+            <exception cref="T:System.Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
         </member>
         <member name="M:HRSystem.Controllers.UsersController.GetUsers">
             <summary>
             Retrieves a list of all users in the system.
-            This endpoint allows an admin or authorized user to fetch all user details.
+            This endpoint allows an admin to fetch all registered users for administrative purposes.
             </summary>
+            <remarks>
+            This is a GET endpoint that requires admin privileges. It returns a collection of user data if available, or an appropriate error message if no users exist or an issue occurs.
+            No parameters are required as it fetches all users indiscriminately.
+            </remarks>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of users or an error message.
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the user retrieval process.
+            On success, it returns HTTP 200 (OK) with a list of users.
+            On failure, it returns appropriate error codes with descriptive messages.
             </returns>
             <response code="200">
-            Users retrieved successfully. Returns a success message and the list of users.
-            Example Response (Success):
+            Successfully retrieved the list of users.
+            Example Response (Multiple Users):
             <code>
             {
                 "success": true,
                 "data": [
                     {
-                        "id": "12345",
+                        "id": "123e4567-e89b-12d3-a456-426614174000",
                         "name": "John Doe",
                         "email": "john.doe@example.com",
                         "userName": "johndoe",
-                        "phoneNumber": "123-456-7890",
-                        "address": "123 Main St",
+                        "phoneNumber": "+1-555-123-4567",
+                        "address": "123 Main St, Springfield",
                         "nationalId": "987654321",
-                        "salary": 50000,
-                        "timeOfAttend": "09:00",
-                        "timeOfLeave": "17:00",
+                        "salary": 50000.75,
+                        "shiftType": "Morning",
                         "gender": "Male",
-                        "dateOfWork": "2023-01-15",
-                        "dateOfBirth": "1990-05-20",
-                        "roles": ["User"]
+                        "dateOfWork": "2025-01-01",
+                        "dateOfBirth": "1990-05-15"
                     },
                     {
-                        "id": "67890",
+                        "id": "987fcdeb-12ab-34cd-e567-890123456789",
                         "name": "Jane Smith",
                         "email": "jane.smith@example.com",
                         "userName": "janesmith",
-                        "phoneNumber": "987-654-3210",
-                        "address": "456 Oak St",
+                        "phoneNumber": "+1-555-987-6543",
+                        "address": "456 Oak Ave, Riverside",
                         "nationalId": "123456789",
-                        "salary": 60000,
-                        "timeOfAttend": "08:30",
-                        "timeOfLeave": "16:30",
+                        "salary": 60000.00,
+                        "shiftType": "Evening",
                         "gender": "Female",
-                        "dateOfWork": "2022-06-10",
-                        "dateOfBirth": "1985-03-15",
-                        "roles": ["Admin"]
+                        "dateOfWork": "2024-11-15",
+                        "dateOfBirth": "1988-09-22"
+                    }
+                ]
+            }
+            </code>
+            Example Response (Single User):
+            <code>
+            {
+                "success": true,
+                "data": [
+                    {
+                        "id": "123e4567-e89b-12d3-a456-426614174000",
+                        "name": "John Doe",
+                        "email": "john.doe@example.com",
+                        "userName": "johndoe",
+                        "phoneNumber": "+1-555-123-4567",
+                        "address": "123 Main St, Springfield",
+                        "nationalId": "987654321",
+                        "salary": 50000.75,
+                        "shiftType": "Morning",
+                        "gender": "Male",
+                        "dateOfWork": "2025-01-01",
+                        "dateOfBirth": "1990-05-15"
                     }
                 ]
             }
@@ -1285,13 +2007,25 @@
             </response>
             <response code="401">
             Unauthorized. Returned when the caller is not authenticated.
+            Example Response:
+            <code>
+            {
+                "message": "Authentication required. Please provide a valid token."
+            }
+            </code>
             </response>
             <response code="403">
-            Forbidden. Returned when the caller is not an admin.
+            Forbidden. Returned when the caller lacks admin privileges.
+            Example Response:
+            <code>
+            {
+                "message": "Access denied. Admin role required."
+            }
+            </code>
             </response>
             <response code="404">
-            Not found. Returned when no users are found in the system.
-            Example Response (Not Found):
+            Not Found. Returned when no users exist in the system.
+            Example Response:
             <code>
             {
                 "success": false,
@@ -1300,8 +2034,8 @@
             </code>
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs on the server.
-            Example Response (Server Error):
+            Server Error. Returned when an unexpected error occurs during retrieval.
+            Example Response (Generic Error):
             <code>
             {
                 "success": false,
@@ -1309,293 +2043,184 @@
                 "error": "Database connection failed"
             }
             </code>
+            Example Response (Detailed Error):
+            <code>
+            {
+                "success": false,
+                "message": "An error occurred while retrieving users.",
+                "error": "Timeout occurred while querying the database",
+                "timestamp": "2025-03-24T15:45:00Z"
+            }
+            </code>
             </response>
+            <exception cref="T:System.Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
         </member>
         <member name="M:HRSystem.Controllers.UsersController.GetById(System.String)">
             <summary>
             Retrieves a user by their ID.
-            This endpoint allows an admin or authorized user to fetch the details of a specific user using their ID.
             </summary>
-            <param name="id">The ID of the user to retrieve.</param>
+            <param name="id">The unique identifier of the user to retrieve.</param>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the user details or an error message.
+            Returns the user details if found, or an error message if the user is not found or the operation fails.
             </returns>
+            <remarks>
+            This endpoint retrieves a user by ID and requires Admin or User role authorization.
+            </remarks>
             <response code="200">
-            User retrieved successfully. Returns a success message and the user's details.
-            Example Response (Success):
-            <code>
+            Returns the user details when the request is successful.
+            ```json
             {
-                "success": true,
-                "data": {
-                    "id": "12345",
-                    "name": "John Doe",
-                    "email": "john.doe@example.com",
-                    "userName": "johndoe",
-                    "phoneNumber": "123-456-7890",
-                    "address": "123 Main St",
-                    "nationalId": "987654321",
-                    "salary": 50000,
-                    "timeOfAttend": "09:00",
-                    "timeOfLeave": "17:00",
-                    "gender": "Male",
-                    "dateOfWork": "2023-01-15",
-                    "dateOfBirth": "1990-05-20",
-                    "roles": ["User"]
-                }
+              "success": true,
+              "message": "User retrieved successfully.",
+              "data": {
+                "id": "12345",
+                "name": "John Doe",
+                "email": "john@example.com"
+              }
             }
-            </code>
-            </response>
-            <response code="404">
-            Not found. Returned when the user with the specified ID does not exist.
-            Example Response (Not Found):
-            <code>
-            {
-                "success": false,
-                "message": "User not found."
-            }
-            </code>
+            ```
             </response>
             <response code="401">
-            Unauthorized. Returned when the caller is not authenticated.
+            Returned when the user is not authenticated or lacks required role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
+            </response>
+            <response code="404">
+            Returned when the user with the specified ID is not found.
+            ```json
+            {
+              "success": false,
+              "message": "User with ID '12345' not found."
+            }
+            ```
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs on the server.
-            Example Response (Server Error):
-            <code>
+            Returned when an unexpected server error occurs during processing.
+            ```json
             {
-                "success": false,
-                "message": "An error occurred while retrieving the user.",
-                "error": "Database connection failed"
+              "success": false,
+              "message": "An error occurred while retrieving the user.",
+              "error": "Exception details here"
             }
-            </code>
+            ```
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.UsersController.Edit(System.String,HRSystem.DTO.UpdateUserDTO)">
+        <member name="M:HRSystem.Controllers.UsersController.Edit(HRSystem.DTO.UserDTOs.UpdateUserDTO)">
             <summary>
-            Updates an existing user's details by their ID.
-            This endpoint allows an admin or authorized user to update a user's information using their ID and updated details.
+            Updates an existing user in the system.
             </summary>
-            <param name="id">The ID of the user to update.</param>
-            <param name="model">
-            The updated user details (as defined in UpdateUserDTO).
-            Example Request (UpdateUserDTO):
-            <code>
-            {
-                "name": "John Smith",
-                "email": "john.smith@example.com",
-                "userName": "johnsmith",
-                "phoneNumber": "123-456-7890",
-                "address": "456 Main St",
-                "nationalId": "987654321",
-                "salary": 55000,
-                "timeOfAttend": "08:30",
-                "timeOfLeave": "16:30",
-                "gender": "Male",
-                "dateOfWork": "2023-01-15",
-                "dateOfBirth": "1990-05-20",
-                "roles": ["User"]
-            }
-            </code>
-            </param>
+            <param name="model">The data transfer object containing the updated user details.</param>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the update operation.
+            Returns a success message if the user is updated, or an error message if the user is not found or the operation fails.
             </returns>
-            <response code="200">
-            User updated successfully. Returns a success message.
-            Example Response (Success):
-            <code>
+            <remarks>
+            This endpoint updates a user and requires Admin role authorization. The request body must contain valid user details.
+            
+            Example Request:
+            ```json
             {
-                "success": true,
-                "message": "User updated successfully."
+              "id": "12345",
+              "name": "Updated John Doe",
+              "email": "john.updated@example.com"
             }
-            </code>
+            ```
+            </remarks>
+            <response code="200">
+            Returns a success message when the user is updated successfully.
+            ```json
+            {
+              "success": true,
+              "message": "User updated successfully."
+            }
+            ```
             </response>
             <response code="400">
-            Bad request. Returned when the provided model is invalid.
-            Example Response (Invalid Model):
-            <code>
+            Returned when the request model is invalid.
+            ```json
             {
-                "success": false,
-                "message": "Invalid data.",
-                "errors": [
-                    "The email field is required.",
-                    "The userName field is required."
-                ]
+              "success": false,
+              "message": "Invalid user data provided.",
+              "errors": ["The Email field is required."]
             }
-            </code>
+            ```
             </response>
             <response code="401">
-            Unauthorized. Returned when the caller is not authenticated.
+            Returned when the user is not authenticated or lacks Admin role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
             </response>
             <response code="404">
-            Not found. Returned when the user with the specified ID does not exist or the update process fails.
-            Example Response (Not Found):
-            <code>
+            Returned when the user with the specified ID is not found or cannot be updated.
+            ```json
             {
-                "success": false,
-                "message": "User not found or update failed."
+              "success": false,
+              "message": "User with ID '12345' not found or could not be updated."
             }
-            </code>
+            ```
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs on the server.
-            Example Response (Server Error):
-            <code>
+            Returned when an unexpected server error occurs during processing.
+            ```json
             {
-                "success": false,
-                "message": "An error occurred while updating the user.",
-                "error": "Database connection failed"
+              "success": false,
+              "message": "An error occurred while updating the user.",
+              "error": "Exception details here"
             }
-            </code>
+            ```
             </response>
         </member>
         <member name="M:HRSystem.Controllers.UsersController.DeleteUser(System.String)">
             <summary>
-            Deletes a user by their ID.
-            This endpoint allows an admin or authorized user to delete a user from the system using their ID.
+            Deletes a user from the system by their ID.
             </summary>
-            <param name="id">The ID of the user to delete.</param>
+            <param name="id">The unique identifier of the user to delete.</param>
             <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the delete operation.
+            Returns a success message if the user is deleted, or an error message if the user is not found or the operation fails.
             </returns>
+            <remarks>
+            This endpoint deletes a user and requires Admin or User role authorization.
+            </remarks>
             <response code="200">
-            User deleted successfully. Returns a success message.
-            Example Response (Success):
-            <code>
+            Returns a success message when the user is deleted successfully.
+            ```json
             {
-                "success": true,
-                "message": "User deleted successfully."
+              "success": true,
+              "message": "User and associated records deleted successfully."
             }
-            </code>
+            ```
+            </response>
+            <response code="401">
+            Returned when the user is not authenticated or lacks required role authorization.
+            ```json
+            {
+              "message": "Unauthorized"
+            }
+            ```
             </response>
             <response code="404">
-            Not found. Returned when the user with the specified ID does not exist or could not be deleted.
-            Example Response (Not Found):
-            <code>
+            Returned when the user with the specified ID is not found or cannot be deleted.
+            ```json
             {
-                "success": false,
-                "message": "User not found or could not be deleted."
+              "success": false,
+              "message": "User with ID '12345' not found or could not be deleted."
             }
-            </code>
-            </response>
-            <response code="401">
-            Unauthorized. Returned when the caller is not authenticated.
+            ```
             </response>
             <response code="500">
-            Server error. Returned when an unexpected error occurs on the server.
-            Example Response (Server Error):
-            <code>
+            Returned when an unexpected server error occurs during processing.
+            ```json
             {
-                "success": false,
-                "message": "An error occurred while deleting the user.",
-                "error": "Database connection failed"
+              "success": false,
+              "message": "An error occurred while deleting the user.",
+              "error": "Exception details here"
             }
-            </code>
-            </response>
-        </member>
-        <member name="M:HRSystem.Controllers.UsersController.AddUserToRole(System.String,System.String)">
-            <summary>
-            Adds a user to a specific role by their ID and role name.
-            This endpoint allows an admin or authorized user to assign a role to a user in the system.
-            </summary>
-            <param name="userId">The ID of the user to add to the role.</param>
-            <param name="roleName">The name of the role to assign to the user.</param>
-            <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the role assignment operation.
-            </returns>
-            <response code="200">
-            Role assigned successfully. Returns a success message.
-            Example Response (Success):
-            <code>
-            {
-                "success": true,
-                "message": "User added to role successfully."
-            }
-            </code>
-            </response>
-            <response code="400">
-            Bad request. Returned when the role assignment fails (e.g., user or role not found, or user already in role).
-            Example Response (Failure):
-            <code>
-            {
-                "success": false,
-                "message": "Failed to add user to role.",
-                "errors": [
-                    "User with ID 12345 not found.",
-                    "Role 'Admin' does not exist."
-                ]
-            }
-            </code>
-            </response>
-            <response code="401">
-            Unauthorized. Returned when the caller is not authenticated.
-            </response>
-            <response code="403">
-            Forbidden. Returned when the caller is not an admin.
-            </response>
-            <response code="500">
-            Server error. Returned when an unexpected error occurs on the server.
-            Example Response (Server Error):
-            <code>
-            {
-                "success": false,
-                "message": "An error occurred while adding the user to the role.",
-                "error": "Database connection failed"
-            }
-            </code>
-            </response>
-        </member>
-        <member name="M:HRSystem.Controllers.UsersController.DeleteUserFromRole(System.String,System.String)">
-            <summary>
-            Removes a user from a specific role by their ID and role name.
-            This endpoint allows an admin to remove a user from a role in the system.
-            </summary>
-            <param name="userId">The ID of the user to remove from the role.</param>
-            <param name="roleName">The name of the role to remove the user from.</param>
-            <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the role removal operation.
-            </returns>
-            <response code="200">
-            Role removed successfully. Returns a success message.
-            Example Response (Success):
-            <code>
-            {
-                "success": true,
-                "message": "User with ID '12345' removed from role 'Editor' successfully."
-            }
-            </code>
-            </response>
-            <response code="400">
-            Bad request. Returned when the role removal fails (e.g., user or role not found, or user not in role).
-            Example Response (Failure):
-            <code>
-            {
-                "success": false,
-                "message": "Failed to remove user from role.",
-                "errors": [
-                    "User with ID '12345' not found.",
-                    "Role 'Editor' does not exist.",
-                    "User with ID '12345' is not in role 'Editor'."
-                ]
-            }
-            </code>
-            </response>
-            <response code="401">
-            Unauthorized. Returned when the caller is not authenticated.
-            </response>
-            <response code="403">
-            Forbidden. Returned when the caller is not an admin.
-            </response>
-            <response code="500">
-            Server error. Returned when an unexpected error occurs on the server.
-            Example Response (Server Error):
-            <code>
-            {
-                "success": false,
-                "message": "An error occurred while removing the user from the role.",
-                "error": "Database connection failed"
-            }
-            </code>
+            ```
             </response>
         </member>
         <member name="T:HRSystem.Migrations.initialMigration">
@@ -1620,6 +2245,102 @@
             <inheritdoc />
         </member>
         <member name="M:HRSystem.Migrations.ChangeDataTypesOfLocationFromStringToDouble.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.removeReduisMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.removeReduisMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.removeReduisMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.removeReduisMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.addShiftType">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.addShiftType.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.addShiftType.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.addShiftType.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.AddEmployeeVacations">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddEmployeeVacations.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddEmployeeVacations.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddEmployeeVacations.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.AddNotification">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddNotification.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddNotification.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddNotification.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.V5">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.V5.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.V5.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.V5.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v6">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v6.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v6.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v6.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v7">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v7.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v7.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v7.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v8">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v8.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v8.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v8.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

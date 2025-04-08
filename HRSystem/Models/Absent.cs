@@ -8,7 +8,6 @@ namespace HRSystem.Models
         public int Id { get; set; }
         public DateTime day { get; set; }
         public string EmployeeId { get; set; }
-        public ApplicationUser Employee { get; set; } = default!;
-
+        public virtual ApplicationUser Employee { get; set; } = default!;
     }
 }

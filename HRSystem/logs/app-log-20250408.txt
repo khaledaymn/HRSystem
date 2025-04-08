@@ -1,0 +1,436 @@
+2025-04-08 09:06:46 [Information] HTTP "GET" "/Users/GetAll" responded 401 in 2589.9019 ms
+2025-04-08 09:07:37 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 09:08:41 [Error] An error occurred using the connection to database '"db16111"' on server '"db16111.public.databaseasp.net"'.
+2025-04-08 09:08:41 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=19831; handshake=55; 
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at Microsoft.Data.SqlClient.TdsParser.ConsumePreLoginHandshake(SqlConnectionEncryptOption encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean& marsCapable, Boolean& fedAuthRequired, Boolean tlsFirst, String serverCert)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:657ae6a2-7cd2-4b21-92fe-a5b2ccd6f2c0
+Error Number:-2,State:0,Class:11"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=19831; handshake=55; 
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at Microsoft.Data.SqlClient.TdsParser.ConsumePreLoginHandshake(SqlConnectionEncryptOption encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean& marsCapable, Boolean& fedAuthRequired, Boolean tlsFirst, String serverCert)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:657ae6a2-7cd2-4b21-92fe-a5b2ccd6f2c0
+Error Number:-2,State:0,Class:11
+2025-04-08 09:08:41 [Error] Failed to retrieve users. Error: "Error retrieving users: Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=19831; handshake=55; "
+System.Exception: Error retrieving users: Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=19831; handshake=55; 
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=19831; handshake=55; 
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at Microsoft.Data.SqlClient.TdsParser.ConsumePreLoginHandshake(SqlConnectionEncryptOption encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean& marsCapable, Boolean& fedAuthRequired, Boolean tlsFirst, String serverCert)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at HRSystem.Services.UsersServices.UsersServices.GetAllAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 295
+ClientConnectionId:657ae6a2-7cd2-4b21-92fe-a5b2ccd6f2c0
+Error Number:-2,State:0,Class:11
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.UsersServices.UsersServices.GetAllAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 318
+   at HRSystem.Controllers.UsersController.GetUsers() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\UsersController.cs:line 324
+2025-04-08 09:08:41 [Error] HTTP "GET" "/Users/GetAll" responded 500 in 85888.4239 ms
+2025-04-08 09:11:43 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 09:12:35 [Error] Failed to retrieve users. Error: "Error retrieving users: One or more errors occurred. (Object reference not set to an instance of an object.)"
+System.Exception: Error retrieving users: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at HRSystem.Services.UsersServices.UsersServices.<>c__DisplayClass8_0.<GetAllAsync>b__2() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 310
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at HRSystem.Services.UsersServices.UsersServices.<GetAllAsync>b__8_0(ApplicationUser user) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 297
+   at System.Linq.Enumerable.ListSelectIterator`2.Fill(ReadOnlySpan`1 source, Span`1 destination, Func`2 func)
+   at System.Linq.Enumerable.ListSelectIterator`2.ToList()
+   at HRSystem.Services.UsersServices.UsersServices.GetAllAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 297
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.UsersServices.UsersServices.GetAllAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 318
+   at HRSystem.Controllers.UsersController.GetUsers() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\UsersController.cs:line 324
+2025-04-08 09:12:35 [Error] HTTP "GET" "/Users/GetAll" responded 500 in 69708.7989 ms
+2025-04-08 09:12:55 [Information] Received request to retrieve all branches.
+2025-04-08 09:12:55 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 09:12:55 [Warning] No branches found in the database.
+2025-04-08 09:12:55 [Information] Successfully retrieved 0 branches.
+2025-04-08 09:12:55 [Information] HTTP "GET" "/api/Branchs" responded 200 in 13003.6595 ms
+2025-04-08 10:27:32 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 10:27:33 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 10:27:33 [Information] Saving changes to the database.
+2025-04-08 10:27:34 [Information] Changes saved successfully. Rows affected: 1
+2025-04-08 10:27:34 [Information] Successfully created branch with ID: 2
+2025-04-08 10:27:34 [Information] Successfully created branch with ID: 2
+2025-04-08 10:27:34 [Information] HTTP "POST" "/api/Branchs" responded 201 in 4224.4944 ms
+2025-04-08 10:28:55 [Error] Unexpected error while creating user with email: "khaled654ayman0@gmail.com". Error: "Object reference not set to an instance of an object."
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at HRSystem.Services.UsersServices.UsersServices.Create(CreateUserDTO model) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 67
+2025-04-08 10:28:55 [Warning] Failed to create user with email: "khaled654ayman0@gmail.com". Reason: "An error occurred while creating the user: Object reference not set to an instance of an object."
+2025-04-08 10:28:55 [Information] HTTP "POST" "/Users/Create" responded 400 in 596.5657 ms
+2025-04-08 10:32:09 [Error] Unexpected error while creating user with email: "khaled654ayman0@gmail.com". Error: "Object reference not set to an instance of an object."
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at HRSystem.Services.UsersServices.UsersServices.Create(CreateUserDTO model) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 67
+2025-04-08 10:32:09 [Warning] Failed to create user with email: "khaled654ayman0@gmail.com". Reason: "An error occurred while creating the user: Object reference not set to an instance of an object."
+2025-04-08 10:32:09 [Information] HTTP "POST" "/Users/Create" responded 400 in 525.9449 ms
+2025-04-08 10:37:14 [Error] Unexpected error while creating user with email: "khaled654ayman0@gmail.com". Error: "Object reference not set to an instance of an object."
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at HRSystem.Services.UsersServices.UsersServices.Create(CreateUserDTO model) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 67
+2025-04-08 10:37:14 [Warning] Failed to create user with email: "khaled654ayman0@gmail.com". Reason: "An error occurred while creating the user: Object reference not set to an instance of an object."
+2025-04-08 10:37:14 [Information] HTTP "POST" "/Users/Create" responded 400 in 1507.2823 ms
+2025-04-08 10:53:17 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 10:53:19 [Information] Transaction started successfully.
+2025-04-08 10:53:21 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 10:53:21 [Error] Error occurred while starting a transaction.
+System.InvalidOperationException: The connection is already in a transaction and cannot participate in another transaction.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.EnsureNoTransactions()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.BeginTransactionAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 230
+2025-04-08 10:53:21 [Information] Transaction rolled back successfully.
+2025-04-08 10:53:22 [Error] Failed executing DbCommand ("87"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450), @p25='?' (Size = 450), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (DbType = Double), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p26='?' (Size = 4000), @p7='?' (DbType = DateTime2), @p8='?' (Size = 256), @p9='?' (DbType = Boolean), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Boolean), @p13='?' (DbType = Boolean), @p14='?' (DbType = DateTimeOffset), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (Size = 256), @p18='?' (Size = 256), @p19='?' (Size = 4000), @p20='?' (Size = 4000), @p21='?' (DbType = Boolean), @p22='?' (Size = 4000), @p23='?' (DbType = Boolean), @p24='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([RoleId], [UserId])
+VALUES (@p0, @p1);
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p2, [Address] = @p3, [BaseSalary] = @p4, [BranchId] = @p5, [ConcurrencyStamp] = @p6, [DateOfBarth] = @p7, [Email] = @p8, [EmailConfirmed] = @p9, [Gender] = @p10, [HiringDate] = @p11, [IsDeleted] = @p12, [LockoutEnabled] = @p13, [LockoutEnd] = @p14, [Name] = @p15, [Nationalid] = @p16, [NormalizedEmail] = @p17, [NormalizedUserName] = @p18, [PasswordHash] = @p19, [PhoneNumber] = @p20, [PhoneNumberConfirmed] = @p21, [SecurityStamp] = @p22, [TwoFactorEnabled] = @p23, [UserName] = @p24
+OUTPUT 1
+WHERE [Id] = @p25 AND [ConcurrencyStamp] = @p26;"
+2025-04-08 10:53:22 [Error] An exception occurred in the database while saving changes for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint \"FK_AspNetUserRoles_AspNetUsers_UserId\". The conflict occurred in database \"db16111\", table \"dbo.AspNetUsers\", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:3999acfb-1624-4acd-bca4-80452201235e
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_AspNetUserRoles_AspNetUsers_UserId". The conflict occurred in database "db16111", table "dbo.AspNetUsers", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:3999acfb-1624-4acd-bca4-80452201235e
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-04-08 10:53:22 [Error] Error occurred while rolling back the transaction.
+System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 269
+2025-04-08 10:53:22 [Error] Unexpected error while creating user with email: "khaled654ayman0@gmail.com". Error: "An error occurred while rolling back the transaction."
+System.Exception: An error occurred while rolling back the transaction.
+ ---> System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 269
+   --- End of inner exception stack trace ---
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 275
+   at HRSystem.Services.UsersServices.UsersServices.Create(CreateUserDTO model) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 125
+2025-04-08 10:53:22 [Warning] Failed to create user with email: "khaled654ayman0@gmail.com". Reason: "An error occurred while creating the user: An error occurred while rolling back the transaction."
+2025-04-08 10:53:22 [Information] HTTP "POST" "/Users/Create" responded 400 in 7156.1911 ms
+2025-04-08 10:54:25 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 10:54:29 [Information] Transaction started successfully.
+2025-04-08 10:54:39 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 10:55:10 [Error] Error occurred while starting a transaction.
+System.InvalidOperationException: The connection is already in a transaction and cannot participate in another transaction.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.EnsureNoTransactions()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.BeginTransactionAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 230
+2025-04-08 11:00:51 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:00:53 [Information] Transaction started successfully.
+2025-04-08 11:00:54 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 11:00:54 [Warning] A transaction is already active. Returning the existing transaction.
+2025-04-08 11:00:54 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:00:54 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:00:54 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:00:54 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:00:54 [Information] Saving changes to the database.
+2025-04-08 11:00:54 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 11:00:54 [Information] Changes saved successfully. Rows affected: 1
+2025-04-08 11:00:54 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:00:54 [Information] Saving changes to the database.
+2025-04-08 11:00:54 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 11:00:54 [Information] Changes saved successfully. Rows affected: 1
+2025-04-08 11:00:55 [Information] Transaction committed successfully.
+2025-04-08 11:00:55 [Error] Error occurred while committing the transaction.
+System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CommitTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.CommitTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.CommitAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 254
+2025-04-08 11:00:55 [Error] Error occurred while rolling back the transaction.
+System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 273
+2025-04-08 11:00:55 [Error] Unexpected error while creating user with email: "khaled654ayman0@gmail.com". Error: "An error occurred while rolling back the transaction."
+System.Exception: An error occurred while rolling back the transaction.
+ ---> System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 273
+   --- End of inner exception stack trace ---
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 279
+   at HRSystem.Services.UsersServices.UsersServices.Create(CreateUserDTO model) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\UsersServices\UsersServices.cs:line 125
+2025-04-08 11:00:55 [Warning] Failed to create user with email: "khaled654ayman0@gmail.com". Reason: "An error occurred while creating the user: An error occurred while rolling back the transaction."
+2025-04-08 11:00:55 [Information] HTTP "POST" "/Users/Create" responded 400 in 6182.7766 ms
+2025-04-08 11:02:16 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:02:18 [Information] Transaction started successfully.
+2025-04-08 11:03:14 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:03:15 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:03:16 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:03:16 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:03:16 [Information] Successfully retrieved 2 users.
+2025-04-08 11:03:16 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 3645.4458 ms
+2025-04-08 11:05:24 [Warning] Invalid time range: StartTime "4:00" is not before EndTime "1:00".
+2025-04-08 11:05:24 [Information] HTTP "POST" "/api/Shifts" responded 400 in 34.5280 ms
+2025-04-08 11:05:47 [Error] Error occurred while rolling back the transaction.
+System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 273
+2025-04-08 11:05:54 [Error] An exception occurred: "An error occurred while rolling back the transaction."
+System.Exception: An error occurred while rolling back the transaction.
+ ---> System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 273
+   --- End of inner exception stack trace ---
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 279
+   at HRSystem.Services.ShiftServices.ShiftServices.CreateShiftAsync(AddShiftDTO shiftDto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ShiftServices\ShiftServices.cs:line 85
+   at HRSystem.Controllers.ShiftsController.CreateShift(AddShiftDTO shiftDto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ShiftsController.cs:line 30
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Exption\ExceptionMiddleware.cs:line 26
+2025-04-08 11:05:55 [Error] HTTP "POST" "/api/Shifts" responded 500 in 8106.2424 ms
+2025-04-08 11:07:03 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:07:03 [Error] Error occurred while rolling back the transaction.
+System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 273
+2025-04-08 11:10:05 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:10:06 [Information] Transaction started successfully.
+2025-04-08 11:10:08 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:10:08 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:10:08 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:10:09 [Information] Transaction rolled back successfully.
+2025-04-08 11:10:09 [Error] Failed to create shift assignment for EmployeeId: "d28ed7e1-503f-49f4-af7f-831e66a47046". Error: "The DateTime represented by the string '24:00' is not supported in calendar 'System.Globalization.GregorianCalendar'."
+System.FormatException: The DateTime represented by the string '24:00' is not supported in calendar 'System.Globalization.GregorianCalendar'.
+   at System.DateTime.ParseExact(String s, String format, IFormatProvider provider)
+   at HRSystem.Services.ShiftServices.ShiftServices.CreateShiftAsync(AddShiftDTO shiftDto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ShiftServices\ShiftServices.cs:line 55
+2025-04-08 11:10:09 [Information] HTTP "POST" "/api/Shifts" responded 400 in 7110.3763 ms
+2025-04-08 11:13:20 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:13:21 [Information] Transaction started successfully.
+2025-04-08 11:13:23 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:13:23 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:13:23 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:13:23 [Error] Error occurred while rolling back the transaction.
+System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 273
+2025-04-08 11:14:38 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:14:41 [Information] Transaction started successfully.
+2025-04-08 11:15:04 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:16:31 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:16:54 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:18:27 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:18:28 [Information] Transaction started successfully.
+2025-04-08 11:18:29 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:18:29 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:18:29 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:18:29 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:18:30 [Information] Saving changes to the database.
+2025-04-08 11:18:32 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 11:18:32 [Information] Changes saved successfully. Rows affected: 1
+2025-04-08 11:18:32 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:18:32 [Information] Saving changes to the database.
+2025-04-08 11:18:32 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 11:18:32 [Information] Changes saved successfully. Rows affected: 1
+2025-04-08 11:18:32 [Information] Transaction committed successfully.
+2025-04-08 11:18:32 [Information] Shift assigned successfully to EmployeeId: "d28ed7e1-503f-49f4-af7f-831e66a47046", ShiftId: 3
+2025-04-08 11:18:32 [Information] HTTP "POST" "/api/Shifts" responded 201 in 5914.6729 ms
+2025-04-08 11:18:54 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:18:54 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:18:54 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:18:54 [Information] Successfully retrieved 2 users.
+2025-04-08 11:18:54 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 758.4345 ms
+2025-04-08 11:19:24 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:19:24 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:19:24 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:19:24 [Information] Successfully retrieved user with ID: "d28ed7e1-503f-49f4-af7f-831e66a47046"
+2025-04-08 11:19:24 [Information] User with ID "d28ed7e1-503f-49f4-af7f-831e66a47046" retrieved successfully.
+2025-04-08 11:19:24 [Information] HTTP "GET" "/Users/GetById/d28ed7e1-503f-49f4-af7f-831e66a47046" responded 200 in 657.9379 ms
+2025-04-08 11:20:02 [Information] HTTP "PUT" "/Users/Edit" responded 400 in 60.4118 ms
+2025-04-08 11:28:15 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:28:17 [Information] Successfully updated user with ID: "d28ed7e1-503f-49f4-af7f-831e66a47046"
+2025-04-08 11:28:17 [Information] User with ID "d28ed7e1-503f-49f4-af7f-831e66a47046" updated successfully.
+2025-04-08 11:28:17 [Information] HTTP "PUT" "/Users/Edit" responded 200 in 3502.1947 ms
+2025-04-08 11:28:38 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:28:38 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:28:38 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:28:38 [Information] Successfully retrieved user with ID: "d28ed7e1-503f-49f4-af7f-831e66a47046"
+2025-04-08 11:28:38 [Information] User with ID "d28ed7e1-503f-49f4-af7f-831e66a47046" retrieved successfully.
+2025-04-08 11:28:38 [Information] HTTP "GET" "/Users/GetById/d28ed7e1-503f-49f4-af7f-831e66a47046" responded 200 in 631.1535 ms
+2025-04-08 11:30:45 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 11:30:47 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:30:47 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:30:47 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-08 11:30:48 [Information] Successfully retrieved user with ID: "d28ed7e1-503f-49f4-af7f-831e66a47046"
+2025-04-08 11:30:48 [Information] User with ID "d28ed7e1-503f-49f4-af7f-831e66a47046" retrieved successfully.
+2025-04-08 11:30:48 [Information] HTTP "GET" "/Users/GetById/d28ed7e1-503f-49f4-af7f-831e66a47046" responded 200 in 4704.2972 ms
+2025-04-08 11:32:22 [Information] Transaction started successfully.
+2025-04-08 11:32:22 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:32:22 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:32:22 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:32:22 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:32:22 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:32:22 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-08 11:32:22 [Information] Saving changes to the database.
+2025-04-08 11:32:23 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 11:32:23 [Information] Changes saved successfully. Rows affected: 4
+2025-04-08 11:32:23 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-08 11:32:23 [Information] Transaction committed successfully.
+2025-04-08 11:32:23 [Information] Successfully deleted user with ID: "d28ed7e1-503f-49f4-af7f-831e66a47046" and associated records.
+2025-04-08 11:32:23 [Information] User with ID "d28ed7e1-503f-49f4-af7f-831e66a47046" deleted successfully.
+2025-04-08 11:32:23 [Information] HTTP "DELETE" "/Users/Delete/d28ed7e1-503f-49f4-af7f-831e66a47046" responded 200 in 924.2899 ms
+2025-04-08 11:32:32 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:32:32 [Information] Successfully retrieved 1 users.
+2025-04-08 11:32:32 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 292.2982 ms
+2025-04-08 11:32:53 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 11:32:53 [Information] No shifts found for employee with ID: "d28ed7e1-503f-49f4-af7f-831e66a47046"
+2025-04-08 11:32:53 [Information] HTTP "GET" "/api/Shifts/employee/d28ed7e1-503f-49f4-af7f-831e66a47046" responded 404 in 81.9522 ms
+2025-04-08 11:35:47 [Information] Login successful for email: "admin@gmail.com"
+2025-04-08 11:35:47 [Information] HTTP "POST" "/Account/Login" responded 200 in 3300.8897 ms
+2025-04-08 12:32:28 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 12:32:48 [Information] HTTP "GET" "/Users/GetAll" responded 401 in 870.1385 ms
+2025-04-08 12:33:16 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-08 12:33:19 [Information] Login successful for email: "admin@gmail.com"
+2025-04-08 12:33:19 [Information] HTTP "POST" "/Account/Login" responded 200 in 5052.4627 ms
+2025-04-08 12:33:43 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 12:33:43 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 12:33:43 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 12:33:43 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 12:33:43 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 12:33:44 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-08 12:33:44 [Information] Successfully retrieved 6 users.
+2025-04-08 12:33:44 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 1160.3922 ms

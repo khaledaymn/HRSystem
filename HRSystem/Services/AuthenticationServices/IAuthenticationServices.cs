@@ -1,4 +1,4 @@
-﻿using HRSystem.DTO;
+﻿using HRSystem.DTO.AuthenticationDTOs;
 
 namespace HRSystem.Services.AuthenticationServices
 {
