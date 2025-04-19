@@ -83,7 +83,6 @@ namespace HRSystem.Controllers
         /// </response>
         /// <response code="500">
         /// Returned when an unexpected server error occurs during processing.
-        /// ```
         /// Server Error Response (500):
         /// ```json
         /// {
@@ -103,6 +102,7 @@ namespace HRSystem.Controllers
                     _logger.LogWarning("Invalid login model state for email: {Email}", model.Email);
                     return BadRequest(ModelState);
                 }
+
                 var result = await _unitOfWork.AuthenticationService.Login(model);
 
                 if (!result.IsAuthenticated)
@@ -195,7 +195,7 @@ namespace HRSystem.Controllers
                 }
 
                 _logger.LogInformation("Forget password request completed successfully for email: {Email}", model.Email);
-                return Ok(result);
+                return Ok($"Forget password request completed successfully for email: {model.Email}");
             }
             catch (Exception ex)
             {
@@ -221,9 +221,9 @@ namespace HRSystem.Controllers
         /// Example Request:
         /// ```json
         /// {
+        ///   "password": "P@ssw0rd123"
         ///   "email": "user@example.com",
         ///   "token": "reset-token-123",
-        ///   "newPassword": "NewP@ssw0rd123"
         /// }
         /// ```
         /// </remarks>
@@ -311,6 +311,7 @@ namespace HRSystem.Controllers
 
                 _logger.LogInformation("Reset password completed successfully for email: {Email}", model.Email);
                 return Ok(result);
+
             }
             catch (Exception ex)
             {

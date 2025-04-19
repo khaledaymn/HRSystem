@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using HRSystem.Extend;
 using System.Globalization;
 using HRSystem.DTO.ShiftDTOs;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HRSystem.Services.ShiftServices
 {
@@ -25,8 +26,12 @@ namespace HRSystem.Services.ShiftServices
         }
 
         #region Create Shift
+
         public async Task<bool> CreateShiftAsync(AddShiftDTO shiftDto)
         {
+            bool ownsTransaction = false;
+            IDbContextTransaction? transaction = null;
+
             try
             {
                 if (shiftDto == null || string.IsNullOrEmpty(shiftDto.EmployeeId))
@@ -35,61 +40,74 @@ namespace HRSystem.Services.ShiftServices
                     return false;
                 }
 
-                //if (DateTime.ParseExact(shiftDto.StartTime, "H:mm", CultureInfo.InvariantCulture) >= DateTime.ParseExact(shiftDto.EndTime, "H:mm", CultureInfo.InvariantCulture))
-                //{
-                //    _logger.LogWarning("Invalid time range: StartTime {StartTime} is not before EndTime {EndTime}.",
-                //        shiftDto.StartTime, shiftDto.EndTime);
-                //    return false;
-                //}
-
-                using (var transaction = await _unitOfWork.BeginTransactionAsync())
+                if (_unitOfWork.GetDbContext().Database.CurrentTransaction == null)
                 {
-
-                    var employee = await _unitOfWork.UsersServices.GetByID(shiftDto.EmployeeId);
-                    if (employee == null)
-                    {
-                        _logger.LogWarning("Employee with ID {EmployeeId} not found.", shiftDto.EmployeeId);
-                        await _unitOfWork.RollbackAsync();
-                        return false;
-                    }
-
-                    var newShift = new Shift
-                    {
-                        StartTime = DateTime.ParseExact(shiftDto.StartTime, "H:mm", CultureInfo.InvariantCulture),
-                        EndTime = DateTime.ParseExact(shiftDto.EndTime, "H:mm", CultureInfo.InvariantCulture)
-                    };
-
-                    _logger.LogDebug("Adding new shift: StartTime={StartTime}, EndTime={EndTime}",
-                        newShift.StartTime, newShift.EndTime);
-                    await _unitOfWork.Repository<Shift>().ADD(newShift);
-                    await _unitOfWork.Save();
-
-                    var employeeShift = new EmployeeShift
-                    {
-                        EmployeeId = shiftDto.EmployeeId,
-                        ShiftId = newShift.Id
-                    };
-
-                    _logger.LogDebug("Assigning shift to employee: EmployeeId={EmployeeId}, ShiftId={ShiftId}",
-                        employeeShift.EmployeeId, employeeShift.ShiftId);
-                    await _unitOfWork.Repository<EmployeeShift>().ADD(employeeShift);
-
-                    await _unitOfWork.Save();
-                    await _unitOfWork.CommitAsync();
-
-                    _logger.LogInformation("Shift assigned successfully to EmployeeId: {EmployeeId}, ShiftId: {ShiftId}",
-                        employeeShift.EmployeeId, newShift.Id);
-                    return true;
+                    transaction = await _unitOfWork.BeginTransactionAsync();
+                    ownsTransaction = true;
                 }
+
+                var employee = await _unitOfWork.UsersServices.GetByID(shiftDto.EmployeeId);
+                if (employee == null)
+                {
+                    _logger.LogWarning("Employee with ID {EmployeeId} not found.", shiftDto.EmployeeId);
+                    if (ownsTransaction)
+                    {
+                        await _unitOfWork.RollbackAsync();
+                    }
+                    return false;
+                }
+
+                var newShift = new Shift
+                {
+                    StartTime = DateTime.ParseExact(shiftDto.StartTime, "H:mm", CultureInfo.InvariantCulture),
+                    EndTime = DateTime.ParseExact(shiftDto.EndTime, "H:mm", CultureInfo.InvariantCulture)
+                };
+
+                _logger.LogDebug("Adding new shift: StartTime={StartTime}, EndTime={EndTime}",
+                    newShift.StartTime, newShift.EndTime);
+                await _unitOfWork.Repository<Shift>().ADD(newShift);
+                await _unitOfWork.Save();
+
+                var employeeShift = new EmployeeShift
+                {
+                    EmployeeId = shiftDto.EmployeeId,
+                    ShiftId = newShift.Id
+                };
+
+                _logger.LogDebug("Assigning shift to employee: EmployeeId={EmployeeId}, ShiftId={ShiftId}",
+                    employeeShift.EmployeeId, employeeShift.ShiftId);
+                await _unitOfWork.Repository<EmployeeShift>().ADD(employeeShift);
+
+                await _unitOfWork.Save();
+
+                if (ownsTransaction)
+                {
+                    await _unitOfWork.CommitAsync();
+                }
+
+                _logger.LogInformation("Shift assigned successfully to EmployeeId: {EmployeeId}, ShiftId: {ShiftId}",
+                    employeeShift.EmployeeId, newShift.Id);
+                return true;
             }
             catch (Exception ex)
             {
-                await _unitOfWork.RollbackAsync();
+                if (ownsTransaction)
+                {
+                    await _unitOfWork.RollbackAsync();
+                }
                 _logger.LogError(ex, "Failed to create shift assignment for EmployeeId: {EmployeeId}. Error: {Message}",
                     shiftDto?.EmployeeId, ex.Message);
-                return false;
+                throw; 
+            }
+            finally
+            {
+                if (ownsTransaction && transaction != null)
+                {
+                    await transaction.DisposeAsync();
+                }
             }
         }
+
         #endregion
 
 

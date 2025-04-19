@@ -3,6 +3,7 @@
 using HRSystem.DataBase;
 using HRSystem.Extend;
 using HRSystem.Repository;
+using HRSystem.Services.AttendanceServices;
 using HRSystem.Services.AuthenticationServices;
 using HRSystem.Services.BranchServices;
 using HRSystem.Services.EmailServices;
@@ -12,6 +13,7 @@ using HRSystem.Services.ShiftServices;
 using HRSystem.Services.UsersServices;
 using HRSystem.Settings;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
@@ -33,7 +35,6 @@ namespace HRSystem.UnitOfWork
         private readonly IOptions<AdminLogin> _adminLogin;
         private readonly IOptions<JWT> _jwt;
         private readonly ILogger<UnitOfWork> _logger;
-        private readonly RoleManager<IdentityRole> roleManager;
         private readonly ConcurrentDictionary<string, object> _repositories;
 
         #region Services
@@ -50,6 +51,7 @@ namespace HRSystem.UnitOfWork
 
         private IOfficialVacationServices _officialVacationServices;
 
+        private IAttendanceAndLeaveServices _attendanceAndLeaveServices;
         #endregion
 
         #endregion
@@ -87,10 +89,10 @@ namespace HRSystem.UnitOfWork
         {
             get
             {
-                if (roleManager == null)
+                if (_rolesServices == null)
                 {
                     _rolesServices = new RolesServices(
-                        roleManager,
+                        _roleManager,
                         _userManager,
                         this,
                         new Logger<RolesServices>(new LoggerFactory())
@@ -173,6 +175,23 @@ namespace HRSystem.UnitOfWork
         }
         #endregion
 
+        #region Attendance Service
+
+        public IAttendanceAndLeaveServices AttendanceAndLeaveServices
+        {
+            get
+            {
+                if (_attendanceAndLeaveServices == null)
+                {
+                    _attendanceAndLeaveServices = new AttendanceAndLeaveServices(_context, this,
+                        new Logger<AttendanceAndLeaveServices>(new LoggerFactory()));
+                }
+                return _attendanceAndLeaveServices;
+            }
+        }
+
+        #endregion
+
         #endregion
 
 
@@ -189,13 +208,13 @@ namespace HRSystem.UnitOfWork
             RoleManager<IdentityRole> roleManager)
         {
             _context = context;
+            _roleManager = roleManager;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailServices = emailServices;
             _adminLogin = adminLogin;
             _jwt = jwt;
             _logger = logger;
-            _roleManager = roleManager;
             _repositories = new ConcurrentDictionary<string, object>();
         }
 
@@ -329,6 +348,16 @@ namespace HRSystem.UnitOfWork
             }
         }
 
+
+        #endregion
+
+
+        #region Get DbContext
+
+        public IdentityDbContext<ApplicationUser> GetDbContext()
+        {
+            return _context;
+        }
 
         #endregion
 

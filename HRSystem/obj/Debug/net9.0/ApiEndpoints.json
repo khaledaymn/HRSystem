@@ -48,7 +48,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "HR_System_API.Controllers.AttendanceController",
+    "ContainingType": "HR_System_API.Controllers.AttendanceAndLeaveController",
     "Method": "AddAttendance",
     "RelativePath": "Attendance/TakeAttendance",
     "HttpMethod": "POST",
@@ -57,36 +57,26 @@
     "Parameters": [
       {
         "Name": "attendanceDto",
-        "Type": "HRSystem.DTO.AttendanceDto",
+        "Type": "HRSystem.DTO.AttendanceDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "HR_System_API.Controllers.AttendanceController",
-    "Method": "GetEmployeeAttendances",
-    "RelativePath": "AttendanceAndLeave/{empId}",
-    "HttpMethod": "GET",
+    "ContainingType": "HR_System_API.Controllers.AttendanceAndLeaveController",
+    "Method": "AddLeave",
+    "RelativePath": "Attendance/TakeLeave",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "empId",
-        "Type": "System.String",
+        "Name": "leaveDto",
+        "Type": "HRSystem.DTO.LeaveDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HR_System_API.Controllers.AttendanceController",
-    "Method": "GetAttendances",
-    "RelativePath": "AttendanceAndLeave/GetAll",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -200,22 +190,6 @@
       {
         "Name": "model",
         "Type": "HRSystem.DTO.GeneralSettingsDTOs.GeneralSettingDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HRSystem.Controllers.LeaveController",
-    "Method": "AddLeave",
-    "RelativePath": "Leave/TakeLeave",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "leaveDto",
-        "Type": "HRSystem.DTO.LeaveDTO",
         "IsRequired": true
       }
     ],

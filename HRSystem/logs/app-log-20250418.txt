@@ -1,0 +1,110 @@
+2025-04-18 14:09:53 [Information] Received request to retrieve all branches.
+2025-04-18 14:09:53 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:09:54 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-18 14:10:01 [Information] Successfully retrieved 1 branches.
+2025-04-18 14:10:01 [Information] HTTP "GET" "/Branchs/GetAll" responded 200 in 12380.5755 ms
+2025-04-18 14:10:19 [Information] Transaction started successfully.
+2025-04-18 14:10:20 [Warning] Failed to create user with email: "mariam11@gmail.com". Reason: "Failed to create user: Username 'mariam11@gmail.com' is already taken.; Email 'mariam11@gmail.com' is already taken."
+2025-04-18 14:10:20 [Information] HTTP "POST" "/Users/Create" responded 400 in 1391.9228 ms
+2025-04-18 14:10:35 [Information] Transaction started successfully.
+2025-04-18 14:10:35 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:10:35 [Warning] A transaction is already active. Returning the existing transaction.
+2025-04-18 14:10:35 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:36 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-18 14:10:36 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:10:36 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-18 14:10:36 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:10:36 [Information] Changes saved successfully. Rows affected: 1
+2025-04-18 14:10:36 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:36 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:10:36 [Information] Changes saved successfully. Rows affected: 1
+2025-04-18 14:10:36 [Information] Transaction committed successfully.
+2025-04-18 14:10:37 [Error] Error occurred while committing the transaction.
+System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.CommitTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.CommitTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.CommitAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 292
+2025-04-18 14:10:37 [Error] Error occurred while rolling back the transaction.
+System.InvalidOperationException: The connection does not have any active transactions.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.RollbackTransactionAsync(CancellationToken cancellationToken)
+   at HRSystem.UnitOfWork.UnitOfWork.RollbackAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\UnitOfWork\UnitOfWork.cs:line 311
+2025-04-18 14:10:37 [Warning] Failed to create user with email: "mariam12@gmail.com". Reason: "An error occurred while creating the user: An error occurred while rolling back the transaction."
+2025-04-18 14:10:37 [Information] HTTP "POST" "/Users/Create" responded 400 in 2389.0390 ms
+2025-04-18 14:10:48 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:48 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:48 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:48 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:10:49 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:49 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:49 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:49 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:10:50 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:10:50 [Information] Successfully retrieved 12 users.
+2025-04-18 14:10:50 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 2829.3311 ms
+2025-04-18 14:16:00 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-18 14:16:04 [Information] Transaction started successfully.
+2025-04-18 14:16:10 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:20:30 [Warning] A transaction is already active. Returning the existing transaction.
+2025-04-18 14:21:12 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:22:18 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-18 14:22:36 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:23:11 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-18 14:23:28 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:23:30 [Information] Changes saved successfully. Rows affected: 1
+2025-04-18 14:23:39 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:23:47 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:23:47 [Information] Changes saved successfully. Rows affected: 1
+2025-04-18 14:23:49 [Information] Transaction committed successfully.
+2025-04-18 14:47:16 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-18 14:47:18 [Information] Transaction started successfully.
+2025-04-18 14:47:19 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:47:19 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:47:19 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-18 14:47:20 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:47:20 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-18 14:47:20 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:47:20 [Information] Changes saved successfully. Rows affected: 1
+2025-04-18 14:47:20 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:47:20 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:47:20 [Information] Changes saved successfully. Rows affected: 1
+2025-04-18 14:47:20 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-04-18 14:47:20 [Information] Transaction committed successfully.
+2025-04-18 14:47:20 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-18 14:47:20 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-18 14:47:21 [Information] Successfully created user with ID: "ff219f57-fdf2-4c2b-9cb2-fea338ab8416" and email: "mariam15@gmail.com"
+2025-04-18 14:47:21 [Information] HTTP "POST" "/Users/Create" responded 200 in 6809.1777 ms
+2025-04-18 14:54:05 [Error] Failed to retrieve roles. Error: "Object reference not set to an instance of an object."
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at HRSystem.Services.RolesServices.RolesServices.GetAllAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\RolesServices\RolesServices.cs:line 80
+   at HRSystem.Controllers.RoleController.GetRoles() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\RoleController.cs:line 212
+2025-04-18 14:54:05 [Error] HTTP "GET" "/Roles/GetAll" responded 500 in 919.0498 ms
+2025-04-18 15:08:58 [Error] Failed to retrieve roles. Error: "Object reference not set to an instance of an object."
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at HRSystem.Services.RolesServices.RolesServices.GetAllAsync() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\RolesServices\RolesServices.cs:line 80
+   at HRSystem.Controllers.RoleController.GetRoles() in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\RoleController.cs:line 212
+2025-04-18 15:08:58 [Error] HTTP "GET" "/Roles/GetAll" responded 500 in 537.1205 ms
+2025-04-18 15:13:55 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-18 15:35:43 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-18 15:35:45 [Information] Successfully retrieved 2 roles.
+2025-04-18 15:35:45 [Information] HTTP "GET" "/Roles/GetAll" responded 200 in 4386.4816 ms
+2025-04-18 22:42:09 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-18 22:42:24 [Information] Forget password request completed successfully for email: "khaled654ayman0@gmail.com"
+2025-04-18 22:42:24 [Information] HTTP "POST" "/Account/ForgetPassword" responded 200 in 20722.2086 ms
+2025-04-18 22:44:13 [Information] Reset password completed successfully for email: "khaled654ayman0@gmail.com"
+2025-04-18 22:44:13 [Information] HTTP "POST" "/Account/ResetPassword" responded 200 in 1918.5159 ms
+2025-04-18 22:46:33 [Information] Forget password request completed successfully for email: "khaled654ayman0@gmail.com"
+2025-04-18 22:46:33 [Information] HTTP "POST" "/Account/ForgetPassword" responded 200 in 1737.0132 ms
+2025-04-18 22:50:12 [Information] Forget password request completed successfully for email: "khaled654ayman0@gmail.com"
+2025-04-18 22:50:12 [Information] HTTP "POST" "/Account/ForgetPassword" responded 200 in 1568.4975 ms
+2025-04-18 22:58:13 [Information] Reset password completed successfully for email: "khaled654ayman0@gmail.com"
+2025-04-18 22:58:13 [Information] HTTP "POST" "/Account/ResetPassword" responded 200 in 1072.2144 ms

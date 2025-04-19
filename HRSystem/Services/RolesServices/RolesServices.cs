@@ -1,15 +1,12 @@
-﻿using HRSystem.Models;
+﻿#region Usings
+
 using HRSystem.Extend;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HRSystem.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using HRSystem.DTO.RoleDTOs;
+
+#endregion
 
 namespace HRSystem.Services.RolesServices
 {
@@ -22,7 +19,7 @@ namespace HRSystem.Services.RolesServices
 
         public RolesServices(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork, ILogger<RolesServices> logger)
         {
-            this._roleManager = roleManager;
+            _roleManager = roleManager;
             _userManager = userManager;
             _unitOfWork = unitOfWork;
             _logger = logger;

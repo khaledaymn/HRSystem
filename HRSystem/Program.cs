@@ -1,18 +1,12 @@
 ﻿#region Usings
+
 using HRSystem.DataBase;
 using HRSystem.Extend;
 using HRSystem.Filters;
 using HRSystem.Repository;
 using HRSystem.Services.AttendanceServices;
-using HRSystem.Services.AuthenticationServices;
-using HRSystem.Services.BranchServices;
 using HRSystem.Services.EmailServices;
 using HRSystem.Services.GeneralSettings;
-using HRSystem.Services.LeaveServices;
-using HRSystem.Services.OfficialVacationServices;
-using HRSystem.Services.RolesServices;
-using HRSystem.Services.ShiftServices;
-using HRSystem.Services.UsersServices;
 using HRSystem.Settings;
 using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -43,7 +37,7 @@ builder.Host.UseSerilog((context, configuration) =>
 {
     configuration
         .MinimumLevel.Information() 
-        .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning) // Microsoft logs بس Warning وأعلى
+        .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
         .WriteTo.File(
             path: "logs/app-log-.txt",
             rollingInterval: RollingInterval.Day,
@@ -173,8 +167,6 @@ builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection(
 builder.Services.AddScoped(typeof(IGenaricRepo<>), typeof(GenaricRepo<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailServices, EmailServices>();
-builder.Services.AddScoped<IAttendanceServices, AttendanceServices>();
-builder.Services.AddScoped<ILeaveServices, LeaveServices>();
 builder.Services.AddScoped<IGeneralSettingsServices, GeneralSettingsServices>();
 
 #endregion

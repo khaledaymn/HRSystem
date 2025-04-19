@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#region Usings
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HRSystem.Extend;
 using HRSystem.Models;
@@ -11,9 +7,9 @@ using HRSystem.DTO.AuthenticationDTOs;
 using HRSystem.DTO.UserDTOs;
 using HRSystem.UnitOfWork;
 using HRSystem.DTO.ShiftDTOs;
-using Microsoft.Extensions.Logging;
 using HRSystem.DTO.BranchDTOs;
 using System.Globalization;
+#endregion
 
 namespace HRSystem.Services.UsersServices
 {
@@ -65,70 +61,70 @@ namespace HRSystem.Services.UsersServices
                     BranchId = model.BranchId
                 };
 
-                using (var transaction = await _unitOfWork.BeginTransactionAsync())
+                using var transaction = await _unitOfWork.BeginTransactionAsync();
+
+                try
                 {
-                    try
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (!result.Succeeded)
                     {
-                        var result = await _userManager.CreateAsync(user, model.Password);
-                        if (!result.Succeeded)
-                        {
-                            var errors = string.Join("; ", result.Errors.Select(e => e.Description));
-                            _logger.LogWarning("Failed to create user with email: {Email}. Errors: {Errors}", model.Email, errors);
-                            return new AuthenticationDTO
-                            {
-                                Message = $"Failed to create user: {errors}"
-                            };
-                        }
-
-                        var Addshift = new AddShiftDTO
-                        {
-                            StartTime = "9:00",
-                            EndTime = "17:00",
-                            EmployeeId = user.Id
-                        };
-                        var shift = await _unitOfWork.ShiftServices.CreateShiftAsync(Addshift);
-
-                        var role = model.Name == "Admin" ? "Admin" : "User";
-
-                        var roleResult = await _userManager.AddToRoleAsync(user, role);
-                        if (!roleResult.Succeeded)
-                        {
-                            var roleErrors = string.Join("; ", roleResult.Errors.Select(e => e.Description));
-                            _logger.LogWarning("Failed to add user with ID: {UserId} to role: {Role}. Errors: {Errors}", user.Id, role, roleErrors);
-                            throw new Exception($"Failed to assign role: {roleErrors}");
-                        }
-
-                        await _unitOfWork.CommitAsync();
-
-                        _logger.LogInformation("Successfully created user with ID: {UserId} and email: {Email}", user.Id, user.Email);
+                        var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                        _logger.LogWarning("Failed to create user with email: {Email}. Errors: {Errors}", model.Email, errors);
                         return new AuthenticationDTO
                         {
-                            Id = user.Id,
-                            Email = user.Email,
-                            Name = user.Name,
-                            Address = user.Address,
-                            DateOfBarth = user.DateOfBarth.ToLongDateString(),
-                            PhoneNumber = user.PhoneNumber,
-                            Nationalid = user.Nationalid,
-                            BaseSalary = user.BaseSalary,
-                            Gender = user.Gender.ToString(),
-                            HiringDate = user.HiringDate.ToString("yyyy-MM-dd"),
-                            IsAuthenticated = true,
-                            Message = "User created successfully!",
-                            Branch = await _unitOfWork.BranchServices.GetBranchByIdAsync(user.BranchId ?? 0),
-                            Shift = await _unitOfWork.ShiftServices.GetByEmployeeId(user.Id),
-                            Roles = await _userManager.GetRolesAsync(user)
+                            Message = $"Failed to create user: {errors}"
                         };
                     }
-                    catch (Exception ex)
+
+                    var Addshift = new AddShiftDTO
                     {
-                        await _unitOfWork.RollbackAsync();
-                        _logger.LogError(ex, "Failed to create user with email: {Email}. Error: {Message}", model.Email, ex.Message);
-                        throw;
+                        StartTime = "9:00",
+                        EndTime = "17:00",
+                        EmployeeId = user.Id
+                    };
+                    var shift = await _unitOfWork.ShiftServices.CreateShiftAsync(Addshift);
+
+                    var role = model.Name == "Admin" ? "Admin" : "User";
+
+                    var roleResult = await _userManager.AddToRoleAsync(user, role);
+                    if (!roleResult.Succeeded)
+                    {
+                        var roleErrors = string.Join("; ", roleResult.Errors.Select(e => e.Description));
+                        _logger.LogWarning("Failed to add user with ID: {UserId} to role: {Role}. Errors: {Errors}", user.Id, role, roleErrors);
+                        throw new Exception($"Failed to assign role: {roleErrors}");
                     }
 
+                    await _unitOfWork.CommitAsync();
 
+                    _logger.LogInformation("Successfully created user with ID: {UserId} and email: {Email}", user.Id, user.Email);
+                    return new AuthenticationDTO
+                    {
+                        Id = user.Id,
+                        Email = user.Email,
+                        Name = user.Name,
+                        Address = user.Address,
+                        DateOfBarth = user.DateOfBarth.ToLongDateString(),
+                        PhoneNumber = user.PhoneNumber,
+                        Nationalid = user.Nationalid,
+                        BaseSalary = user.BaseSalary,
+                        Gender = user.Gender.ToString(),
+                        HiringDate = user.HiringDate.ToString("yyyy-MM-dd"),
+                        IsAuthenticated = true,
+                        Message = "User created successfully!",
+                        Branch = await _unitOfWork.BranchServices.GetBranchByIdAsync(user.BranchId ?? 0),
+                        Shift = await _unitOfWork.ShiftServices.GetByEmployeeId(user.Id),
+                        Roles = await _userManager.GetRolesAsync(user)
+                    };
                 }
+                catch (Exception ex)
+                {
+                    await _unitOfWork.RollbackAsync();
+                    _logger.LogError(ex, "Failed to create user with email: {Email}. Error: {Message}", model.Email, ex.Message);
+                    throw;
+                }
+
+
+
             }
             catch (Exception ex)
             {
@@ -256,7 +252,7 @@ namespace HRSystem.Services.UsersServices
                 if (model.Salary.HasValue) user.BaseSalary = model.Salary.Value;
                 if (model.DateOfWork.HasValue) user.HiringDate = model.DateOfWork.Value;
                 if (model.DateOfBarth.HasValue) user.DateOfBarth = model.DateOfBarth.Value;
-
+                if(model.BranchId.HasValue) user.BranchId = model.BranchId.Value;
                 if (!string.IsNullOrEmpty(model.Gender))
                 {
                     if (Enum.TryParse<Gender>(model.Gender, true, out var gender))
@@ -362,12 +358,14 @@ namespace HRSystem.Services.UsersServices
                 var branch = _unitOfWork.Repository<Branch>()
                     .Filter(b => b.Id == user.BranchId)
                     .FirstOrDefault();
+
                 var branchDTO = branch != null ? new BranchDTO
                 {
                     Id = branch.Id,
                     Name = branch.Name,
                     Latitude = branch.Latitude,
-                    Longitude = branch.Longitude
+                    Longitude = branch.Longitude,
+                    Radius = branch.Radius
                 } : null;
 
                 _logger.LogInformation("Successfully retrieved user with ID: {UserId}", id);

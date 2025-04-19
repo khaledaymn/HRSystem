@@ -29,7 +29,16 @@ namespace HRSystem.Services.AuthenticationServices
         private readonly IUsersServices _usersServices;
         private readonly ApplicationDbContext _context;
         private readonly ILogger<AuthenticationServices> _logger;
-        public AuthenticationServices(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailServices emailServices, IOptions<AdminLogin> adminLogin, IOptions<JWT> jwt, IUsersServices usersServices, ApplicationDbContext context, ILogger<AuthenticationServices> logger)
+        
+        public AuthenticationServices(
+            UserManager<ApplicationUser> userManager, 
+            SignInManager<ApplicationUser> signInManager, 
+            IEmailServices emailServices, 
+            IOptions<AdminLogin> adminLogin, 
+            IOptions<JWT> jwt, 
+            IUsersServices usersServices, 
+            ApplicationDbContext context, 
+            ILogger<AuthenticationServices> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -40,6 +49,7 @@ namespace HRSystem.Services.AuthenticationServices
             _context = context;
             _logger = logger;
         }
+
 
         #region Login
         public async Task<AuthenticationDTO> Login(LoginDTO data)
@@ -227,8 +237,7 @@ namespace HRSystem.Services.AuthenticationServices
                 var jwtSecurityToken = await CreateJWTToken(user);
                 var roles = await _userManager.GetRolesAsync(user);
 
-                var employeeShifts = _context.EmployeeShifts
-                    .Where(s => s.EmployeeId == user.Id)
+                var employeeShifts = _context.EmployeeShifts  
                     .Select(s => new ShiftDTO
                     {
                         Id = s.Shift.Id,

@@ -18,5 +18,6 @@ namespace HRSystem.Extend
         [ForeignKey(nameof(Branch))]
         public int? BranchId { get; set; }
         public virtual Branch Branch { get; set; }
+        public virtual ICollection<EmployeeShift> EmployeeShifts { get;} = new List<EmployeeShift>();
     }
 }

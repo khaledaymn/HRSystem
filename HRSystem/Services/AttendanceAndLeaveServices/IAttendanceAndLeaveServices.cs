@@ -4,9 +4,10 @@ using System.Linq.Expressions;
 
 namespace HRSystem.Services.AttendanceServices
 {
-    public interface IAttendanceServices
+    public interface IAttendanceAndLeaveServices
     {
-        Task<bool> AddAttendance(AttendanceDto model);
+        Task<bool> AddLeave(LeaveDTO model);
+        Task<bool> AddAttendance(AttendanceDTO model);
         Task<IEnumerable<AttendanceWithLeavesDto>> GetAllAttendancesWithLeavesAsync();
         Task<IEnumerable<AttendanceWithLeavesDto>> GetEmployeeAttendancesAndLeavesAsync(string empId);
         Task<List<string>> GetEmployeesWithoutLeave(DateTime date);

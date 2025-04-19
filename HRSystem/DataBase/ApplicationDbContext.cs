@@ -13,7 +13,7 @@ namespace HRSystem.DataBase
         }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<EmployeeVacation> EmployeeVacations { get; set; }
-        public DbSet<AttendanceAndLeave> Attendance { get; set; }
+        public DbSet<AttendanceAndLeave> AttendancesAndLeaves { get; set; }
         public DbSet<GeneralSetting> GeneralSetting { get; set; }
         public DbSet<OfficialVacation> OfficialVacation { get; set; }
         public DbSet<Absent> Absent { get; set; }

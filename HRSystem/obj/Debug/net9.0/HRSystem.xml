@@ -4,17 +4,17 @@
         <name>HRSystem</name>
     </assembly>
     <members>
-        <member name="M:HR_System_API.Controllers.AttendanceController.AddAttendance(HRSystem.DTO.AttendanceDto)">
+        <member name="M:HR_System_API.Controllers.AttendanceAndLeaveController.AddAttendance(HRSystem.DTO.AttendanceDTO)">
             <summary>
             Records attendance for an employee.
             This endpoint allows a user to submit attendance details, including time and location, for an employee.
             </summary>
             <remarks>
-            This endpoint requires user privileges and expects a valid JSON payload conforming to the <see cref="T:HRSystem.DTO.AttendanceDto"/> structure.
+            This endpoint requires user privileges and expects a valid JSON payload conforming to the <see cref="!:AttendanceDto"/> structure.
             It performs validation on the input data and returns a success message with the employee ID if the attendance is recorded successfully, or an error if the operation fails.
             </remarks>
             <param name="attendanceDto">
-            The attendance data to record, provided in the request body as an <see cref="T:HRSystem.DTO.AttendanceDto"/> object.
+            The attendance data to record, provided in the request body as an <see cref="!:AttendanceDto"/> object.
             <para><strong>Example Request:</strong></para>
             <code>
             POST /Attendance/TakeAttendance
@@ -98,218 +98,6 @@
             </response>
             <exception cref="T:System.Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
         </member>
-        <member name="M:HR_System_API.Controllers.AttendanceController.GetAttendances">
-            <summary>
-            Retrieves all attendance and leave records in the system.
-            This endpoint allows an admin to fetch a list of attendance records, including leave details, for all employees.
-            </summary>
-            <remarks>
-            This endpoint requires admin privileges and does not require any parameters.
-            It returns a collection of attendance records with leave details if available, or an error message if no records are found.
-            </remarks>
-            <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the attendance retrieval process.
-            On success, it returns HTTP 200 (OK) with a list of attendance records.
-            On failure, it returns appropriate error codes with descriptive messages.
-            </returns>
-            <response code="200">
-            Successfully retrieved the attendance and leave records. Returns a list of records.
-            Example Response:
-            <code>
-            [
-                {
-                    "timeOfAttend": "2025-03-24T08:30:00",
-                    "timeOfLeave": "2025-03-24T17:00:00",
-                    "latitudeOfAttend": 40.7128,
-                    "latitudeOfLeave": 40.7130,
-                    "longitudeOfAttend": -74.0060,
-                    "longitudeOfLeave": -74.0058,
-                    "employeeName": "John Doe",
-                    "employeeId": "123e4567-e89b-12d3-a456-426614174000",
-                    "branch": "New York"
-                },
-                {
-                    "timeOfAttend": "2025-03-24T09:00:00",
-                    "timeOfLeave": null,
-                    "latitudeOfAttend": 51.5074,
-                    "latitudeOfLeave": null,
-                    "longitudeOfAttend": -0.1278,
-                    "longitudeOfLeave": null,
-                    "employeeName": "Jane Smith",
-                    "employeeId": "987fcdeb-12ab-34cd-e567-890123456789",
-                    "branch": "London"
-                }
-            ]
-            </code>
-            </response>
-            <response code="401">
-            Unauthorized. Returned when the caller is not authenticated.
-            Example Response:
-            <code>
-            {
-                "message": "Authentication required. Please provide a valid token."
-            }
-            </code>
-            </response>
-            <response code="403">
-            Forbidden. Returned when the caller lacks admin privileges.
-            Example Response:
-            <code>
-            {
-                "message": "Access denied. Admin role required."
-            }
-            </code>
-            </response>
-            <response code="404">
-            Not Found. Returned when no attendance records are available.
-            Example Response:
-            <code>
-            {
-                "success": false,
-                "message": "No attendance records found for date."
-            }
-            </code>
-            </response>
-            <response code="500">
-            Server Error. Returned when an unexpected error occurs during retrieval.
-            Example Response (Generic Error):
-            <code>
-            {
-                "success": false,
-                "message": "An error occurred while retrieving attendance records",
-                "error": "Database connection failed"
-            }
-            </code>
-            Example Response (Detailed Error):
-            <code>
-            {
-                "success": false,
-                "message": "An error occurred while retrieving attendance records",
-                "error": "Query timeout occurred",
-                "timestamp": "2025-03-24T10:00:00Z"
-            }
-            </code>
-            </response>
-        </member>
-        <member name="M:HR_System_API.Controllers.AttendanceController.GetEmployeeAttendances(System.String)">
-            <summary>
-            Retrieves attendance and leave records for a specific employee.
-            This endpoint allows an admin or user to fetch all attendance and leave records associated with a given employee ID.
-            </summary>
-            <remarks>
-            This endpoint requires either admin or user privileges and expects a valid employee ID as a route parameter.
-            It returns a list of attendance records if found, or an error message if the employee ID is invalid, no records exist, or an issue occurs.
-            </remarks>
-            <param name="empId">
-            The unique identifier of the employee whose attendance records are to be retrieved (e.g., a GUID or string-based ID).
-            <para><strong>Example Request:</strong></para>
-            <code>
-            GET /AttendanceAndLeave/123e4567-e89b-12d3-a456-426614174000
-            </code>
-            </param>
-            <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the attendance retrieval process.
-            On success, it returns HTTP 200 (OK) with a list of attendance records.
-            On failure, it returns appropriate error codes with descriptive messages.
-            </returns>
-            <response code="200">
-            Successfully retrieved the employee’s attendance and leave records. Returns a list of records.
-            Example Response:
-            <code>
-            {
-                "success": true,
-                "data": [
-                    {
-                        "timeOfAttend": "2025-03-24T08:30:00",
-                        "timeOfLeave": "2025-03-24T17:00:00",
-                        "latitudeOfAttend": 40.7128,
-                        "latitudeOfLeave": 40.7130,
-                        "longitudeOfAttend": -74.0060,
-                        "longitudeOfLeave": -74.0058,
-                        "employeeName": "John Doe",
-                        "employeeId": "123e4567-e89b-12d3-a456-426614174000",
-                        "branch": "New York"
-                    },
-                    {
-                        "timeOfAttend": "2025-03-25T08:45:00",
-                        "timeOfLeave": null,
-                        "latitudeOfAttend": 40.7129,
-                        "latitudeOfLeave": null,
-                        "longitudeOfAttend": -74.0061,
-                        "longitudeOfLeave": null,
-                        "employeeName": "John Doe",
-                        "employeeId": "123e4567-e89b-12d3-a456-426614174000",
-                        "branch": "New York"
-                    }
-                ]
-            }
-            </code>
-            </response>
-            <response code="400">
-            Bad Request. Returned when the employee ID is invalid or missing.
-            Example Response (Validation Error):
-            <code>
-            {
-                "success": false,
-                "message": "Employee ID is required."
-            }
-            </code>
-            Example Response (Business Logic Error):
-            <code>
-            {
-                "success": false,
-                "message": "Invalid employee ID format."
-            }
-            </code>
-            </response>
-            <response code="401">
-            Unauthorized. Returned when the caller is not authenticated.
-            Example Response:
-            <code>
-            {
-                "message": "Authentication required. Please provide a valid token."
-            }
-            </code>
-            </response>
-            <response code="403">
-            Forbidden. Returned when the caller lacks sufficient privileges (neither admin nor user role).
-            Example Response:
-            <code>
-            {
-                "message": "Access denied. Admin or User role required."
-            }
-            </code>
-            </response>
-            <response code="404">
-            Not Found. Returned when no attendance records are found for the given employee.
-            Example Response:
-            <code>
-            {
-                "success": false,
-                "message": "No attendance records found for the given employee."
-            }
-            </code>
-            </response>
-            <response code="500">
-            Server Error. Returned when an unexpected error occurs during retrieval.
-            Example Response (Generic Error):
-            <code>
-            {
-                "success": false,
-                "message": "An internal server error occurred."
-            }
-            </code>
-            Example Response (Detailed Error):
-            <code>
-            {
-                "success": false,
-                "message": "An internal server error occurred.",
-                "error": "Database query failed due to timeout",
-                "timestamp": "2025-03-24T09:00:00Z"
-            }
-            </code>
-            </response>
-        </member>
         <member name="M:HRSystem.Controllers.AuthenticationController.Login(HRSystem.DTO.AuthenticationDTOs.LoginDTO)">
             <summary>
             Authenticates a user and returns authentication details including a token if successful.
@@ -375,7 +163,6 @@
             </response>
             <response code="500">
             Returned when an unexpected server error occurs during processing.
-            ```
             Server Error Response (500):
             ```json
             {
@@ -450,9 +237,9 @@
             Example Request:
             ```json
             {
+              "password": "P@ssw0rd123"
               "email": "user@example.com",
               "token": "reset-token-123",
-              "newPassword": "NewP@ssw0rd123"
             }
             ```
             </remarks>
@@ -742,60 +529,6 @@
               "error": "Exception details here"
             }
             ```
-            </response>
-        </member>
-        <member name="M:HRSystem.Controllers.LeaveController.AddLeave(HRSystem.DTO.LeaveDTO)">
-            <summary>
-            Adds a new leave request for an employee in the system.
-            This endpoint allows recording an employee's leave request by providing details such as the leave dates and employee ID.
-            </summary>
-            <param name="leaveDto">
-            The data required to record a leave request (as defined in LeaveDTO).
-            Example Request (LeaveDTO):
-            <code>
-            {
-                "employeeId": "EMP12345",
-                "startDate": "2025-04-01T00:00:00Z",
-                "endDate": "2025-04-05T00:00:00Z",
-                "reason": "Vacation"
-            }
-            </code>
-            </param>
-            <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating the result of the leave addition operation.
-            </returns>
-            <response code="201">
-            Leave recorded successfully. Returns the employee ID and a success message.
-            Example Response (Success):
-            <code>
-            {
-                "employeeId": "EMP12345",
-                "message": "Leave added successfully."
-            }
-            </code>
-            </response>
-            <response code="400">
-            Bad request. Returned when the provided model is invalid (e.g., missing required fields or invalid dates).
-            Example Response (Invalid Model):
-            <code>
-            {
-                "errors": {
-                    "StartDate": ["The start date is required."],
-                    "EndDate": ["The end date must be after the start date."]
-                }
-            }
-            </code>
-            </response>
-            <response code="500">
-            Server error. Returned when an unexpected error occurs or if leave recording fails.
-            Example Response (Operation Failed):
-            <code>
-            "Error adding leave."
-            </code>
-            Example Response (Server Error):
-            <code>
-            "An internal server error occurred."
-            </code>
             </response>
         </member>
         <member name="M:HRSystem.Controllers.OfficialVacationsController.AddOfficialVacationAsync(HRSystem.DTO.OfficialVacationDTOs.CreateOfficialVacationDTO)">
@@ -2341,6 +2074,18 @@
             <inheritdoc />
         </member>
         <member name="M:HRSystem.Migrations.v8.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v9">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v9.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v9.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v9.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

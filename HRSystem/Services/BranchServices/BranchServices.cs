@@ -34,7 +34,8 @@ namespace HRSystem.Services.BranchServices
                     Id = b.Id,
                     Name = b.Name,
                     Latitude = b.Latitude,
-                    Longitude = b.Longitude
+                    Longitude = b.Longitude,
+                    Radius = b.Radius
                 }).ToList();
 
                 _logger.LogInformation("Successfully retrieved {BranchCount} branches.", branchDtos.Count);
@@ -75,7 +76,8 @@ namespace HRSystem.Services.BranchServices
                     Id = branch.Id,
                     Name = branch.Name,
                     Latitude = branch.Latitude,
-                    Longitude = branch.Longitude
+                    Longitude = branch.Longitude,
+                    Radius = branch.Radius
                 };
 
                 _logger.LogInformation("Successfully retrieved branch with ID: {BranchId}", id);
@@ -179,6 +181,10 @@ namespace HRSystem.Services.BranchServices
                 {
                     existingBranch.Longitude = branch.Longitude.Value;
                 }
+                if (branch.Radius.HasValue)
+                {
+                    existingBranch.Radius = branch.Radius.Value;
+                }
 
                 _unitOfWork.Repository<Branch>().Update(existingBranch);
                 await _unitOfWork.Save();
@@ -188,7 +194,8 @@ namespace HRSystem.Services.BranchServices
                     Id = existingBranch.Id,
                     Name = existingBranch.Name,
                     Latitude = existingBranch.Latitude,
-                    Longitude = existingBranch.Longitude
+                    Longitude = existingBranch.Longitude,
+                    Radius = existingBranch.Radius
                 };
 
                 _logger.LogInformation("Successfully updated branch with ID: {BranchId}", existingBranch.Id);

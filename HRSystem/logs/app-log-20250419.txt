@@ -1,0 +1,507 @@
+2025-04-19 00:13:11 [Error] Error processing login request for email: "khaled654ayman0@gmail.com"
+System.InvalidOperationException: Property 'ApplicationUser.EmployeeShifts' is not virtual. 'UseChangeTrackingProxies' requires all entity types to be public, unsealed, have virtual properties, and have a public or protected constructor. 'UseLazyLoadingProxies' requires only the navigation properties be virtual.
+   at Microsoft.EntityFrameworkCore.Proxies.Internal.ProxyBindingRewriter.ProcessModelFinalizing(IConventionModelBuilder modelBuilder, IConventionContext`1 context)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.ImmediateConventionScope.OnModelFinalizing(IConventionModelBuilder modelBuilder)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.OnModelFinalizing(IConventionModelBuilder modelBuilder)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.Model.FinalizeModel()
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializer.Initialize(IModel model, Boolean designTime, IDiagnosticsLogger`1 validationLogger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_InternalServiceProvider()
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.Set[TEntity]()
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.get_UsersSet()
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.get_Users()
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.FindByEmailAsync(String normalizedEmail, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.FindByEmailAsync(String email)
+   at HRSystem.Services.AuthenticationServices.AuthenticationServices.Login(LoginDTO data) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\AuthenticationServices\AuthenticationServices.cs:line 67
+   at HRSystem.Controllers.AuthenticationController.Login(LoginDTO model) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\AuthenticationController.cs:line 106
+2025-04-19 00:13:12 [Error] HTTP "POST" "/Account/Login" responded 500 in 2002.0556 ms
+2025-04-19 00:14:25 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 00:14:29 [Information] Login successful for email: "khaled654ayman0@gmail.com"
+2025-04-19 00:14:29 [Information] HTTP "POST" "/Account/Login" responded 200 in 5086.9080 ms
+2025-04-19 00:15:17 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:18 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:18 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:19 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:20 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:20 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:20 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:21 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:21 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:21 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:22 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:22 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:22 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:23 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:23 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:23 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:23 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:23 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:23 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:24 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:24 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:25 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:25 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:15:25 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:15:25 [Information] Successfully retrieved 15 users.
+2025-04-19 00:15:25 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 8189.9045 ms
+2025-04-19 00:16:05 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:16:05 [Information] HTTP "GET" "/Shifts/GetByEmployeeId/6c5437eb-5b26-4556-8927-e6bc35d2af62" responded 200 in 268.2390 ms
+2025-04-19 00:16:28 [Information] HTTP "POST" "/Attendance/TakeAttendance" responded 403 in 11.5419 ms
+2025-04-19 00:17:01 [Information] HTTP "POST" "/Attendance/TakeAttendance" responded 401 in 52.7594 ms
+2025-04-19 00:17:16 [Warning] Invalid time format for attendance. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Invalid time format. Use hh:mm AM/PM."
+2025-04-19 00:17:16 [Information] HTTP "POST" "/Attendance/TakeAttendance" responded 400 in 728.9205 ms
+2025-04-19 00:19:37 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 00:19:40 [Error] Failed executing DbCommand ("80"ms) [Parameters=["@__model_EmployeeId_0='?' (Size = 450), @__today_1='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AttendancesAndLeaves] AS [a]
+        WHERE [a].[EmployeeId] = @__model_EmployeeId_0 AND CONVERT(date, [a].[Time]) = @__today_1) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END"
+2025-04-19 00:19:40 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AttendancesAndLeaves'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:b6f876e7-48c2-4016-8e05-df118434aa5f
+Error Number:208,State:1,Class:16"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AttendancesAndLeaves'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:b6f876e7-48c2-4016-8e05-df118434aa5f
+Error Number:208,State:1,Class:16
+2025-04-19 00:19:40 [Error] Unexpected error while processing attendance for EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AttendancesAndLeaves'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices.AddAttendance(AttendanceDTO model) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\AttendanceAndLeaveServices\AttendanceAndLeaveServices.cs:line 71
+   at HR_System_API.Controllers.AttendanceAndLeaveController.AddAttendance(AttendanceDTO attendanceDto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\AttendanceAndLeaveController.cs:line 133
+ClientConnectionId:b6f876e7-48c2-4016-8e05-df118434aa5f
+Error Number:208,State:1,Class:16
+2025-04-19 00:19:40 [Error] HTTP "POST" "/Attendance/TakeAttendance" responded 500 in 4961.4318 ms
+2025-04-19 00:20:32 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:32 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:33 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:33 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:33 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:33 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:33 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:33 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:34 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:34 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:34 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:34 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:34 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:34 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:34 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:20:35 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:20:35 [Information] Successfully retrieved 15 users.
+2025-04-19 00:20:36 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 3910.4874 ms
+2025-04-19 00:29:12 [Information] User with ID "6c5437eb-5b26-4556-8927-e6bc35d2af62" updated successfully.
+2025-04-19 00:29:12 [Information] HTTP "PUT" "/Users/Edit" responded 200 in 912.8432 ms
+2025-04-19 00:29:25 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:29:25 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 00:29:25 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:29:25 [Information] User with ID "6c5437eb-5b26-4556-8927-e6bc35d2af62" retrieved successfully.
+2025-04-19 00:29:25 [Information] HTTP "GET" "/Users/GetById/6c5437eb-5b26-4556-8927-e6bc35d2af62" responded 200 in 431.8847 ms
+2025-04-19 00:36:52 [Information] HTTP "PUT" "/Users/Edit" responded 401 in 141.7794 ms
+2025-04-19 00:37:13 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 00:37:22 [Information] User with ID "6c5437eb-5b26-4556-8927-e6bc35d2af62" updated successfully.
+2025-04-19 00:37:22 [Information] HTTP "PUT" "/Users/Edit" responded 200 in 12555.1677 ms
+2025-04-19 00:37:38 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:37:38 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 00:37:39 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:37:39 [Information] User with ID "6c5437eb-5b26-4556-8927-e6bc35d2af62" retrieved successfully.
+2025-04-19 00:37:39 [Information] HTTP "GET" "/Users/GetById/6c5437eb-5b26-4556-8927-e6bc35d2af62" responded 200 in 1002.5698 ms
+2025-04-19 00:38:01 [Error] Failed executing DbCommand ("77"ms) [Parameters=["@__model_EmployeeId_0='?' (Size = 450), @__today_1='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AttendancesAndLeaves] AS [a]
+        WHERE [a].[EmployeeId] = @__model_EmployeeId_0 AND CONVERT(date, [a].[Time]) = @__today_1) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END"
+2025-04-19 00:38:02 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AttendancesAndLeaves'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:117746f0-32c3-4c98-9c5f-9e9556d73fa8
+Error Number:208,State:1,Class:16"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AttendancesAndLeaves'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:117746f0-32c3-4c98-9c5f-9e9556d73fa8
+Error Number:208,State:1,Class:16
+2025-04-19 00:38:02 [Error] Unexpected error while processing attendance for EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AttendancesAndLeaves'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices.AddAttendance(AttendanceDTO model) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\AttendanceAndLeaveServices\AttendanceAndLeaveServices.cs:line 71
+   at HR_System_API.Controllers.AttendanceAndLeaveController.AddAttendance(AttendanceDTO attendanceDto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\AttendanceAndLeaveController.cs:line 133
+ClientConnectionId:117746f0-32c3-4c98-9c5f-9e9556d73fa8
+Error Number:208,State:1,Class:16
+2025-04-19 00:38:02 [Error] HTTP "POST" "/Attendance/TakeAttendance" responded 500 in 1640.1086 ms
+2025-04-19 00:40:42 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 00:41:11 [Error] Failed executing DbCommand ("81"ms) [Parameters=["@__model_EmployeeId_0='?' (Size = 450), @__today_1='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AttendancesAndLeaves] AS [a]
+        WHERE [a].[EmployeeId] = @__model_EmployeeId_0 AND CONVERT(date, [a].[Time]) = @__today_1) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END"
+2025-04-19 00:41:11 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AttendancesAndLeaves'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:3968fe77-ebc1-4061-be5c-e941012940aa
+Error Number:208,State:1,Class:16"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AttendancesAndLeaves'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:3968fe77-ebc1-4061-be5c-e941012940aa
+Error Number:208,State:1,Class:16
+2025-04-19 00:44:34 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 00:45:34 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 00:46:29 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 00:46:31 [Warning] Failed to record attendance. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Employee is not within the branch's designated area."
+2025-04-19 00:46:31 [Information] HTTP "POST" "/Attendance/TakeAttendance" responded 422 in 6185.3104 ms
+2025-04-19 00:47:04 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:47:04 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 00:47:05 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:47:05 [Information] User with ID "6c5437eb-5b26-4556-8927-e6bc35d2af62" retrieved successfully.
+2025-04-19 00:47:05 [Information] HTTP "GET" "/Users/GetById/6c5437eb-5b26-4556-8927-e6bc35d2af62" responded 200 in 787.7796 ms
+2025-04-19 00:47:28 [Warning] Failed to record attendance. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Employee is not within the branch's designated area."
+2025-04-19 00:47:28 [Information] HTTP "POST" "/Attendance/TakeAttendance" responded 422 in 451.9527 ms
+2025-04-19 00:52:43 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 00:53:26 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:53:26 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 00:53:26 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:53:26 [Information] User with ID "6c5437eb-5b26-4556-8927-e6bc35d2af62" retrieved successfully.
+2025-04-19 00:53:26 [Information] HTTP "GET" "/Users/GetById/6c5437eb-5b26-4556-8927-e6bc35d2af62" responded 200 in 86389.9599 ms
+2025-04-19 00:54:53 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:54:53 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 00:54:53 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:54:53 [Information] User with ID "6c5437eb-5b26-4556-8927-e6bc35d2af62" retrieved successfully.
+2025-04-19 00:54:53 [Information] HTTP "GET" "/Users/GetById/6c5437eb-5b26-4556-8927-e6bc35d2af62" responded 200 in 462.3817 ms
+2025-04-19 00:55:23 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:55:23 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:55:23 [Information] Changes saved successfully. Rows affected: 1
+2025-04-19 00:55:23 [Information] Successfully updated branch with ID: 1
+2025-04-19 00:55:23 [Information] HTTP "PUT" "/Branchs/UpdateBranch" responded 200 in 509.4912 ms
+2025-04-19 00:55:34 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 00:55:34 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 00:55:34 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 00:55:34 [Information] User with ID "6c5437eb-5b26-4556-8927-e6bc35d2af62" retrieved successfully.
+2025-04-19 00:55:34 [Information] HTTP "GET" "/Users/GetById/6c5437eb-5b26-4556-8927-e6bc35d2af62" responded 200 in 377.5252 ms
+2025-04-19 00:56:12 [Information] Attempting to retrieve or create repository for entity type: "AttendanceAndLeave"
+2025-04-19 00:56:12 [Information] Changes saved successfully. Rows affected: 1
+2025-04-19 00:56:12 [Information] Successfully recorded attendance for EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", UserId
+2025-04-19 00:56:12 [Information] HTTP "POST" "/Attendance/TakeAttendance" responded 201 in 777.3574 ms
+2025-04-19 02:32:26 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 02:32:29 [Warning] Failed to record attendance. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Attendance for today has already been recorded."
+2025-04-19 02:32:29 [Information] HTTP "POST" "/Attendance/TakeAttendance" responded 422 in 8514.4459 ms
+2025-04-19 02:32:53 [Information] HTTP "POST" "/Attendance/TakeLeave" responded 400 in 40.3132 ms
+2025-04-19 02:33:06 [Warning] Failed to record leave. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Employee is not within the branch's designated area."
+2025-04-19 02:33:06 [Information] HTTP "POST" "/Attendance/TakeLeave" responded 422 in 1062.5769 ms
+2025-04-19 02:33:28 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:33:28 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:33:29 [Information] Changes saved successfully. Rows affected: 1
+2025-04-19 02:33:29 [Information] Successfully updated branch with ID: 1
+2025-04-19 02:33:29 [Information] HTTP "PUT" "/Branchs/UpdateBranch" responded 200 in 460.9964 ms
+2025-04-19 02:33:45 [Warning] Failed to record leave. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Employee is not within the branch's designated area."
+2025-04-19 02:33:45 [Information] HTTP "POST" "/Attendance/TakeLeave" responded 422 in 158.5474 ms
+2025-04-19 02:38:04 [Warning] Failed to record leave. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Leave time is before your latest shift end time (17:00)."
+2025-04-19 02:38:04 [Information] HTTP "POST" "/Attendance/TakeLeave" responded 422 in 456.5443 ms
+2025-04-19 02:38:26 [Warning] Failed to record leave. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Leave time is before your latest shift end time (17:00)."
+2025-04-19 02:38:26 [Information] HTTP "POST" "/Attendance/TakeLeave" responded 422 in 439.8345 ms
+2025-04-19 02:38:43 [Information] Attempting to retrieve or create repository for entity type: "AttendanceAndLeave"
+2025-04-19 02:38:43 [Information] Changes saved successfully. Rows affected: 1
+2025-04-19 02:38:43 [Information] Successfully recorded leave for EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62"
+2025-04-19 02:38:43 [Information] HTTP "POST" "/Attendance/TakeLeave" responded 201 in 605.4196 ms
+2025-04-19 02:38:53 [Warning] Failed to record leave. EmployeeId: "6c5437eb-5b26-4556-8927-e6bc35d2af62", Error: "Leave for today has already been recorded."
+2025-04-19 02:38:53 [Information] HTTP "POST" "/Attendance/TakeLeave" responded 422 in 289.5048 ms
+2025-04-19 02:44:05 [Information] Received request to retrieve all branches.
+2025-04-19 02:44:05 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:44:05 [Information] Successfully retrieved 1 branches.
+2025-04-19 02:44:05 [Information] HTTP "GET" "/Branchs/GetAll" responded 200 in 203.7510 ms
+2025-04-19 02:44:15 [Information] Received request to retrieve all official vacations.
+2025-04-19 02:44:15 [Information] Attempting to retrieve or create repository for entity type: "OfficialVacation"
+2025-04-19 02:44:15 [Information] Successfully retrieved 5 official vacations.
+2025-04-19 02:44:15 [Information] HTTP "GET" "/OfficialVacations/GetAll" responded 200 in 365.2421 ms
+2025-04-19 02:44:25 [Information] Successfully retrieved 2 roles.
+2025-04-19 02:44:25 [Information] HTTP "GET" "/Roles/GetAll" responded 200 in 166.5523 ms
+2025-04-19 02:44:40 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 02:44:40 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:44:40 [Information] HTTP "GET" "/Shifts/GetById/1" responded 200 in 171.3516 ms
+2025-04-19 02:44:45 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 02:44:45 [Information] HTTP "GET" "/Shifts/GetById/2" responded 404 in 73.7031 ms
+2025-04-19 02:44:50 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 02:44:50 [Information] HTTP "GET" "/Shifts/GetById/3" responded 404 in 80.6804 ms
+2025-04-19 02:44:55 [Information] Attempting to retrieve or create repository for entity type: "Shift"
+2025-04-19 02:44:55 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:44:55 [Information] HTTP "GET" "/Shifts/GetById/1" responded 200 in 142.4953 ms
+2025-04-19 02:45:10 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:10 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:11 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:11 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:11 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:11 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:11 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:11 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:12 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:12 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:12 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:12 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:12 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:12 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:12 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:12 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:45:13 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:45:13 [Information] Successfully retrieved 15 users.
+2025-04-19 02:45:13 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 3723.9806 ms
+2025-04-19 02:55:54 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 02:55:56 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:56 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:57 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:57 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:55:57 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:57 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:55:57 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:58 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:58 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:55:58 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:58 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:58 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:55:59 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:56:00 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:56:00 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:56:00 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 02:56:00 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 02:56:00 [Information] Successfully retrieved 15 users.
+2025-04-19 02:56:03 [Error] An exception occurred: "Object reference not set to an instance of an object."
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at HRSystem.Controllers.UsersController.<>c.<GetUsers>b__4_0(AuthenticationDTO u) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\UsersController.cs:line 342
+   at System.Linq.Enumerable.ListSelectIterator`2.MoveNext()
+   at System.Text.Json.Serialization.Converters.IEnumerableDefaultConverter`2.OnWriteResume(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonCollectionConverter`2.OnTryWrite(Utf8JsonWriter writer, TCollection value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Exption\ExceptionMiddleware.cs:line 26
+2025-04-19 02:56:05 [Error] HTTP "GET" "/Users/GetAll" responded 500 in 10931.2276 ms
+2025-04-19 03:01:11 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 03:01:15 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:16 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:16 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:16 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:17 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:17 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:17 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:17 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:17 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:17 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:18 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:19 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:19 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:19 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:19 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:19 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:01:19 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:01:44 [Information] Successfully retrieved 15 users.
+2025-04-19 03:04:40 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-19 03:04:42 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:43 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:43 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:43 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:43 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:44 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:44 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:44 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:44 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:44 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:44 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:45 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:45 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:45 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:45 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:45 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:45 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:45 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:45 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:46 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:46 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:46 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:46 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:46 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-19 03:04:46 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-19 03:04:46 [Information] Successfully retrieved 15 users.
+2025-04-19 03:04:46 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 7657.5369 ms
