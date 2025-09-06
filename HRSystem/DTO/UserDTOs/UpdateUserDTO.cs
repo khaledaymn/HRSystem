@@ -11,7 +11,7 @@ namespace HRSystem.DTO.UserDTOs
         public string? Address { get; set; }
         public DateTime? DateOfBarth { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? Nationalid { get; set; }
+        public string? NationalId { get; set; }
         public double? Salary { get; set; }
         public string? Gender { get; set; }
         public DateTime? DateOfWork { get; set; }

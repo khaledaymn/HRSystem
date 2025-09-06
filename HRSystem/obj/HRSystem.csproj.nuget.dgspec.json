@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj": {}
+    "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\HRSystem\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj": {}
   },
   "projects": {
-    "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj": {
+    "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\HRSystem\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj",
+        "projectUniqueName": "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\HRSystem\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj",
         "projectName": "HRSystem",
-        "projectPath": "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj",
+        "projectPath": "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\HRSystem\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj",
         "packagesPath": "C:\\Users\\Khalid\\.nuget\\packages\\",
-        "outputPath": "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\Final Project\\HRSystem\\HRSystem\\obj\\",
+        "outputPath": "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\HRSystem\\Final Project\\HRSystem\\HRSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -132,7 +132,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,5 +1,9 @@
 ﻿#region Usings
 
+using Hangfire;
+using Hangfire.SqlServer;
+using HRSystem;
+using HRSystem.BackgroundJobs;
 using HRSystem.DataBase;
 using HRSystem.Extend;
 using HRSystem.Filters;
@@ -7,6 +11,7 @@ using HRSystem.Repository;
 using HRSystem.Services.AttendanceServices;
 using HRSystem.Services.EmailServices;
 using HRSystem.Services.GeneralSettings;
+using HRSystem.Services.UsersServices;
 using HRSystem.Settings;
 using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -38,28 +43,17 @@ builder.Host.UseSerilog((context, configuration) =>
     configuration
         .MinimumLevel.Information() 
         .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
-        .WriteTo.File(
-            path: "logs/app-log-.txt",
-            rollingInterval: RollingInterval.Day,
+        .WriteTo.Console(
             outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}"
         );
+    //.WriteTo.File(
+    //    path: "logs/app-log-.txt",
+    //    rollingInterval: RollingInterval.Day,
+    //    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}"
+    //);
 });
 
-#endregion
-
-
-#region Hosted Services
-
-//builder.Services.AddHostedService<DailyAttendanceCheckService>();
-
-#endregion
-
-
-#region API Configration
-
-// Add services to the container.
-
-builder.Services.AddControllers();
+builder.Services.AddLogging();
 
 #endregion
 
@@ -71,6 +65,35 @@ var connectionString = builder.Configuration.GetConnectionString(name: "DefaultC
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+
+#endregion
+
+
+#region Hangfire Configration
+
+builder.Services.AddHangfire(config =>
+    config
+        .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+        .UseSimpleAssemblyNameTypeSerializer()
+        .UseRecommendedSerializerSettings()
+        .UseSqlServerStorage(builder.Configuration.GetConnectionString("HangfireConnection"), new SqlServerStorageOptions
+        {
+            CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+            SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+            QueuePollInterval = TimeSpan.Zero,
+            UseRecommendedIsolationLevel = true,
+            DisableGlobalLocks = true
+        }));
+
+builder.Services.AddHangfireServer();
+
+#endregion
+
+
+#region API Configration
+
+// Add services to the container.
+builder.Services.AddControllers();
 
 #endregion
 
@@ -103,7 +126,10 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:4200")
+        builder.WithOrigins(
+            "http://localhost:4200", 
+            "https://balsm-t6vs.vercel.app",
+            "https://balsm-demo.vercel.app")
                .AllowAnyMethod()
                .AllowCredentials()
                .AllowAnyHeader();
@@ -164,10 +190,8 @@ builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection(
 
 #region Dependency Injection Configration
 
-builder.Services.AddScoped(typeof(IGenaricRepo<>), typeof(GenaricRepo<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IEmailServices, EmailServices>();
-builder.Services.AddScoped<IGeneralSettingsServices, GeneralSettingsServices>();
+builder.Services.AddScoped<HangfireJobScheduler>();
 
 #endregion
 
@@ -229,11 +253,11 @@ builder.Services.AddSwaggerGen(option =>
     });
 
     // Enable XML comments if available
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+    //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    //option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
-    // Make schema properties optional if they have null values
-    option.SchemaFilter<CustomSchemaFilter>();
+    //// Make schema properties optional if they have null values
+    //option.SchemaFilter<CustomSchemaFilter>();
 });
 #endregion
 
@@ -271,8 +295,6 @@ app.UseSwaggerUI(options =>
 });
 #endregion
 
-builder.Services.AddHttpContextAccessor();
-
 #region Cors Meddelwere
 app.UseCors();
 #endregion
@@ -296,6 +318,27 @@ app.UseMiddleware<ExceptionMiddleware>();
 #region Authentication and Authorization Meddelwere
 app.UseAuthentication();
 app.UseAuthorization();
+#endregion
+
+#region Hangfire
+
+app.UseHangfireDashboard("/jobs", new DashboardOptions
+{
+    Authorization = new[]
+    {
+        new BasicAuthAuthorizationFilter(
+            app.Configuration.GetValue<string>("Hangfire:Dashboard:UserName"),
+            app.Configuration.GetValue<string>("Hangfire:Dashboard:Password"))
+    },
+    DashboardTitle = "HR System Dashboard"
+});
+
+using (var scope = app.Services.CreateScope())
+{
+    var scheduler = scope.ServiceProvider.GetRequiredService<HangfireJobScheduler>();
+    scheduler.ScheduleRecurringJobs();
+}
+
 #endregion
 
 #region Endpoints

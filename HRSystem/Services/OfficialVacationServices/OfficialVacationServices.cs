@@ -265,6 +265,8 @@ namespace HRSystem.Services.OfficialVacationServices
                 var isVacation = await _unitOfWork.Repository<OfficialVacation>()
                     .AnyAsync(v => v.VacationDay.Date == date.Date);
 
+                isVacation = isVacation || date.DayOfWeek == DayOfWeek.Friday;
+
                 _logger.LogInformation("Date {Date} is {Status} an official vacation.",
                     date.ToString("yyyy-MM-dd"), isVacation ? "confirmed as" : "not");
                 return isVacation;

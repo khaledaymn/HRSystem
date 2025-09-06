@@ -15,9 +15,7 @@ namespace HRSystem.Services.RolesServices
         Task<RoleDTO> GetByIdAsync(string id);
         Task<bool> EditAsync(RoleDTO model);
         Task<bool> DeleteAsync(string id);
-        Task<(bool Success, string Message, IEnumerable<IdentityError>? Errors)> AddUserToRoleAsync(string userId, string roleName);
+        Task<(bool Success, string Message, IEnumerable<IdentityError>? Errors)> UpdateUserRolesAsync(string userId, List<string> roleNames);
         Task<(bool Success, string Message, IEnumerable<IdentityError>? Errors)> DeleteUserFromRoleAsync(string userId, string roleName);
-
     }
-
 }

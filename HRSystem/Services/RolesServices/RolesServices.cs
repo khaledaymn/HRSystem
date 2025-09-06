@@ -238,22 +238,24 @@ namespace HRSystem.Services.RolesServices
 
         #region Assign User To Role
 
-        public async Task<(bool Success, string Message, IEnumerable<IdentityError>? Errors)> AddUserToRoleAsync(string userId, string roleName)
+        public async Task<(bool Success, string Message, IEnumerable<IdentityError>? Errors)> UpdateUserRolesAsync(string userId, List<string> roleNames)
         {
             try
             {
+                // Validate inputs
                 if (string.IsNullOrEmpty(userId))
                 {
                     _logger.LogWarning("Invalid user ID provided: null or empty.");
-                    throw new ArgumentException("User ID cannot be null or empty.", nameof(userId));
+                    return (false, "User ID cannot be null or empty.", null);
                 }
 
-                if (string.IsNullOrEmpty(roleName))
+                if (roleNames == null || !roleNames.Any() || roleNames.Any(string.IsNullOrEmpty))
                 {
-                    _logger.LogWarning("Invalid role name provided: null or empty.");
-                    throw new ArgumentException("Role name cannot be null or empty.", nameof(roleName));
+                    _logger.LogWarning("Invalid role names provided: null, empty, or contains invalid entries.");
+                    return (false, "Role names cannot be null, empty, or contain invalid entries.", null);
                 }
 
+                // Find user
                 var user = await _userManager.FindByIdAsync(userId);
                 if (user == null)
                 {
@@ -261,28 +263,51 @@ namespace HRSystem.Services.RolesServices
                     return (false, $"User with ID '{userId}' not found.", null);
                 }
 
-                var roleExists = await _roleManager.RoleExistsAsync(roleName);
-                if (!roleExists)
+                // Validate roles
+                var invalidRoles = new List<string>();
+                foreach (var roleName in roleNames)
                 {
-                    _logger.LogWarning("Role '{RoleName}' does not exist.", roleName);
-                    return (false, $"Role '{roleName}' does not exist.", null);
+                    if (!await _roleManager.RoleExistsAsync(roleName))
+                    {
+                        invalidRoles.Add(roleName);
+                    }
                 }
 
-                var result = await _userManager.AddToRoleAsync(user, roleName);
-                if (result.Succeeded)
+                if (invalidRoles.Any())
                 {
-                    _logger.LogInformation("Successfully added user with ID: {UserId} to role: {RoleName}", userId, roleName);
-                    return (true, $"User with ID '{userId}' added to role '{roleName}' successfully.", null);
+                    _logger.LogWarning("Roles do not exist: {InvalidRoles}.", string.Join(", ", invalidRoles));
+                    return (false, $"The following roles do not exist: {string.Join(", ", invalidRoles)}.", null);
                 }
 
-                var errors = result.Errors.Select(e => e.Description);
-                _logger.LogWarning("Failed to add user with ID: {UserId} to role: {RoleName}. Errors: {Errors}", userId, roleName, string.Join("; ", errors));
-                return (false, $"Failed to add user with ID '{userId}' to role '{roleName}'.", result.Errors);
+                // Remove user from existing roles (optional, based on requirements)
+                var currentRoles = await _userManager.GetRolesAsync(user);
+                if (currentRoles.Any())
+                {
+                    var removeResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+                    if (!removeResult.Succeeded)
+                    {
+                        var errors = removeResult.Errors.Select(e => e.Description);
+                        _logger.LogWarning("Failed to remove user with ID {UserId} from current roles. Errors: {Errors}", userId, string.Join("; ", errors));
+                        return (false, $"Failed to remove user from current roles.", removeResult.Errors);
+                    }
+                }
+
+                // Add user to new roles
+                var addResult = await _userManager.AddToRolesAsync(user, roleNames);
+                if (addResult.Succeeded)
+                {
+                    _logger.LogInformation("Successfully added user with ID {UserId} to roles: {RoleNames}", userId, string.Join(", ", roleNames));
+                    return (true, $"User with ID '{userId}' added to roles '{string.Join(", ", roleNames)}' successfully.", null);
+                }
+
+                var addErrors = addResult.Errors.Select(e => e.Description);
+                _logger.LogWarning("Failed to add user with ID {UserId} to roles: {RoleNames}. Errors: {Errors}", userId, string.Join(", ", roleNames), string.Join("; ", addErrors));
+                return (false, $"Failed to add user with ID '{userId}' to roles '{string.Join(", ", roleNames)}'.", addResult.Errors);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to add user with ID: {UserId} to role: {RoleName}. Error: {Message}", userId, roleName, ex.Message);
-                throw;
+                _logger.LogError(ex, "Failed to add user with ID {UserId} to roles: {RoleNames}. Error: {Message}", userId, string.Join(", ", roleNames ?? new List<string>()), ex.Message);
+                return (false, "An unexpected error occurred while adding user to roles.", null);
             }
         }
 

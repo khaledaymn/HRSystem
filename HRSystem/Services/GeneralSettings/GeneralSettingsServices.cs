@@ -1,117 +1,148 @@
 ﻿using HRSystem.DataBase;
 using HRSystem.DTO.GeneralSettingsDTOs;
 using HRSystem.Models;
+using HRSystem.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRSystem.Services.GeneralSettings
 {
     public class GeneralSettingsServices : IGeneralSettingsServices
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<GeneralSettingsServices> _logger;
 
-        public GeneralSettingsServices(ApplicationDbContext context)
+        public GeneralSettingsServices(ILogger<GeneralSettingsServices> logger, IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
+        #region Add General Settings
         public async Task<GeneralSettingDTO> AddGeneralSettings(AddGeneralSettingDTO model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model), "The provided model cannot be null.");
 
-            // Parsing time values from string to DateTime
-            if (!DateTime.TryParseExact(model.FirstShiftTimeOfAttend, "HH:mm", null, System.Globalization.DateTimeStyles.None, out DateTime firstShiftTimeOfAttend))
-                throw new ArgumentException("Invalid FirstShiftTimeOfAttend format. Expected format: HH:mm");
+            if (model.NumberOfVacationsInYear < 0)
+                throw new ArgumentException("Number of vacations in year cannot be negative.", nameof(model.NumberOfVacationsInYear));
 
-            if (!DateTime.TryParseExact(model.FirstShiftTimeOfLeave, "HH:mm", null, System.Globalization.DateTimeStyles.None, out DateTime firstShiftTimeOfLeave))
-                throw new ArgumentException("Invalid FirstShiftTimeOfLeave format. Expected format: HH:mm");
+            if (model.RateOfExtraAndLateHour <= 0)
+                throw new ArgumentException("Rate of extra hour must be positive.", nameof(model.RateOfExtraAndLateHour));
+           
+            if (model.NumberOfDayWorkingHours <= 0)
+                throw new ArgumentException("Number of working hours must be positive.", nameof(model.NumberOfDayWorkingHours));
 
-            if (!DateTime.TryParseExact(model.SecondShiftTimeOfAttend, "HH:mm", null, System.Globalization.DateTimeStyles.None, out DateTime secondShiftTimeOfAttend))
-                throw new ArgumentException("Invalid SecondShiftTimeOfAttend format. Expected format: HH:mm");
-
-            if (!DateTime.TryParseExact(model.SecondShiftTimeOfLeave, "HH:mm", null, System.Globalization.DateTimeStyles.None, out DateTime secondShiftTimeOfLeave))
-                throw new ArgumentException("Invalid SecondShiftTimeOfLeave format. Expected format: HH:mm");
-
-            // Creating entity object
+            
             var generalSetting = new GeneralSetting
             {
-              
+                NumberOfVacationsInYear = model.NumberOfVacationsInYear,
+                RateOfExtraHour = model.RateOfExtraAndLateHour,
+                NumberOfDayWorkingHours = model.NumberOfDayWorkingHours,
             };
 
             try
             {
-                // Saving to the database
-                await _context.GeneralSetting.AddAsync(generalSetting);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException dbEx)
-            {
-                // Handling database update exceptions (e.g., constraint violations, connection issues)
-                throw new InvalidOperationException("An error occurred while saving the general settings. Please try again later.", dbEx);
+                await _unitOfWork.Repository<GeneralSetting>().ADD(generalSetting);
+                await _unitOfWork.Save();
+                _logger.LogInformation("Successfully added general settings with ID {Id}.", generalSetting.Id);
             }
             catch (Exception ex)
             {
-                // Handling any unexpected exceptions
-                throw new Exception("An unexpected error occurred while processing your request.", ex);
+                _logger.LogError(ex, "Error occurred while adding general settings.");
+                throw new InvalidOperationException("An error occurred while saving the general settings. Please try again later.", ex);
             }
 
-
-            // Returning DTO
             return new GeneralSettingDTO
             {
+                NumberOfVacationsInYear = generalSetting.NumberOfVacationsInYear,
+                RateOfExtraAndLateHour = generalSetting.RateOfExtraHour,
+                NumberOfDayWorkingHours = generalSetting.NumberOfDayWorkingHours
             };
         }
+
+        #endregion
+
+
+        #region Get General Settings
 
         public async Task<GeneralSettingDTO> GetGeneralSettings()
         {
             try
             {
-                var generalSetting = await _context.GeneralSetting.FirstOrDefaultAsync();
+                var generalSetting = _unitOfWork.Repository<GeneralSetting>().GetAll().Result.FirstOrDefault();
 
                 if (generalSetting == null)
-                    throw new InvalidOperationException("General settings not found.");
+                {
+                    _logger.LogWarning("No general settings found in the database.");
+                    throw new InvalidOperationException("General settings not found. Please configure the settings first.");
+                }
+
+                _logger.LogInformation("Successfully fetched general settings with ID {Id}.", generalSetting.Id);
 
                 return new GeneralSettingDTO
                 {
+                    NumberOfVacationsInYear = generalSetting.NumberOfVacationsInYear,
+                    RateOfExtraAndLateHour = generalSetting.RateOfExtraHour,
+                    NumberOfDayWorkingHours = generalSetting.NumberOfDayWorkingHours,
                 };
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while fetching general settings.", ex);
+                _logger.LogError(ex, "Error occurred while fetching general settings.");
+                throw new InvalidOperationException("An error occurred while fetching general settings. Please try again later.", ex);
             }
         }
 
-        public async Task<bool> UpdateGeneralSettings(GeneralSettingDTO model)
+        #endregion
+
+
+        #region Update General Settings
+        public async Task<GeneralSettingDTO> UpdateGeneralSettings(AddGeneralSettingDTO model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model), "The provided model cannot be null.");
 
-            // Retrieve the existing settings
-            var generalSetting = await _context.GeneralSetting.FirstOrDefaultAsync();
-            if (generalSetting == null)
-                throw new InvalidOperationException("General settings not found.");
+            if (model.NumberOfVacationsInYear < 0)
+                throw new ArgumentException("Number of vacations in year cannot be negative.", nameof(model.NumberOfVacationsInYear));
 
-            // Update only the provided fields
-            if (model.OverTimeHour.HasValue)
+            if (model.RateOfExtraAndLateHour <= 0)
+                throw new ArgumentException("Rate of extra hour must be positive.", nameof(model.RateOfExtraAndLateHour));
+
+            if (model.NumberOfDayWorkingHours <= 0)
+                throw new ArgumentException("Number of working hours must be positive.", nameof(model.NumberOfDayWorkingHours));
+
+            
+            var generalSetting = _unitOfWork.Repository<GeneralSetting>().GetAll().Result.FirstOrDefault();
+            if (generalSetting == null)
             {
-               
+                _logger.LogWarning("No general settings found for update.");
+                throw new InvalidOperationException("General settings not found. Please add settings first.");
             }
-           
 
             try
             {
-                var result = await _context.SaveChangesAsync();
-                return result > 0;
-            }
-            catch (DbUpdateException dbEx)
-            {
-                throw new InvalidOperationException("An error occurred while updating the general settings. Please try again later.", dbEx);
+                generalSetting.NumberOfVacationsInYear = model.NumberOfVacationsInYear;
+                generalSetting.RateOfExtraHour = model.RateOfExtraAndLateHour;
+                generalSetting.NumberOfDayWorkingHours = model.NumberOfDayWorkingHours;
+                _unitOfWork.Repository<GeneralSetting>().Update(generalSetting);
+                await _unitOfWork.Save();
+                _logger.LogInformation("Successfully updated general settings with ID {Id}.", generalSetting.Id);
             }
             catch (Exception ex)
             {
-                throw new Exception("An unexpected error occurred while processing your request.", ex);
+                _logger.LogError(ex, "Error occurred while updating general settings.");
+                throw new InvalidOperationException("An error occurred while updating the general settings. Please try again later.", ex);
             }
+
+            return new GeneralSettingDTO
+            {
+                NumberOfVacationsInYear = generalSetting.NumberOfVacationsInYear,
+                RateOfExtraAndLateHour = generalSetting.RateOfExtraHour,
+                NumberOfDayWorkingHours = generalSetting.NumberOfDayWorkingHours
+            };
         }
+
+        #endregion
 
     }
 }

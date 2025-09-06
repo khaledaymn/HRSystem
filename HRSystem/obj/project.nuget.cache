@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QgvUo2NP7Yw=",
+  "dgSpecHash": "IHMCy09ny3o=",
   "success": true,
-  "projectFilePath": "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj",
+  "projectFilePath": "E:\\Courses\\ITI Cources\\ITI 4 Months\\Freelance\\HRSystem\\Final Project\\HRSystem\\HRSystem\\HRSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Khalid\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Khalid\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

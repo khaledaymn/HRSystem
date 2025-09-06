@@ -7,6 +7,7 @@ namespace HRSystem.Repository
         Task<List<T>> GetAll();
         Task<T> GetById<T2>(T2 id);
         Task ADD(T obj);
+        Task AddRange(IEnumerable<T> obj);
         void Delete(int id);
         void Update(T obj);
         IEnumerable<T> Filter(Expression<Func<T, bool>> expression);

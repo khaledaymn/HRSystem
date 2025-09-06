@@ -9,6 +9,7 @@ using HRSystem.Models;
 using HRSystem.Services.EmailServices;
 using HRSystem.Services.UsersServices;
 using HRSystem.Settings;
+using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -16,6 +17,7 @@ using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Web;
 
 namespace HRSystem.Services.AuthenticationServices
 {
@@ -23,31 +25,30 @@ namespace HRSystem.Services.AuthenticationServices
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IEmailServices _emailServices;
         private readonly AdminLogin _adminLogin;
         private readonly JWT _jwt;
-        private readonly IUsersServices _usersServices;
+        //private readonly IUsersServices _usersServices;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationDbContext _context;
         private readonly ILogger<AuthenticationServices> _logger;
-        
+
         public AuthenticationServices(
-            UserManager<ApplicationUser> userManager, 
-            SignInManager<ApplicationUser> signInManager, 
-            IEmailServices emailServices, 
-            IOptions<AdminLogin> adminLogin, 
-            IOptions<JWT> jwt, 
-            IUsersServices usersServices, 
-            ApplicationDbContext context, 
-            ILogger<AuthenticationServices> logger)
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IOptions<AdminLogin> adminLogin,
+            IOptions<JWT> jwt,
+            ApplicationDbContext context,
+            ILogger<AuthenticationServices> logger,
+            IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailServices = emailServices;
             _adminLogin = adminLogin.Value;
             _jwt = jwt.Value;
-            _usersServices = usersServices;
+            //_usersServices = usersServices;
             _context = context;
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -89,7 +90,7 @@ namespace HRSystem.Services.AuthenticationServices
 
                     try
                     {
-                        await _usersServices.Create(admin);
+                        await _unitOfWork.UsersServices.Create(admin);
                         _logger.LogInformation("Default admin user created successfully for email: {Email}", data.Email);
                         user = await _userManager.FindByEmailAsync(data.Email);
                     }
@@ -142,14 +143,15 @@ namespace HRSystem.Services.AuthenticationServices
                     DateOfBarth = user.DateOfBarth.ToString("yyyy/MM/dd"),
                     HiringDate = user.HiringDate.ToString("yyyy/MM/dd"),
                     Gender = user.Gender.ToString() ?? "Not specified",
-                    Nationalid = user.Nationalid ?? "Not specified",
-                    BaseSalary = (double)user.BaseSalary,
+                    NationalId = user.Nationalid ?? "Not specified",
+                    Salary = (double)user.BaseSalary,
                     Branch = new BranchDTO
                     {
                         Id = user.Branch?.Id ?? 0,
                         Name = user.Branch?.Name ?? "Not specified",
                         Latitude = user.Branch?.Latitude,
-                        Longitude = user.Branch?.Longitude
+                        Longitude = user.Branch?.Longitude,
+                        Radius = user.Branch?.Radius
                     },
                     Shift = employeeShifts
                 };
@@ -179,9 +181,9 @@ namespace HRSystem.Services.AuthenticationServices
             try
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-
+                token = HttpUtility.UrlEncode(token);
                 _logger.LogInformation("Sending password reset email to: {Email}", dto.Email);
-                var message = await _emailServices.SendEmailAsync(user.Name, user.Email, token);
+                var message = await _unitOfWork.EmailServices.SendEmailAsync(user.Name, user.Email, token);
 
                 _logger.LogInformation("Password reset email sent successfully to: {Email}", dto.Email);
                 return message;
@@ -262,8 +264,8 @@ namespace HRSystem.Services.AuthenticationServices
                     DateOfBarth = user.DateOfBarth.ToString("yyyy/MM/dd"),
                     HiringDate = user.HiringDate.ToString("yyyy/MM/dd"),
                     Gender = user.Gender.ToString() ?? "Not specified",
-                    Nationalid = user.Nationalid ?? "Not specified",
-                    BaseSalary = (double)user.BaseSalary,
+                    NationalId = user.Nationalid ?? "Not specified",
+                    Salary = (double)user.BaseSalary,
                     Branch = new BranchDTO
                     {
                         Id = user.Branch?.Id ?? 0,

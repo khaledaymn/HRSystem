@@ -1,6 +1,10 @@
-﻿using HRSystem.DTO.UserDTOs;
+﻿using HRSystem.DTO.AttendanceDTOs;
+using HRSystem.DTO.EmployeeDTOs;
+using HRSystem.DTO.UserDTOs;
 using HRSystem.Helper;
+using HRSystem.Models;
 using HRSystem.Services.UsersServices;
+using HRSystem.Services.VacationServices;
 using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -318,11 +322,11 @@ namespace HRSystem.Controllers
         [HttpGet]
         [Route("~/Users/GetAll")]
         [Authorize(Roles = Roles.Admin)]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery] PaginationDTO pagination)
         {
             try
             {
-                var allUsers = await _unitOfWork.UsersServices.GetAllAsync();
+                var allUsers = await _unitOfWork.UsersServices.GetAllAsync(pagination);
 
                 if (allUsers == null || !allUsers.Any())
                 {
@@ -452,6 +456,156 @@ namespace HRSystem.Controllers
         #endregion
 
 
+        #region Get Employees By Branch ID
+
+        [HttpGet]
+        [Route("~/Users/GetEmployeesByBranchId/{BranchId}")]
+        public async Task<IActionResult> GetEmployeesByBranchId(int BranchId)
+        {
+            try
+            {
+                // Call the GetEmployeesByBranchId service method
+                var employees = await _unitOfWork.UsersServices.GetEmployeesByBranchId(BranchId);
+                // Check if the result is null or empty
+                if (employees == null || !employees.Any())
+                {
+                    return NotFound(new { Message = $"No employees found for BranchId: {BranchId}" });
+                }
+                // Return the result as a 200 OK response
+                return Ok(employees);
+            }
+            catch (Exception ex)
+            {
+                // Log the error and return a 500 Internal Server Error response
+                _logger.LogError(ex, "Error retrieving employees for BranchId: {BranchId}", BranchId);
+                return StatusCode(500, new { Message = "An error occurred while retrieving employees." });
+            }
+        }
+
+        #endregion
+
+
+        #region Get Employee Vacations
+
+        [HttpGet]
+        [Route("~/Users/EmployeeVacations/{EmployeeId}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
+        public async Task<IActionResult> EmployeeVacations(string EmployeeId,[FromQuery] ParamDTO dto)
+        {
+            try
+            {
+                // Call the GetEmployeeVacations service method
+                var employeeVacations = await _unitOfWork.VacationService.GetEmployeeVacations(EmployeeId,dto);
+
+                // Check if the result is null or empty
+                if (employeeVacations == null || (employeeVacations.TotalVacationDays == 0 && employeeVacations.EmployeeVacationDetails == null))
+                {
+                    return NotFound(new { Message = $"No vacation records found for EmployeeId: {EmployeeId}" });
+                }
+
+                // Return the result as a 200 OK response
+                return Ok(employeeVacations);
+            }
+            catch (Exception ex)
+            {
+                // Log the error and return a 500 Internal Server Error response
+                _logger.LogError(ex, "Error retrieving vacation details for EmployeeId: {EmployeeId}", EmployeeId);
+                return StatusCode(500, new { Message = "An error occurred while retrieving vacation details." });
+            }
+        }
+
+        #endregion
+
+
+        #region Get All Employees Vacations
+        [HttpGet]
+        [Route("~/Users/GetAllEmployeesVacations")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> AllEmployeesVacations([FromQuery]ParamDTO dto)
+        {
+            try
+            {
+                // Call the GetAllEmployeesVacations service method
+                var allEmployeesVacations = await _unitOfWork.VacationService.GetAllEmployeesVacations(dto);
+                // Check if the result is null or empty
+                if (allEmployeesVacations == null || !allEmployeesVacations.Any())
+                {
+                    return NotFound(new { Message = "No vacation records found for any employee." });
+                }
+                var vacationDetails = allEmployeesVacations.Select(v => new
+                {
+                    v.EmployeeName,
+                    v.TotalVacationDays,
+                }).ToList();
+                // Return the result as a 200 OK response
+                return Ok(vacationDetails);
+            }
+            catch (Exception ex)
+            {
+                // Log the error and return a 500 Internal Server Error response
+                _logger.LogError(ex, "Error retrieving all employees' vacation details.");
+                return StatusCode(500, new { Message = "An error occurred while retrieving vacation details." });
+            }
+        }
+        #endregion
+
+
+        #region Get Employees Salaries
+        [HttpGet]
+        [Route("~/Users/GetAllEmployeesSalaries")]
+        public async Task<IActionResult> EmployeesSalaries([FromQuery] ParamDTO dto)
+        {
+            try
+            {
+                // Call the GetEmployeesSalaries service method
+                var employeesSalaries = await _unitOfWork.UsersServices.GetEmployeesSalaries(dto);
+                // Check if the result is null or empty
+                if (employeesSalaries == null || !employeesSalaries.Any())
+                {
+                    return NotFound(new { Message = "No salary records found for any employee." });
+                }
+                // Return the result as a 200 OK response
+                return Ok(employeesSalaries);
+            }
+            catch (Exception ex)
+            {
+                // Log the error and return a 500 Internal Server Error response
+                _logger.LogError(ex, "Error retrieving all employees' salary details.");
+                return StatusCode(500, new { Message = "An error occurred while retrieving salary details." });
+            }
+        }
+        #endregion
+
+
+        #region Get Employee Salary Details
+
+        [HttpGet]
+        [Route("~/Users/EmployeeSalaryDetails/{EmployeeId}")]
+        public async Task<IActionResult> EmployeeSalaryDetails(string EmployeeId, int? month = null, int? year = null)
+        {
+            try
+            {
+                // Call the GetEmployeeSalaryDetails service method
+                var employeeSalaryDetails = await _unitOfWork.UsersServices.GetEmployeeSalaryDetails(EmployeeId, month, year);
+                // Check if the result is null or empty
+                if (employeeSalaryDetails == null)
+                {
+                    return NotFound(new { Message = $"No salary records found for EmployeeId: {EmployeeId}" });
+                }
+                // Return the result as a 200 OK response
+                return Ok(employeeSalaryDetails);
+            }
+            catch (Exception ex)
+            {
+                // Log the error and return a 500 Internal Server Error response
+                _logger.LogError(ex, "Error retrieving salary details for EmployeeId: {EmployeeId}", EmployeeId);
+                return StatusCode(500, new { Message = ex.Message });
+            }
+        }
+
+        #endregion
+
+
         #region Edit User
 
         /// <summary>
@@ -573,6 +727,145 @@ namespace HRSystem.Controllers
         #endregion
 
 
+        #region Update Salary 
+
+        [HttpPut]
+        [Route("~/Users/UpdateSalary")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> UpdateSalary([FromBody] UpdateSalaryDTO model, CancellationToken cancellationToken = default)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                _logger.LogWarning("Invalid model state for salary update with ID: {EmployeeId}. Errors: {Errors}", model?.EmployeeId, string.Join("; ", errors));
+                return BadRequest(new
+                {
+                    Success = false,
+                    Message = "Invalid salary data provided.",
+                    Errors = errors
+                });
+            }
+
+            try
+            {
+                var result = await _unitOfWork.UsersServices.UpdateNetSalary(model);
+
+                if (result == "Salary updated successfully.")
+                {
+                    _logger.LogInformation("Employee with ID {EmployeeId} salary updated successfully.", model.EmployeeId);
+                    return Ok(new
+                    {
+                        Success = true,
+                        Message = result
+                    });
+                }
+
+                if (result == "Employee not found.")
+                {
+                    _logger.LogWarning("Employee with ID {EmployeeId} not found.", model.EmployeeId);
+                    return NotFound(new
+                    {
+                        Success = false,
+                        Message = result
+                    });
+                }
+
+                if (result == "Employee ID cannot be null or empty." || result == "Net salary cannot be negative.")
+                {
+                    _logger.LogWarning("Validation failed for salary update with ID: {EmployeeId}. Reason: {Message}", model?.EmployeeId, result);
+                    return BadRequest(new
+                    {
+                        Success = false,
+                        Message = result
+                    });
+                }
+
+                // Handle exception messages
+                _logger.LogError("Failed to update salary for employee with ID: {EmployeeId}. Reason: {Message}", model?.EmployeeId, result);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while updating the employee salary.",
+                    Error = result
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to update salary for employee with ID: {EmployeeId}. Error: {Message}", model?.EmployeeId, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while updating the employee salary.",
+                    Error = ex.Message
+                });
+            }
+        }
+
+        #endregion
+
+
+        #region Update User Work Statistics
+
+        [HttpPut]
+        [Route("~/Users/UpdateWorkStatistics")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> UpdateWorkStatistics([FromBody] UpdateWorkStatisticsDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                _logger.LogWarning("Invalid model state for work statistics update with ID: {EmployeeId}. Errors: {Errors}", model?.EmployeeId, string.Join("; ", errors));
+                return BadRequest(new
+                {
+                    Success = false,
+                    Message = "Invalid work statistics data provided.",
+                    Errors = errors
+                });
+            }
+            try
+            {
+                var result = await _unitOfWork.UsersServices.UpdateWorkStatisticsAsync(model);
+                if (result == "Work statistics updated successfully.")
+                {
+                    _logger.LogInformation("Employee with ID {EmployeeId} work statistics updated successfully.", model.EmployeeId);
+                    return Ok(new
+                    {
+                        Success = true,
+                        Message = result
+                    });
+                }
+                if (result == "Employee not found.")
+                {
+                    _logger.LogWarning("Employee with ID {EmployeeId} not found.", model.EmployeeId);
+                    return NotFound(new
+                    {
+                        Success = false,
+                        Message = result
+                    });
+                }
+                // Handle exception messages
+                _logger.LogError("Failed to update work statistics for employee with ID: {EmployeeId}. Reason: {Message}", model?.EmployeeId, result);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while updating the employee work statistics.",
+                    Error = result
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to update work statistics for employee with ID: {EmployeeId}. Error: {Message}", model?.EmployeeId, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while updating the employee work statistics.",
+                    Error = ex.Message
+                });
+            }
+        }
+        #endregion
+
+
         #region Delete User
 
         /// <summary>
@@ -662,28 +955,65 @@ namespace HRSystem.Controllers
         #endregion
 
 
-        #region TODO: Implement the following Actions as per your requirements
+        #region Update Sales Percentage
 
-        #region Get Employees By Branch ID
-
-        #endregion
-
-        #region Get Employee Vacations
-
-
-        #endregion
-
-
-        #region Get Employees NetSalaries
-
-
-        #endregion
-
-
-        #region Get Net Salary Details
-
-        #endregion
-
+        [HttpPut]
+        [Route("~/Users/UpdateSalesPercentage")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> UpdateSalesPercentage([FromBody] UpdateSalesPresentageDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                _logger.LogWarning("Invalid model state for updating sales percentage with EmployeeId: {EmployeeId}. Errors: {Errors}", model?.EmployeeId, string.Join("; ", errors));
+                return BadRequest(new
+                {
+                    Success = false,
+                    Message = "Invalid sales percentage data provided.",
+                    Errors = errors
+                });
+            }
+            try
+            {
+                var result = await _unitOfWork.UsersServices.UpdateSalesPresentage(model);
+                if (result == "Sales percentage updated successfully.")
+                {
+                    _logger.LogInformation("Sales percentage for employee with ID {EmployeeId} updated successfully.", model.EmployeeId);
+                    return Ok(new
+                    {
+                        Success = true,
+                        Message = result
+                    });
+                }
+                if (result == "Employee not found.")
+                {
+                    _logger.LogWarning("Employee with ID {EmployeeId} not found.", model.EmployeeId);
+                    return NotFound(new
+                    {
+                        Success = false,
+                        Message = result
+                    });
+                }
+                // Handle exception messages
+                _logger.LogError("Failed to update sales percentage for employee with ID: {EmployeeId}. Reason: {Message}", model?.EmployeeId, result);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while updating the sales percentage.",
+                    Error = result
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to update sales percentage for employee with ID: {EmployeeId}. Error: {Message}", model?.EmployeeId, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    Success = false,
+                    Message = "An error occurred while updating the sales percentage.",
+                    Error = ex.Message
+                });
+            }
+        }
         #endregion
 
     }

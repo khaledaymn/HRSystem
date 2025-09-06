@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public int NumberOfVacationsInYear { get; set; }
         public double RateOfExtraHour { get; set; }
-        public double NumberOfWorkingDay { get; set; }
+        public int NumberOfDayWorkingHours { get; set; } = 10;
     }
 }

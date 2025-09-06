@@ -1,0 +1,1163 @@
+2025-04-20 09:36:49 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-20 09:37:23 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-20 10:35:49 [Warning] Unable to contact VS to retrieve Browser Link script tag.
+2025-04-20 13:24:15 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-20 13:24:18 [Information] Login successful for email: "admin@gmail.com"
+2025-04-20 13:24:18 [Information] HTTP "POST" "/Account/Login" responded 200 in 12058.2849 ms
+2025-04-20 18:12:46 [Information] Start installing Hangfire SQL objects...
+2025-04-20 18:12:48 [Information] Hangfire SQL objects installed.
+2025-04-20 18:13:31 [Information] Start installing Hangfire SQL objects...
+2025-04-20 18:13:32 [Information] Hangfire SQL objects installed.
+2025-04-20 18:13:34 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-20 18:13:34 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-20 18:13:34 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-20 18:13:35 [Information] Server khaledayman:16204:ae0d7c52 successfully announced in 271.9718 ms
+2025-04-20 18:13:35 [Information] Server khaledayman:16204:ae0d7c52 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-20 18:13:35 [Information] Server khaledayman:16204:ae0d7c52 all the dispatchers started
+2025-04-20 18:13:42 [Information] HTTP "GET" "/jobs" responded 401 in 319.5983 ms
+2025-04-20 18:13:58 [Information] HTTP "GET" "/jobs" responded 401 in 8.1691 ms
+2025-04-20 18:14:41 [Information] HTTP "GET" "/jobs" responded 200 in 1364.0334 ms
+2025-04-20 18:14:41 [Information] HTTP "GET" "/jobs/css-dark18180298326177" responded 200 in 111.9616 ms
+2025-04-20 18:14:41 [Information] HTTP "GET" "/jobs/css181801918105102" responded 200 in 308.7936 ms
+2025-04-20 18:14:41 [Information] HTTP "GET" "/jobs/fonts/glyphicons-halflings-regular/woff2" responded 200 in 72.5621 ms
+2025-04-20 18:14:41 [Information] HTTP "GET" "/jobs/js18180248988353" responded 200 in 547.7475 ms
+2025-04-20 18:14:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 571.5282 ms
+2025-04-20 18:14:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.8039 ms
+2025-04-20 18:14:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.0675 ms
+2025-04-20 18:14:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.8435 ms
+2025-04-20 18:14:55 [Information] HTTP "GET" "/jobs" responded 200 in 833.8749 ms
+2025-04-20 18:14:55 [Information] HTTP "POST" "/jobs/stats" responded 200 in 575.6774 ms
+2025-04-20 18:14:57 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8824 ms
+2025-04-20 18:15:36 [Information] HTTP "GET" "/jobs" responded 200 in 823.2129 ms
+2025-04-20 18:15:39 [Information] HTTP "POST" "/jobs/stats" responded 200 in 524.5445 ms
+2025-04-20 18:15:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8333 ms
+2025-04-20 18:15:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 524.7905 ms
+2025-04-20 18:15:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.6199 ms
+2025-04-20 18:15:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.8772 ms
+2025-04-20 18:15:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 527.7199 ms
+2025-04-20 18:15:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1230 ms
+2025-04-20 18:15:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.3713 ms
+2025-04-20 18:16:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5038 ms
+2025-04-20 18:16:04 [Information] HTTP "POST" "/jobs/stats" responded 200 in 552.7095 ms
+2025-04-20 18:16:07 [Information] HTTP "POST" "/jobs/stats" responded 200 in 548.1734 ms
+2025-04-20 18:16:09 [Information] HTTP "GET" "/jobs" responded 200 in 814.0434 ms
+2025-04-20 18:16:09 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.6715 ms
+2025-04-20 18:16:12 [Information] HTTP "POST" "/jobs/stats" responded 200 in 561.5099 ms
+2025-04-20 18:16:15 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.4857 ms
+2025-04-20 18:16:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.1466 ms
+2025-04-20 18:16:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 600.1504 ms
+2025-04-20 18:16:22 [Information] HTTP "GET" "/" responded 404 in 0.2003 ms
+2025-04-20 18:16:27 [Information] HTTP "GET" "/jobs" responded 200 in 809.9776 ms
+2025-04-20 18:16:30 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1903 ms
+2025-04-20 18:16:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.3712 ms
+2025-04-20 18:16:35 [Information] HTTP "GET" "/jobs" responded 200 in 812.6245 ms
+2025-04-20 18:16:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.6414 ms
+2025-04-20 18:16:36 [Information] HTTP "GET" "/jobs" responded 200 in 833.6976 ms
+2025-04-20 18:16:39 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.7304 ms
+2025-04-20 18:16:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9322 ms
+2025-04-20 18:16:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.2419 ms
+2025-04-20 18:16:46 [Information] HTTP "POST" "/jobs/stats" responded 200 in 546.3089 ms
+2025-04-20 18:16:49 [Information] HTTP "POST" "/jobs/stats" responded 200 in 547.7406 ms
+2025-04-20 18:16:51 [Information] HTTP "POST" "/jobs/stats" responded 200 in 572.2532 ms
+2025-04-20 18:16:54 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.9115 ms
+2025-04-20 18:16:57 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.6895 ms
+2025-04-20 18:16:57 [Information] HTTP "GET" "/jobs/jobs/enqueued" responded 200 in 347.7727 ms
+2025-04-20 18:16:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 135.3830 ms
+2025-04-20 18:17:01 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.5579 ms
+2025-04-20 18:17:04 [Information] HTTP "POST" "/jobs/stats" responded 200 in 136.2220 ms
+2025-04-20 18:17:06 [Information] HTTP "POST" "/jobs/stats" responded 200 in 136.6030 ms
+2025-04-20 18:17:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.6526 ms
+2025-04-20 18:17:09 [Information] HTTP "GET" "/jobs/retries" responded 200 in 397.2050 ms
+2025-04-20 18:17:12 [Information] HTTP "POST" "/jobs/stats" responded 200 in 138.9686 ms
+2025-04-20 18:17:14 [Information] HTTP "GET" "/jobs/recurring" responded 200 in 344.5723 ms
+2025-04-20 18:17:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 138.8537 ms
+2025-04-20 18:17:16 [Information] HTTP "POST" "/jobs/stats" responded 200 in 138.0424 ms
+2025-04-20 18:17:18 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.3049 ms
+2025-04-20 18:17:18 [Information] HTTP "GET" "/jobs/servers" responded 200 in 717.6368 ms
+2025-04-20 18:17:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.3305 ms
+2025-04-20 18:17:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 139.7197 ms
+2025-04-20 18:17:25 [Information] HTTP "POST" "/jobs/stats" responded 200 in 147.2944 ms
+2025-04-20 18:17:27 [Information] HTTP "POST" "/jobs/stats" responded 200 in 139.1067 ms
+2025-04-20 18:17:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 133.8980 ms
+2025-04-20 18:17:31 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.0300 ms
+2025-04-20 18:17:32 [Information] HTTP "GET" "/jobs/jobs/enqueued/default" responded 200 in 776.8279 ms
+2025-04-20 18:17:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 137.7558 ms
+2025-04-20 18:17:37 [Information] HTTP "POST" "/jobs/stats" responded 200 in 135.3985 ms
+2025-04-20 18:17:37 [Information] HTTP "GET" "/jobs/servers" responded 200 in 291.1063 ms
+2025-04-20 18:17:39 [Information] HTTP "POST" "/jobs/stats" responded 200 in 136.5761 ms
+2025-04-20 18:17:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 135.1339 ms
+2025-04-20 18:17:43 [Information] HTTP "POST" "/jobs/stats" responded 200 in 133.6304 ms
+2025-04-20 18:17:45 [Information] HTTP "GET" "/jobs/jobs/enqueued" responded 200 in 268.1398 ms
+2025-04-20 18:17:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 136.1810 ms
+2025-04-20 18:17:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.5555 ms
+2025-04-20 18:17:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 133.0901 ms
+2025-04-20 18:17:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 136.1877 ms
+2025-04-20 18:17:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 136.8753 ms
+2025-04-20 18:18:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 143.4060 ms
+2025-04-20 18:18:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 135.9006 ms
+2025-04-20 18:18:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.5109 ms
+2025-04-20 18:18:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 139.0356 ms
+2025-04-20 18:18:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.2084 ms
+2025-04-20 18:18:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.6587 ms
+2025-04-20 18:18:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 143.2322 ms
+2025-04-20 18:18:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 133.9251 ms
+2025-04-20 18:18:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 133.7780 ms
+2025-04-20 18:18:28 [Information] HTTP "GET" "/Users/GetAll" responded 401 in 13.9806 ms
+2025-04-20 18:18:29 [Information] HTTP "POST" "/jobs/stats" responded 401 in 0.2365 ms
+2025-04-20 18:18:48 [Information] HTTP "POST" "/jobs/stats" responded 200 in 139.0538 ms
+2025-04-20 18:18:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 136.1582 ms
+2025-04-20 18:18:51 [Information] HTTP "GET" "/jobs/jobs/enqueued" responded 200 in 275.3222 ms
+2025-04-20 18:18:51 [Information] HTTP "GET" "/" responded 404 in 0.1430 ms
+2025-04-20 18:18:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.2205 ms
+2025-04-20 18:18:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 134.5789 ms
+2025-04-20 18:19:01 [Information] HTTP "POST" "/jobs/stats" responded 200 in 133.4915 ms
+2025-04-20 18:19:01 [Information] HTTP "GET" "/jobs/" responded 200 in 808.8383 ms
+2025-04-20 18:19:04 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.4253 ms
+2025-04-20 18:19:07 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.4965 ms
+2025-04-20 18:19:09 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.6282 ms
+2025-04-20 18:19:12 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3062 ms
+2025-04-20 18:19:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.6270 ms
+2025-04-20 18:19:15 [Information] HTTP "GET" "/jobs/" responded 200 in 804.2276 ms
+2025-04-20 18:19:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7367 ms
+2025-04-20 18:19:19 [Information] HTTP "GET" "/jobs/" responded 200 in 807.7801 ms
+2025-04-20 18:19:22 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.3760 ms
+2025-04-20 18:19:24 [Information] HTTP "POST" "/jobs/stats" responded 200 in 549.2111 ms
+2025-04-20 18:19:27 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4498 ms
+2025-04-20 18:19:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.5161 ms
+2025-04-20 18:19:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 547.2089 ms
+2025-04-20 18:19:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 572.7169 ms
+2025-04-20 18:19:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9316 ms
+2025-04-20 18:19:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.5585 ms
+2025-04-20 18:19:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 554.5617 ms
+2025-04-20 18:19:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.7671 ms
+2025-04-20 18:19:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.6189 ms
+2025-04-20 18:19:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.3733 ms
+2025-04-20 18:19:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0217 ms
+2025-04-20 18:19:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.2174 ms
+2025-04-20 18:20:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4358 ms
+2025-04-20 18:20:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1394 ms
+2025-04-20 18:20:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.0856 ms
+2025-04-20 18:20:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.4055 ms
+2025-04-20 18:20:15 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4999 ms
+2025-04-20 18:20:18 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.4233 ms
+2025-04-20 18:20:21 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.8819 ms
+2025-04-20 18:20:24 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.5197 ms
+2025-04-20 18:20:27 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.5651 ms
+2025-04-20 18:20:30 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.7044 ms
+2025-04-20 18:20:33 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.9249 ms
+2025-04-20 18:20:36 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.6836 ms
+2025-04-20 18:20:39 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.0073 ms
+2025-04-20 18:20:42 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.3715 ms
+2025-04-20 18:20:45 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.4560 ms
+2025-04-20 18:20:48 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.6993 ms
+2025-04-20 18:20:51 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6075 ms
+2025-04-20 18:20:54 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.8418 ms
+2025-04-20 18:20:57 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.6781 ms
+2025-04-20 18:21:00 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8522 ms
+2025-04-20 18:21:03 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.6895 ms
+2025-04-20 18:21:06 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3607 ms
+2025-04-20 18:21:09 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.4932 ms
+2025-04-20 18:21:12 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7304 ms
+2025-04-20 18:21:15 [Information] HTTP "POST" "/jobs/stats" responded 200 in 809.9955 ms
+2025-04-20 18:21:18 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7082 ms
+2025-04-20 18:21:21 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.9914 ms
+2025-04-20 18:21:24 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.4455 ms
+2025-04-20 18:21:27 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7221 ms
+2025-04-20 18:21:30 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4757 ms
+2025-04-20 18:21:33 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8150 ms
+2025-04-20 18:21:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3621 ms
+2025-04-20 18:21:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1542 ms
+2025-04-20 18:21:40 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.5742 ms
+2025-04-20 18:21:43 [Information] HTTP "POST" "/jobs/stats" responded 200 in 554.6319 ms
+2025-04-20 18:21:45 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.0826 ms
+2025-04-20 18:21:48 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1127 ms
+2025-04-20 18:21:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9531 ms
+2025-04-20 18:21:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.8746 ms
+2025-04-20 18:21:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.6119 ms
+2025-04-20 18:21:58 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.7916 ms
+2025-04-20 18:22:01 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.7834 ms
+2025-04-20 18:22:03 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.9248 ms
+2025-04-20 18:22:06 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2476 ms
+2025-04-20 18:22:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.1004 ms
+2025-04-20 18:22:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6207 ms
+2025-04-20 18:22:13 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.5756 ms
+2025-04-20 18:22:16 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1732 ms
+2025-04-20 18:22:18 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.7809 ms
+2025-04-20 18:22:21 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.6579 ms
+2025-04-20 18:22:24 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.5341 ms
+2025-04-20 18:22:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.7764 ms
+2025-04-20 18:22:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9164 ms
+2025-04-20 18:22:31 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9893 ms
+2025-04-20 18:22:34 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3124 ms
+2025-04-20 18:22:36 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.6908 ms
+2025-04-20 18:22:39 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.8797 ms
+2025-04-20 18:22:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.2312 ms
+2025-04-20 18:22:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.7713 ms
+2025-04-20 18:22:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6786 ms
+2025-04-20 18:22:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.5766 ms
+2025-04-20 18:22:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.8431 ms
+2025-04-20 18:22:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7876 ms
+2025-04-20 18:22:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5410 ms
+2025-04-20 18:23:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4243 ms
+2025-04-20 18:23:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 563.2283 ms
+2025-04-20 18:23:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0442 ms
+2025-04-20 18:23:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.2250 ms
+2025-04-20 18:23:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4799 ms
+2025-04-20 18:23:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0235 ms
+2025-04-20 18:23:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.2777 ms
+2025-04-20 18:23:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.5753 ms
+2025-04-20 18:23:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.5862 ms
+2025-04-20 18:23:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.2805 ms
+2025-04-20 18:23:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3528 ms
+2025-04-20 18:23:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.8945 ms
+2025-04-20 18:23:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.8063 ms
+2025-04-20 18:23:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.5885 ms
+2025-04-20 18:23:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.5184 ms
+2025-04-20 18:23:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3885 ms
+2025-04-20 18:23:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2829 ms
+2025-04-20 18:23:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.9683 ms
+2025-04-20 18:23:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.4989 ms
+2025-04-20 18:23:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.1582 ms
+2025-04-20 18:24:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.7662 ms
+2025-04-20 18:24:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3156 ms
+2025-04-20 18:24:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5520 ms
+2025-04-20 18:24:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2763 ms
+2025-04-20 18:24:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3485 ms
+2025-04-20 18:24:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.5966 ms
+2025-04-20 18:24:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2288 ms
+2025-04-20 18:24:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.2124 ms
+2025-04-20 18:24:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8780 ms
+2025-04-20 18:24:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2928 ms
+2025-04-20 18:24:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.2263 ms
+2025-04-20 18:24:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.8715 ms
+2025-04-20 18:24:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3211 ms
+2025-04-20 18:24:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0056 ms
+2025-04-20 18:24:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.4215 ms
+2025-04-20 18:24:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.2724 ms
+2025-04-20 18:24:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5399 ms
+2025-04-20 18:24:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5717 ms
+2025-04-20 18:24:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2809 ms
+2025-04-20 18:24:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.3762 ms
+2025-04-20 18:25:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5704 ms
+2025-04-20 18:25:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.6782 ms
+2025-04-20 18:25:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.3897 ms
+2025-04-20 18:25:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7530 ms
+2025-04-20 18:25:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.5415 ms
+2025-04-20 18:25:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.0136 ms
+2025-04-20 18:25:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1016 ms
+2025-04-20 18:25:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7644 ms
+2025-04-20 18:25:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9722 ms
+2025-04-20 18:25:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2888 ms
+2025-04-20 18:25:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.8763 ms
+2025-04-20 18:25:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.5429 ms
+2025-04-20 18:25:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0411 ms
+2025-04-20 18:25:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4080 ms
+2025-04-20 18:25:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.5700 ms
+2025-04-20 18:25:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0299 ms
+2025-04-20 18:25:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.6004 ms
+2025-04-20 18:25:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.1216 ms
+2025-04-20 18:25:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1055 ms
+2025-04-20 18:25:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.3140 ms
+2025-04-20 18:26:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.7361 ms
+2025-04-20 18:26:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9141 ms
+2025-04-20 18:26:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3632 ms
+2025-04-20 18:26:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0488 ms
+2025-04-20 18:26:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.4019 ms
+2025-04-20 18:26:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.7352 ms
+2025-04-20 18:26:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.1616 ms
+2025-04-20 18:26:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.9145 ms
+2025-04-20 18:26:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.6235 ms
+2025-04-20 18:26:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.5837 ms
+2025-04-20 18:26:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2857 ms
+2025-04-20 18:26:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.2271 ms
+2025-04-20 18:26:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.7429 ms
+2025-04-20 18:26:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.8368 ms
+2025-04-20 18:26:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.4284 ms
+2025-04-20 18:26:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.4795 ms
+2025-04-20 18:26:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.2185 ms
+2025-04-20 18:26:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.7532 ms
+2025-04-20 18:26:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 546.0754 ms
+2025-04-20 18:26:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3365 ms
+2025-04-20 18:27:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.2279 ms
+2025-04-20 18:27:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.0879 ms
+2025-04-20 18:27:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5627 ms
+2025-04-20 18:27:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.2606 ms
+2025-04-20 18:27:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8417 ms
+2025-04-20 18:27:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4996 ms
+2025-04-20 18:27:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2370 ms
+2025-04-20 18:27:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.7955 ms
+2025-04-20 18:27:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.2761 ms
+2025-04-20 18:27:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.3615 ms
+2025-04-20 18:27:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.2427 ms
+2025-04-20 18:27:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.0939 ms
+2025-04-20 18:27:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0693 ms
+2025-04-20 18:27:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.0976 ms
+2025-04-20 18:27:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.9893 ms
+2025-04-20 18:27:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.8139 ms
+2025-04-20 18:27:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.9839 ms
+2025-04-20 18:27:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1327 ms
+2025-04-20 18:27:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.9828 ms
+2025-04-20 18:27:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.0074 ms
+2025-04-20 18:28:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.6209 ms
+2025-04-20 18:28:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.4507 ms
+2025-04-20 18:28:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2716 ms
+2025-04-20 18:28:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.4139 ms
+2025-04-20 18:28:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.6178 ms
+2025-04-20 18:28:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5811 ms
+2025-04-20 18:28:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.0803 ms
+2025-04-20 18:28:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.9373 ms
+2025-04-20 18:28:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8147 ms
+2025-04-20 18:28:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0833 ms
+2025-04-20 18:28:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1130 ms
+2025-04-20 18:28:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4080 ms
+2025-04-20 18:28:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6184 ms
+2025-04-20 18:28:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.1375 ms
+2025-04-20 18:28:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.9996 ms
+2025-04-20 18:28:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.6955 ms
+2025-04-20 18:28:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.7578 ms
+2025-04-20 18:28:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4971 ms
+2025-04-20 18:28:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.5003 ms
+2025-04-20 18:28:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.4635 ms
+2025-04-20 18:29:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.6499 ms
+2025-04-20 18:29:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.2608 ms
+2025-04-20 18:29:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.1169 ms
+2025-04-20 18:29:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.2582 ms
+2025-04-20 18:29:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7022 ms
+2025-04-20 18:29:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7257 ms
+2025-04-20 18:29:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2620 ms
+2025-04-20 18:29:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2924 ms
+2025-04-20 18:29:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.5457 ms
+2025-04-20 18:29:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.1176 ms
+2025-04-20 18:29:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9728 ms
+2025-04-20 18:29:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.0471 ms
+2025-04-20 18:29:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.9921 ms
+2025-04-20 18:29:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3410 ms
+2025-04-20 18:29:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.0335 ms
+2025-04-20 18:29:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3317 ms
+2025-04-20 18:29:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.0002 ms
+2025-04-20 18:29:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2567 ms
+2025-04-20 18:29:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7948 ms
+2025-04-20 18:29:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.3098 ms
+2025-04-20 18:30:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 548.4966 ms
+2025-04-20 18:30:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.4808 ms
+2025-04-20 18:30:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.5542 ms
+2025-04-20 18:30:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 574.2436 ms
+2025-04-20 18:30:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 586.6975 ms
+2025-04-20 18:30:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.1231 ms
+2025-04-20 18:30:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8753 ms
+2025-04-20 18:30:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.2994 ms
+2025-04-20 18:30:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8471 ms
+2025-04-20 18:30:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1277 ms
+2025-04-20 18:30:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3622 ms
+2025-04-20 18:30:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.5098 ms
+2025-04-20 18:30:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8543 ms
+2025-04-20 18:30:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9669 ms
+2025-04-20 18:30:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.7614 ms
+2025-04-20 18:30:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6344 ms
+2025-04-20 18:30:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.7670 ms
+2025-04-20 18:30:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.7898 ms
+2025-04-20 18:30:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6147 ms
+2025-04-20 18:30:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.0004 ms
+2025-04-20 18:31:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.5049 ms
+2025-04-20 18:31:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9983 ms
+2025-04-20 18:31:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7167 ms
+2025-04-20 18:31:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7118 ms
+2025-04-20 18:31:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0329 ms
+2025-04-20 18:31:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.0091 ms
+2025-04-20 18:31:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7926 ms
+2025-04-20 18:31:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.7214 ms
+2025-04-20 18:31:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.7751 ms
+2025-04-20 18:31:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3357 ms
+2025-04-20 18:31:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.9272 ms
+2025-04-20 18:31:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.8494 ms
+2025-04-20 18:31:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8609 ms
+2025-04-20 18:31:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.7352 ms
+2025-04-20 18:31:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.9123 ms
+2025-04-20 18:31:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.3033 ms
+2025-04-20 18:31:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.4098 ms
+2025-04-20 18:31:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 554.3684 ms
+2025-04-20 18:31:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.7834 ms
+2025-04-20 18:31:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3650 ms
+2025-04-20 18:32:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2804 ms
+2025-04-20 18:32:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.5346 ms
+2025-04-20 18:32:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.8044 ms
+2025-04-20 18:32:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8324 ms
+2025-04-20 18:32:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5636 ms
+2025-04-20 18:32:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.5979 ms
+2025-04-20 18:32:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3991 ms
+2025-04-20 18:32:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.4375 ms
+2025-04-20 18:32:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1831 ms
+2025-04-20 18:32:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.9865 ms
+2025-04-20 18:32:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.7342 ms
+2025-04-20 18:32:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3700 ms
+2025-04-20 18:32:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.7540 ms
+2025-04-20 18:32:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0526 ms
+2025-04-20 18:32:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0167 ms
+2025-04-20 18:32:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.1234 ms
+2025-04-20 18:32:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.1560 ms
+2025-04-20 18:32:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8670 ms
+2025-04-20 18:32:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.9825 ms
+2025-04-20 18:32:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.7921 ms
+2025-04-20 18:33:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.3152 ms
+2025-04-20 18:33:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8961 ms
+2025-04-20 18:33:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.5104 ms
+2025-04-20 18:33:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5156 ms
+2025-04-20 18:33:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5546 ms
+2025-04-20 18:33:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.6052 ms
+2025-04-20 18:33:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.3651 ms
+2025-04-20 18:33:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.4219 ms
+2025-04-20 18:33:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.5803 ms
+2025-04-20 18:33:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.7334 ms
+2025-04-20 18:33:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.0926 ms
+2025-04-20 18:33:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.6194 ms
+2025-04-20 18:33:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0868 ms
+2025-04-20 18:33:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.5151 ms
+2025-04-20 18:33:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9678 ms
+2025-04-20 18:33:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2706 ms
+2025-04-20 18:33:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 561.2344 ms
+2025-04-20 18:33:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.3163 ms
+2025-04-20 18:33:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.0308 ms
+2025-04-20 18:33:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0150 ms
+2025-04-20 18:34:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.7439 ms
+2025-04-20 18:34:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.0999 ms
+2025-04-20 18:34:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2068 ms
+2025-04-20 18:34:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.0209 ms
+2025-04-20 18:34:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.6045 ms
+2025-04-20 18:34:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.1977 ms
+2025-04-20 18:34:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.9826 ms
+2025-04-20 18:34:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2737 ms
+2025-04-20 18:34:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.8947 ms
+2025-04-20 18:34:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2746 ms
+2025-04-20 18:34:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5380 ms
+2025-04-20 18:34:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0759 ms
+2025-04-20 18:34:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1218 ms
+2025-04-20 18:34:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.8703 ms
+2025-04-20 18:34:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.6601 ms
+2025-04-20 18:34:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2662 ms
+2025-04-20 18:34:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.9919 ms
+2025-04-20 18:34:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.6118 ms
+2025-04-20 18:34:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.3243 ms
+2025-04-20 18:34:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.3372 ms
+2025-04-20 18:35:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.9073 ms
+2025-04-20 18:35:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1304 ms
+2025-04-20 18:35:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8987 ms
+2025-04-20 18:35:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.2335 ms
+2025-04-20 18:35:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2436 ms
+2025-04-20 18:35:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5921 ms
+2025-04-20 18:35:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.3259 ms
+2025-04-20 18:35:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6500 ms
+2025-04-20 18:35:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1463 ms
+2025-04-20 18:35:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3612 ms
+2025-04-20 18:35:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.0549 ms
+2025-04-20 18:35:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.7392 ms
+2025-04-20 18:35:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.8907 ms
+2025-04-20 18:35:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1755 ms
+2025-04-20 18:35:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.6081 ms
+2025-04-20 18:35:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6854 ms
+2025-04-20 18:35:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 546.4022 ms
+2025-04-20 18:35:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.3465 ms
+2025-04-20 18:35:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8322 ms
+2025-04-20 18:35:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.0420 ms
+2025-04-20 18:36:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.6503 ms
+2025-04-20 18:36:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.0651 ms
+2025-04-20 18:36:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3117 ms
+2025-04-20 18:36:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.1501 ms
+2025-04-20 18:36:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.5393 ms
+2025-04-20 18:36:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.7104 ms
+2025-04-20 18:36:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.4069 ms
+2025-04-20 18:36:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.4382 ms
+2025-04-20 18:36:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3788 ms
+2025-04-20 18:36:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.1287 ms
+2025-04-20 18:36:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0408 ms
+2025-04-20 18:36:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.5717 ms
+2025-04-20 18:36:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8204 ms
+2025-04-20 18:36:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.8618 ms
+2025-04-20 18:36:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.1595 ms
+2025-04-20 18:36:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.0789 ms
+2025-04-20 18:36:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.6374 ms
+2025-04-20 18:36:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.8365 ms
+2025-04-20 18:36:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.0430 ms
+2025-04-20 18:36:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.6560 ms
+2025-04-20 18:37:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.0439 ms
+2025-04-20 18:37:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.2833 ms
+2025-04-20 18:37:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3856 ms
+2025-04-20 18:37:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9466 ms
+2025-04-20 18:37:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9784 ms
+2025-04-20 18:37:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.6116 ms
+2025-04-20 18:37:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4432 ms
+2025-04-20 18:37:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6599 ms
+2025-04-20 18:37:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.2406 ms
+2025-04-20 18:37:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8044 ms
+2025-04-20 18:37:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9984 ms
+2025-04-20 18:37:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.6576 ms
+2025-04-20 18:37:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6601 ms
+2025-04-20 18:37:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2765 ms
+2025-04-20 18:37:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1165 ms
+2025-04-20 18:37:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4944 ms
+2025-04-20 18:37:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2337 ms
+2025-04-20 18:37:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.1047 ms
+2025-04-20 18:37:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.6408 ms
+2025-04-20 18:37:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.1294 ms
+2025-04-20 18:38:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.0796 ms
+2025-04-20 18:38:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.3936 ms
+2025-04-20 18:38:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.8819 ms
+2025-04-20 18:38:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.0060 ms
+2025-04-20 18:38:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.2402 ms
+2025-04-20 18:38:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4413 ms
+2025-04-20 18:38:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.9286 ms
+2025-04-20 18:38:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9831 ms
+2025-04-20 18:38:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.8859 ms
+2025-04-20 18:38:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.2605 ms
+2025-04-20 18:38:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.7546 ms
+2025-04-20 18:38:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3022 ms
+2025-04-20 18:38:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.4668 ms
+2025-04-20 18:38:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1362 ms
+2025-04-20 18:38:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.5177 ms
+2025-04-20 18:38:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.1013 ms
+2025-04-20 18:38:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0220 ms
+2025-04-20 18:38:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0958 ms
+2025-04-20 18:38:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.6338 ms
+2025-04-20 18:38:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.0770 ms
+2025-04-20 18:39:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.0766 ms
+2025-04-20 18:39:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.5703 ms
+2025-04-20 18:39:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7289 ms
+2025-04-20 18:39:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.8896 ms
+2025-04-20 18:39:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.9103 ms
+2025-04-20 18:39:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.5377 ms
+2025-04-20 18:39:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.5591 ms
+2025-04-20 18:39:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7635 ms
+2025-04-20 18:39:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2357 ms
+2025-04-20 18:39:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.5408 ms
+2025-04-20 18:39:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.8206 ms
+2025-04-20 18:39:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0958 ms
+2025-04-20 18:39:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.2426 ms
+2025-04-20 18:39:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.6448 ms
+2025-04-20 18:39:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.1625 ms
+2025-04-20 18:39:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9077 ms
+2025-04-20 18:39:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.7864 ms
+2025-04-20 18:39:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.7710 ms
+2025-04-20 18:39:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7661 ms
+2025-04-20 18:39:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.1612 ms
+2025-04-20 18:40:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3739 ms
+2025-04-20 18:40:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.6345 ms
+2025-04-20 18:40:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.8056 ms
+2025-04-20 18:40:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.3812 ms
+2025-04-20 18:40:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9217 ms
+2025-04-20 18:40:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.4622 ms
+2025-04-20 18:40:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5239 ms
+2025-04-20 18:40:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.6009 ms
+2025-04-20 18:40:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4757 ms
+2025-04-20 18:40:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2531 ms
+2025-04-20 18:40:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.7178 ms
+2025-04-20 18:40:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2974 ms
+2025-04-20 18:40:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9160 ms
+2025-04-20 18:40:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.5600 ms
+2025-04-20 18:40:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.7852 ms
+2025-04-20 18:40:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0280 ms
+2025-04-20 18:40:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.4458 ms
+2025-04-20 18:40:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.5501 ms
+2025-04-20 18:40:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8500 ms
+2025-04-20 18:40:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9903 ms
+2025-04-20 18:41:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6083 ms
+2025-04-20 18:41:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6044 ms
+2025-04-20 18:41:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8692 ms
+2025-04-20 18:41:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1028 ms
+2025-04-20 18:41:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9848 ms
+2025-04-20 18:41:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.4464 ms
+2025-04-20 18:41:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.7034 ms
+2025-04-20 18:41:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4229 ms
+2025-04-20 18:41:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8225 ms
+2025-04-20 18:41:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.6273 ms
+2025-04-20 18:41:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.6546 ms
+2025-04-20 18:41:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7840 ms
+2025-04-20 18:41:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1147 ms
+2025-04-20 18:41:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.3245 ms
+2025-04-20 18:41:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8271 ms
+2025-04-20 18:41:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 557.3124 ms
+2025-04-20 18:41:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.9419 ms
+2025-04-20 18:41:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.3211 ms
+2025-04-20 18:41:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.7877 ms
+2025-04-20 18:41:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.4710 ms
+2025-04-20 18:42:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8462 ms
+2025-04-20 18:42:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5928 ms
+2025-04-20 18:42:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2712 ms
+2025-04-20 18:42:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.1008 ms
+2025-04-20 18:42:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2176 ms
+2025-04-20 18:42:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9628 ms
+2025-04-20 18:42:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2774 ms
+2025-04-20 18:42:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7576 ms
+2025-04-20 18:42:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 552.3392 ms
+2025-04-20 18:42:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3368 ms
+2025-04-20 18:42:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4130 ms
+2025-04-20 18:42:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7961 ms
+2025-04-20 18:42:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.6065 ms
+2025-04-20 18:42:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.5262 ms
+2025-04-20 18:42:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.1137 ms
+2025-04-20 18:42:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.2498 ms
+2025-04-20 18:42:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.1644 ms
+2025-04-20 18:42:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7653 ms
+2025-04-20 18:42:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.4015 ms
+2025-04-20 18:42:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2465 ms
+2025-04-20 18:43:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.1156 ms
+2025-04-20 18:43:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2421 ms
+2025-04-20 18:43:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.7018 ms
+2025-04-20 18:43:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3771 ms
+2025-04-20 18:43:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1561 ms
+2025-04-20 18:43:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.8657 ms
+2025-04-20 18:43:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.8176 ms
+2025-04-20 18:43:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9834 ms
+2025-04-20 18:43:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.5277 ms
+2025-04-20 18:43:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.1389 ms
+2025-04-20 18:43:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 529.8521 ms
+2025-04-20 18:43:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6213 ms
+2025-04-20 18:43:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.0182 ms
+2025-04-20 18:43:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9888 ms
+2025-04-20 18:43:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.1657 ms
+2025-04-20 18:43:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.4283 ms
+2025-04-20 18:43:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.3489 ms
+2025-04-20 18:43:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.1351 ms
+2025-04-20 18:43:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.4741 ms
+2025-04-20 18:43:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0135 ms
+2025-04-20 18:44:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.9879 ms
+2025-04-20 18:44:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9273 ms
+2025-04-20 18:44:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6245 ms
+2025-04-20 18:44:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0044 ms
+2025-04-20 18:44:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6861 ms
+2025-04-20 18:44:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.3101 ms
+2025-04-20 18:44:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9461 ms
+2025-04-20 18:44:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.0785 ms
+2025-04-20 18:44:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.4853 ms
+2025-04-20 18:44:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6799 ms
+2025-04-20 18:44:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0248 ms
+2025-04-20 18:44:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2857 ms
+2025-04-20 18:44:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.6840 ms
+2025-04-20 18:44:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7096 ms
+2025-04-20 18:44:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5114 ms
+2025-04-20 18:44:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.6831 ms
+2025-04-20 18:44:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.6066 ms
+2025-04-20 18:44:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5308 ms
+2025-04-20 18:44:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.2552 ms
+2025-04-20 18:44:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.3694 ms
+2025-04-20 18:45:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2796 ms
+2025-04-20 18:45:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7047 ms
+2025-04-20 18:45:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2094 ms
+2025-04-20 18:45:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.1688 ms
+2025-04-20 18:45:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.4836 ms
+2025-04-20 18:45:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.1049 ms
+2025-04-20 18:45:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.5263 ms
+2025-04-20 18:45:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.4517 ms
+2025-04-20 18:45:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.5749 ms
+2025-04-20 18:45:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9492 ms
+2025-04-20 18:45:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.8180 ms
+2025-04-20 18:45:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1398 ms
+2025-04-20 18:45:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.9908 ms
+2025-04-20 18:45:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.0756 ms
+2025-04-20 18:45:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.8562 ms
+2025-04-20 18:45:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.3870 ms
+2025-04-20 18:45:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9584 ms
+2025-04-20 18:45:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 530.9752 ms
+2025-04-20 18:45:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 563.2047 ms
+2025-04-20 18:45:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9243 ms
+2025-04-20 18:46:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.5100 ms
+2025-04-20 18:46:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 549.3838 ms
+2025-04-20 18:46:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.2759 ms
+2025-04-20 18:46:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.4770 ms
+2025-04-20 18:46:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.5580 ms
+2025-04-20 18:46:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.0763 ms
+2025-04-20 18:46:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3727 ms
+2025-04-20 18:46:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.5493 ms
+2025-04-20 18:46:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.7023 ms
+2025-04-20 18:46:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.7522 ms
+2025-04-20 18:46:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.9092 ms
+2025-04-20 18:46:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3268 ms
+2025-04-20 18:46:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.0084 ms
+2025-04-20 18:46:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.4429 ms
+2025-04-20 18:46:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.7306 ms
+2025-04-20 18:46:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.0540 ms
+2025-04-20 18:46:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.0480 ms
+2025-04-20 18:46:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2439 ms
+2025-04-20 18:46:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3511 ms
+2025-04-20 18:46:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2013 ms
+2025-04-20 18:47:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.1301 ms
+2025-04-20 18:47:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.5318 ms
+2025-04-20 18:47:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.7644 ms
+2025-04-20 18:47:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9096 ms
+2025-04-20 18:47:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3624 ms
+2025-04-20 18:47:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.0512 ms
+2025-04-20 18:47:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.7940 ms
+2025-04-20 18:47:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.2258 ms
+2025-04-20 18:47:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.1141 ms
+2025-04-20 18:47:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2520 ms
+2025-04-20 18:47:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9616 ms
+2025-04-20 18:47:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9804 ms
+2025-04-20 18:47:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5268 ms
+2025-04-20 18:47:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2833 ms
+2025-04-20 18:47:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5601 ms
+2025-04-20 18:47:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 557.9042 ms
+2025-04-20 18:47:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.4327 ms
+2025-04-20 18:47:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.1708 ms
+2025-04-20 18:47:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.7314 ms
+2025-04-20 18:47:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.0687 ms
+2025-04-20 18:48:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.1664 ms
+2025-04-20 18:48:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.1161 ms
+2025-04-20 18:48:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0585 ms
+2025-04-20 18:48:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5116 ms
+2025-04-20 18:48:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.1136 ms
+2025-04-20 18:48:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.5205 ms
+2025-04-20 18:48:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.7207 ms
+2025-04-20 18:48:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.5119 ms
+2025-04-20 18:48:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.2822 ms
+2025-04-20 18:48:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.8427 ms
+2025-04-20 18:48:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2528 ms
+2025-04-20 18:48:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.2864 ms
+2025-04-20 18:48:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.0418 ms
+2025-04-20 18:48:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0321 ms
+2025-04-20 18:48:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.2320 ms
+2025-04-20 18:48:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6039 ms
+2025-04-20 18:48:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9549 ms
+2025-04-20 18:48:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8260 ms
+2025-04-20 18:48:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.5109 ms
+2025-04-20 18:48:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.0139 ms
+2025-04-20 18:49:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 548.0759 ms
+2025-04-20 18:49:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5064 ms
+2025-04-20 18:49:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6856 ms
+2025-04-20 18:49:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7685 ms
+2025-04-20 18:49:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2328 ms
+2025-04-20 18:49:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.9158 ms
+2025-04-20 18:49:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8789 ms
+2025-04-20 18:49:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8016 ms
+2025-04-20 18:49:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.1874 ms
+2025-04-20 18:49:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.6723 ms
+2025-04-20 18:49:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.8015 ms
+2025-04-20 18:49:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.3878 ms
+2025-04-20 18:49:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1218 ms
+2025-04-20 18:49:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.0768 ms
+2025-04-20 18:49:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.6670 ms
+2025-04-20 18:49:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9284 ms
+2025-04-20 18:49:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2486 ms
+2025-04-20 18:49:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2385 ms
+2025-04-20 18:49:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.6189 ms
+2025-04-20 18:49:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.2901 ms
+2025-04-20 18:50:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.9975 ms
+2025-04-20 18:50:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4643 ms
+2025-04-20 18:50:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3126 ms
+2025-04-20 18:50:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.9337 ms
+2025-04-20 18:50:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.3271 ms
+2025-04-20 18:50:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.6942 ms
+2025-04-20 18:50:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.2113 ms
+2025-04-20 18:50:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.6771 ms
+2025-04-20 18:50:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.5338 ms
+2025-04-20 18:50:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.3662 ms
+2025-04-20 18:50:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.7740 ms
+2025-04-20 18:50:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.9318 ms
+2025-04-20 18:50:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9307 ms
+2025-04-20 18:50:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.7609 ms
+2025-04-20 18:50:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.2472 ms
+2025-04-20 18:50:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6218 ms
+2025-04-20 18:50:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0517 ms
+2025-04-20 18:50:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.4409 ms
+2025-04-20 18:50:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.9948 ms
+2025-04-20 18:50:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.8417 ms
+2025-04-20 18:51:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9220 ms
+2025-04-20 18:51:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2380 ms
+2025-04-20 18:51:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.9840 ms
+2025-04-20 18:51:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.4617 ms
+2025-04-20 18:51:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 548.3504 ms
+2025-04-20 18:51:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 551.6053 ms
+2025-04-20 18:51:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 555.2872 ms
+2025-04-20 18:51:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 560.3646 ms
+2025-04-20 18:51:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 559.0855 ms
+2025-04-20 18:51:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.7886 ms
+2025-04-20 18:51:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 555.6103 ms
+2025-04-20 18:51:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 557.5375 ms
+2025-04-20 18:51:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 558.5492 ms
+2025-04-20 18:51:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 558.3027 ms
+2025-04-20 18:51:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 551.5796 ms
+2025-04-20 18:51:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.0493 ms
+2025-04-20 18:51:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 546.6626 ms
+2025-04-20 18:51:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4774 ms
+2025-04-20 18:51:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.8240 ms
+2025-04-20 18:51:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5249 ms
+2025-04-20 18:52:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8831 ms
+2025-04-20 18:52:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.3687 ms
+2025-04-20 18:52:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.4713 ms
+2025-04-20 18:52:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.1255 ms
+2025-04-20 18:52:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0105 ms
+2025-04-20 18:52:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4085 ms
+2025-04-20 18:52:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3869 ms
+2025-04-20 18:52:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.4551 ms
+2025-04-20 18:52:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.3672 ms
+2025-04-20 18:52:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3930 ms
+2025-04-20 18:52:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.6409 ms
+2025-04-20 18:52:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9479 ms
+2025-04-20 18:52:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.9289 ms
+2025-04-20 18:52:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.3218 ms
+2025-04-20 18:52:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 593.4887 ms
+2025-04-20 18:52:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4463 ms
+2025-04-20 18:52:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2836 ms
+2025-04-20 18:52:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.6627 ms
+2025-04-20 18:52:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8094 ms
+2025-04-20 18:52:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.6590 ms
+2025-04-20 18:53:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 550.7476 ms
+2025-04-20 18:53:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3728 ms
+2025-04-20 18:53:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3217 ms
+2025-04-20 18:53:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.5596 ms
+2025-04-20 18:53:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.0183 ms
+2025-04-20 18:53:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9868 ms
+2025-04-20 18:53:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.0144 ms
+2025-04-20 18:53:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.7482 ms
+2025-04-20 18:53:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.5701 ms
+2025-04-20 18:53:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.9443 ms
+2025-04-20 18:53:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.7293 ms
+2025-04-20 18:53:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.8836 ms
+2025-04-20 18:53:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3735 ms
+2025-04-20 18:53:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.6791 ms
+2025-04-20 18:53:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.9459 ms
+2025-04-20 18:53:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7649 ms
+2025-04-20 18:53:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.0658 ms
+2025-04-20 18:53:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.7542 ms
+2025-04-20 18:53:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.0282 ms
+2025-04-20 18:53:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7843 ms
+2025-04-20 18:54:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7474 ms
+2025-04-20 18:54:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.1966 ms
+2025-04-20 18:54:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1174 ms
+2025-04-20 18:54:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3906 ms
+2025-04-20 18:54:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9552 ms
+2025-04-20 18:54:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8386 ms
+2025-04-20 18:54:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8169 ms
+2025-04-20 18:54:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8224 ms
+2025-04-20 18:54:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.0659 ms
+2025-04-20 18:54:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0505 ms
+2025-04-20 18:54:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.6776 ms
+2025-04-20 18:54:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 532.3509 ms
+2025-04-20 18:54:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8844 ms
+2025-04-20 18:54:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0569 ms
+2025-04-20 18:54:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.1631 ms
+2025-04-20 18:54:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.4300 ms
+2025-04-20 18:54:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9531 ms
+2025-04-20 18:54:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3221 ms
+2025-04-20 18:54:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2386 ms
+2025-04-20 18:54:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.5514 ms
+2025-04-20 18:55:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.0795 ms
+2025-04-20 18:55:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.0944 ms
+2025-04-20 18:55:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3670 ms
+2025-04-20 18:55:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.1391 ms
+2025-04-20 18:55:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9647 ms
+2025-04-20 18:55:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.4112 ms
+2025-04-20 18:55:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.9577 ms
+2025-04-20 18:55:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.8960 ms
+2025-04-20 18:55:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8554 ms
+2025-04-20 18:55:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.9346 ms
+2025-04-20 18:55:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.8671 ms
+2025-04-20 18:55:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.1188 ms
+2025-04-20 18:55:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.7975 ms
+2025-04-20 18:55:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.8607 ms
+2025-04-20 18:55:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.5676 ms
+2025-04-20 18:55:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5623 ms
+2025-04-20 18:55:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.5437 ms
+2025-04-20 18:55:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.9539 ms
+2025-04-20 18:55:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.6330 ms
+2025-04-20 18:55:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.3015 ms
+2025-04-20 18:56:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.8705 ms
+2025-04-20 18:56:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.4882 ms
+2025-04-20 18:56:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.2558 ms
+2025-04-20 18:56:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 549.5444 ms
+2025-04-20 18:56:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3037 ms
+2025-04-20 18:56:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.8186 ms
+2025-04-20 18:56:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5444 ms
+2025-04-20 18:56:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.4013 ms
+2025-04-20 18:56:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.5687 ms
+2025-04-20 18:56:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.9309 ms
+2025-04-20 18:56:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.1092 ms
+2025-04-20 18:56:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 588.6963 ms
+2025-04-20 18:56:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.2432 ms
+2025-04-20 18:56:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3378 ms
+2025-04-20 18:56:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3777 ms
+2025-04-20 18:56:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.1913 ms
+2025-04-20 18:56:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5850 ms
+2025-04-20 18:56:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.9153 ms
+2025-04-20 18:56:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3433 ms
+2025-04-20 18:56:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.5141 ms
+2025-04-20 18:57:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5980 ms
+2025-04-20 18:57:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.2718 ms
+2025-04-20 18:57:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8834 ms
+2025-04-20 18:57:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.2968 ms
+2025-04-20 18:57:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3428 ms
+2025-04-20 18:57:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.9648 ms
+2025-04-20 18:57:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.7505 ms
+2025-04-20 18:57:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.0965 ms
+2025-04-20 18:57:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.0695 ms
+2025-04-20 18:57:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 681.5417 ms
+2025-04-20 18:57:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.8273 ms
+2025-04-20 18:57:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.0267 ms
+2025-04-20 18:57:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.1527 ms
+2025-04-20 18:57:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.0245 ms
+2025-04-20 18:57:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.2846 ms
+2025-04-20 18:57:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.2114 ms
+2025-04-20 18:57:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.2485 ms
+2025-04-20 18:57:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9418 ms
+2025-04-20 18:57:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7289 ms
+2025-04-20 18:57:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.3570 ms
+2025-04-20 18:58:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.8192 ms
+2025-04-20 18:58:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 688.3505 ms
+2025-04-20 18:58:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7575 ms
+2025-04-20 18:58:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.3566 ms
+2025-04-20 18:58:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.6294 ms
+2025-04-20 18:58:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 592.9290 ms
+2025-04-20 18:58:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.7681 ms
+2025-04-20 18:58:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.2357 ms
+2025-04-20 18:58:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 612.1896 ms
+2025-04-20 18:58:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.9685 ms
+2025-04-20 18:58:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.4190 ms
+2025-04-20 18:58:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1806 ms
+2025-04-20 18:58:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5581 ms
+2025-04-20 18:58:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.8337 ms
+2025-04-20 18:58:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 629.3445 ms
+2025-04-20 18:58:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.5462 ms
+2025-04-20 18:58:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.6701 ms
+2025-04-20 18:58:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8083 ms
+2025-04-20 18:58:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.3858 ms
+2025-04-20 18:58:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5018 ms
+2025-04-20 18:59:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3421 ms
+2025-04-20 18:59:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 546.2901 ms
+2025-04-20 18:59:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.1131 ms
+2025-04-20 18:59:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.8082 ms
+2025-04-20 18:59:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.5717 ms
+2025-04-20 18:59:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7245 ms
+2025-04-20 18:59:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9918 ms
+2025-04-20 18:59:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.9820 ms
+2025-04-20 18:59:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.5760 ms
+2025-04-20 18:59:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.4368 ms
+2025-04-20 18:59:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.5640 ms
+2025-04-20 18:59:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.1416 ms
+2025-04-20 18:59:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.2264 ms
+2025-04-20 18:59:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5598 ms
+2025-04-20 18:59:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.3248 ms
+2025-04-20 18:59:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.7913 ms
+2025-04-20 18:59:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.6729 ms
+2025-04-20 18:59:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 551.9854 ms
+2025-04-20 18:59:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.8705 ms
+2025-04-20 18:59:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.9920 ms
+2025-04-20 19:00:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.5611 ms
+2025-04-20 19:00:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.5598 ms
+2025-04-20 19:00:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.6242 ms
+2025-04-20 19:00:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0039 ms
+2025-04-20 19:00:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.9386 ms
+2025-04-20 19:00:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.0025 ms
+2025-04-20 19:00:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.9724 ms
+2025-04-20 19:00:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.7567 ms
+2025-04-20 19:00:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.4065 ms
+2025-04-20 19:00:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.7753 ms
+2025-04-20 19:00:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.6963 ms
+2025-04-20 19:00:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 637.3524 ms
+2025-04-20 19:00:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.4184 ms
+2025-04-20 19:00:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.9556 ms
+2025-04-20 19:00:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.5522 ms
+2025-04-20 19:00:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8307 ms
+2025-04-20 19:00:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.1497 ms
+2025-04-20 19:00:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3006 ms
+2025-04-20 19:00:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.9986 ms
+2025-04-20 19:00:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.7707 ms
+2025-04-20 19:01:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.4347 ms
+2025-04-20 19:01:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8544 ms
+2025-04-20 19:01:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.3481 ms
+2025-04-20 19:01:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.7558 ms
+2025-04-20 19:01:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.1034 ms
+2025-04-20 19:01:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.6430 ms
+2025-04-20 19:01:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 548.9010 ms
+2025-04-20 19:01:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.4435 ms
+2025-04-20 19:01:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.4616 ms
+2025-04-20 19:01:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.8888 ms
+2025-04-20 19:01:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3459 ms
+2025-04-20 19:01:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.9672 ms
+2025-04-20 19:01:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 548.7941 ms
+2025-04-20 19:01:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.3199 ms
+2025-04-20 19:01:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 547.6255 ms
+2025-04-20 19:01:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 585.4159 ms
+2025-04-20 19:01:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.6196 ms
+2025-04-20 19:01:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.6634 ms
+2025-04-20 19:01:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9559 ms
+2025-04-20 19:01:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.2786 ms
+2025-04-20 19:02:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3066 ms
+2025-04-20 19:02:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.6621 ms
+2025-04-20 19:02:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.3011 ms
+2025-04-20 19:02:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9551 ms
+2025-04-20 19:02:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.1702 ms
+2025-04-20 19:02:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3663 ms
+2025-04-20 19:02:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.5329 ms
+2025-04-20 19:02:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.3677 ms
+2025-04-20 19:02:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.6639 ms
+2025-04-20 19:02:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.9407 ms
+2025-04-20 19:02:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.4536 ms
+2025-04-20 19:02:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.7736 ms
+2025-04-20 19:02:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.2476 ms
+2025-04-20 19:02:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5103 ms
+2025-04-20 19:02:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.1833 ms
+2025-04-20 19:02:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.6088 ms
+2025-04-20 19:02:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.4343 ms
+2025-04-20 19:02:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.2613 ms
+2025-04-20 19:02:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 675.4384 ms
+2025-04-20 19:02:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 610.3567 ms
+2025-04-20 19:03:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.4441 ms
+2025-04-20 19:03:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.3997 ms
+2025-04-20 19:03:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.1565 ms
+2025-04-20 19:03:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.7952 ms
+2025-04-20 19:03:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 547.2331 ms
+2025-04-20 19:03:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.1577 ms
+2025-04-20 19:03:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 673.2054 ms
+2025-04-20 19:03:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 593.4144 ms
+2025-04-20 19:03:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.7455 ms
+2025-04-20 19:03:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 545.6488 ms
+2025-04-20 19:03:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2710 ms
+2025-04-20 19:03:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.8731 ms
+2025-04-20 19:03:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.8695 ms
+2025-04-20 19:03:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.0606 ms
+2025-04-20 19:03:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.3145 ms
+2025-04-20 19:03:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.1546 ms
+2025-04-20 19:03:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3384 ms
+2025-04-20 19:03:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.3625 ms
+2025-04-20 19:03:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.8023 ms
+2025-04-20 19:03:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 580.1191 ms
+2025-04-20 19:04:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.2708 ms
+2025-04-20 19:04:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.9354 ms
+2025-04-20 19:04:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.8988 ms
+2025-04-20 19:04:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.4059 ms
+2025-04-20 19:04:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.8543 ms
+2025-04-20 19:04:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.0504 ms
+2025-04-20 19:04:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 537.8634 ms
+2025-04-20 19:04:23 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.3324 ms
+2025-04-20 19:04:26 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.0504 ms
+2025-04-20 19:04:29 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2758 ms
+2025-04-20 19:04:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.6705 ms
+2025-04-20 19:04:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.0621 ms
+2025-04-20 19:04:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 544.3794 ms
+2025-04-20 19:04:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 542.3070 ms
+2025-04-20 19:04:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 548.8054 ms
+2025-04-20 19:04:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.0356 ms
+2025-04-20 19:04:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.1827 ms
+2025-04-20 19:04:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7725 ms
+2025-04-20 19:04:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.7532 ms
+2025-04-20 19:04:59 [Information] HTTP "POST" "/jobs/stats" responded 200 in 539.5896 ms
+2025-04-20 19:05:02 [Information] HTTP "POST" "/jobs/stats" responded 200 in 543.3415 ms
+2025-04-20 19:05:05 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.8764 ms
+2025-04-20 19:05:08 [Information] HTTP "POST" "/jobs/stats" responded 200 in 538.5295 ms
+2025-04-20 19:05:11 [Information] HTTP "POST" "/jobs/stats" responded 200 in 541.5736 ms
+2025-04-20 19:05:14 [Information] HTTP "POST" "/jobs/stats" responded 200 in 562.5691 ms
+2025-04-20 19:05:17 [Information] HTTP "POST" "/jobs/stats" responded 200 in 554.9755 ms
+2025-04-20 19:05:20 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.0414 ms
+2025-04-20 19:05:22 [Information] HTTP "POST" "/jobs/stats" responded 200 in 557.0434 ms
+2025-04-20 19:05:25 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.2709 ms
+2025-04-20 19:05:27 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.1827 ms
+2025-04-20 19:05:30 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8577 ms
+2025-04-20 19:05:32 [Information] HTTP "POST" "/jobs/stats" responded 200 in 535.3262 ms
+2025-04-20 19:05:35 [Information] HTTP "POST" "/jobs/stats" responded 200 in 546.2532 ms
+2025-04-20 19:05:38 [Information] HTTP "POST" "/jobs/stats" responded 200 in 533.6395 ms
+2025-04-20 19:05:41 [Information] HTTP "POST" "/jobs/stats" responded 200 in 540.8751 ms
+2025-04-20 19:05:44 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.5457 ms
+2025-04-20 19:05:47 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.8965 ms
+2025-04-20 19:05:50 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.4218 ms
+2025-04-20 19:05:53 [Information] HTTP "POST" "/jobs/stats" responded 200 in 536.2555 ms
+2025-04-20 19:05:56 [Information] HTTP "POST" "/jobs/stats" responded 200 in 534.2528 ms
+2025-04-20 19:05:58 [Information] HTTP "POST" "/jobs/stats" responded 200 in 531.7742 ms
+2025-04-20 19:10:23 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-20 19:11:04 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-20 19:12:38 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-20 19:16:57 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-20 19:26:50 [Information] Start installing Hangfire SQL objects...
+2025-04-20 19:26:52 [Information] Hangfire SQL objects installed.
+2025-04-20 19:51:22 [Information] Start installing Hangfire SQL objects...
+2025-04-20 19:51:24 [Information] Hangfire SQL objects installed.
+2025-04-20 19:51:27 [Information] Scheduled MissingLeavesJob with cron "0 6 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:28 [Information] Scheduled ShiftCheckJob with cron "0 0 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:28 [Information] Starting update of shift notification jobs.
+2025-04-20 19:51:29 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-20 19:51:32 [Information] Scheduled job "check-missing-leave-shift-1" for Shift ID 1 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:32 [Information] Scheduled job "check-absent-shift-1" for Shift ID 1 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:32 [Information] Scheduled job "check-missing-leave-shift-5" for Shift ID 5 with cron "0 0 0 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:32 [Information] Scheduled job "check-absent-shift-5" for Shift ID 5 with cron "0 0 0 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:33 [Information] Scheduled job "check-missing-leave-shift-10" for Shift ID 10 with cron "0 0 4 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:33 [Information] Scheduled job "check-absent-shift-10" for Shift ID 10 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:33 [Information] Scheduled job "check-missing-leave-shift-13" for Shift ID 13 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:33 [Information] Scheduled job "check-absent-shift-13" for Shift ID 13 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:33 [Information] Scheduled job "check-missing-leave-shift-14" for Shift ID 14 with cron "0 0 10 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:34 [Information] Scheduled job "check-absent-shift-14" for Shift ID 14 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:34 [Information] Scheduled job "check-missing-leave-shift-17" for Shift ID 17 with cron "0 0 20 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:34 [Information] Scheduled job "check-absent-shift-17" for Shift ID 17 with cron "0 0 1 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:34 [Information] Scheduled job "check-missing-leave-shift-23" for Shift ID 23 with cron "0 33 23 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:34 [Information] Scheduled job "check-absent-shift-23" for Shift ID 23 with cron "0 22 22 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:35 [Information] Scheduled job "check-missing-leave-shift-24" for Shift ID 24 with cron "0 11 1 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:35 [Information] Scheduled job "check-absent-shift-24" for Shift ID 24 with cron "0 22 12 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:35 [Information] Scheduled job "check-missing-leave-shift-25" for Shift ID 25 with cron "0 33 3 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:35 [Information] Scheduled job "check-absent-shift-25" for Shift ID 25 with cron "0 22 13 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:35 [Information] Scheduled job "check-missing-leave-shift-26" for Shift ID 26 with cron "0 0 8 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:36 [Information] Scheduled job "check-absent-shift-26" for Shift ID 26 with cron "0 0 2 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:36 [Information] Scheduled job "check-missing-leave-shift-27" for Shift ID 27 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:36 [Information] Scheduled job "check-absent-shift-27" for Shift ID 27 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:36 [Information] Scheduled job "check-missing-leave-shift-28" for Shift ID 28 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:36 [Information] Scheduled job "check-absent-shift-28" for Shift ID 28 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:37 [Information] Scheduled job "check-missing-leave-shift-29" for Shift ID 29 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:37 [Information] Scheduled job "check-absent-shift-29" for Shift ID 29 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:37 [Information] Scheduled job "check-missing-leave-shift-30" for Shift ID 30 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:37 [Information] Scheduled job "check-absent-shift-30" for Shift ID 30 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:37 [Information] Scheduled job "check-missing-leave-shift-31" for Shift ID 31 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:38 [Information] Scheduled job "check-absent-shift-31" for Shift ID 31 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:38 [Information] Scheduled job "check-missing-leave-shift-32" for Shift ID 32 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:38 [Information] Scheduled job "check-absent-shift-32" for Shift ID 32 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:38 [Information] Scheduled job "check-missing-leave-shift-33" for Shift ID 33 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:38 [Information] Scheduled job "check-absent-shift-33" for Shift ID 33 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:39 [Information] Scheduled job "check-missing-leave-shift-34" for Shift ID 34 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:39 [Information] Scheduled job "check-absent-shift-34" for Shift ID 34 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:39 [Information] Scheduled job "check-missing-leave-shift-35" for Shift ID 35 with cron "0 0 9 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:39 [Information] Scheduled job "check-absent-shift-35" for Shift ID 35 with cron "0 0 17 * * *" in timezone "Egypt Standard Time".
+2025-04-20 19:51:39 [Information] Completed update of shift notification jobs. Total active jobs: 38.
+2025-04-20 19:51:39 [Information] Hangfire jobs configured successfully.
+2025-04-20 19:51:40 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-20 19:51:40 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-20 19:51:40 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-20 19:51:40 [Information] Server khaledayman:5436:f96f40c6 successfully announced in 70.7371 ms
+2025-04-20 19:51:40 [Information] Server khaledayman:5436:f96f40c6 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-20 19:51:40 [Information] Server khaledayman:5436:f96f40c6 all the dispatchers started
+2025-04-20 20:00:14 [Warning] Failed to process the job '1': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:30.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-20 20:10:49 [Warning] Failed to process the job '1': an exception occurred. Retry attempt 6 of 10 will be performed in 00:10:40.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-20 20:21:32 [Warning] Failed to process the job '1': an exception occurred. Retry attempt 7 of 10 will be performed in 00:24:25.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320

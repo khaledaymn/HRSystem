@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace HRSystem.DTO
-{
 
-    public class AttendanceDTO
+namespace HRSystem.DTO.AttendanceDTOs
+{
+    public class LeaveDTO
     {
         [Required(ErrorMessage = "Time of attendance is required.")]
         //[RegularExpression(@"^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$", ErrorMessage = "Time must be in hh:mm AM/PM format.")]
-        public string TimeOfAttend { get; set; }
+        public DateTime TimeOfLeave { get; set; }
 
         [Required(ErrorMessage = "Latitude is required.")]
         [Range(-90, 90, ErrorMessage = "Latitude must be between -90 and 90.")]

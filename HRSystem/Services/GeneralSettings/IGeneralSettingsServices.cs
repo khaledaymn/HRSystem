@@ -5,7 +5,7 @@ namespace HRSystem.Services.GeneralSettings
     public interface IGeneralSettingsServices
     {
         Task<GeneralSettingDTO> GetGeneralSettings();
-        Task<bool> UpdateGeneralSettings(GeneralSettingDTO model);
+        Task<GeneralSettingDTO> UpdateGeneralSettings(AddGeneralSettingDTO model);
         Task<GeneralSettingDTO> AddGeneralSettings(AddGeneralSettingDTO model);
     }
 }

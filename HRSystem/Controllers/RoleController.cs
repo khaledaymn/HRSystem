@@ -647,25 +647,25 @@ namespace HRSystem.Controllers
         /// </response>
         /// <exception cref="Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
         [HttpPost]
-        [Route("~/Users/AddUserToRole/{userId}/{roleName}")]
-        public async Task<IActionResult> AddUserToRole(string userId, string roleName)
+        [Route("~/Users/AddUserToRole")]
+        public async Task<IActionResult> UpdateUserRoles(UpdateUserRolesDTO dto)
         {
             try
             {
-                var (success, message, errors) = await _unitOfWork.RolesServices.AddUserToRoleAsync(userId, roleName);
+                var (success, message, errors) = await _unitOfWork.RolesServices.UpdateUserRolesAsync(dto.UserId, dto.RoleName);
 
                 if (!success)
                 {
-                    _logger.LogWarning("Failed to add user with ID: {UserId} to role: {RoleName}. Message: {Message}", userId, roleName, message);
+                    _logger.LogWarning("Failed to add user with ID: {UserId} to role: {RoleName}. Message: {Message}", dto.UserId, dto.RoleName, message);
                     return BadRequest(new { Success = false, Message = message, Errors = errors?.Select(e => e.Description) });
                 }
 
-                _logger.LogInformation("User with ID: {UserId} added to role: {RoleName} successfully.", userId, roleName);
+                _logger.LogInformation("User with ID: {UserId} added to role: {RoleName} successfully.", dto.UserId, dto.RoleName);
                 return Ok(new { Success = true, Message = message });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to add user with ID: {UserId} to role: {RoleName}. Error: {Message}", userId, roleName, ex.Message);
+                _logger.LogError(ex, "Failed to add user with ID: {UserId} to role: {RoleName}. Error: {Message}", dto.UserId, dto.RoleName, ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     Success = false,

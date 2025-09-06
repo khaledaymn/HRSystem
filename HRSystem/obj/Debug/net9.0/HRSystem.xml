@@ -4,100 +4,6 @@
         <name>HRSystem</name>
     </assembly>
     <members>
-        <member name="M:HR_System_API.Controllers.AttendanceAndLeaveController.AddAttendance(HRSystem.DTO.AttendanceDTO)">
-            <summary>
-            Records attendance for an employee.
-            This endpoint allows a user to submit attendance details, including time and location, for an employee.
-            </summary>
-            <remarks>
-            This endpoint requires user privileges and expects a valid JSON payload conforming to the <see cref="!:AttendanceDto"/> structure.
-            It performs validation on the input data and returns a success message with the employee ID if the attendance is recorded successfully, or an error if the operation fails.
-            </remarks>
-            <param name="attendanceDto">
-            The attendance data to record, provided in the request body as an <see cref="!:AttendanceDto"/> object.
-            <para><strong>Example Request:</strong></para>
-            <code>
-            POST /Attendance/TakeAttendance
-            {
-                "timeOfAttend": "2025-03-24T08:30:00Z",
-                "latitude": 40.7128,
-                "longitude": -74.0060,
-                "employeeId": "123e4567-e89b-12d3-a456-426614174000",
-                "branch": "Main branch"
-            }
-            </code>
-            </param>
-            <returns>
-            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the attendance recording process.
-            On success, it returns HTTP 201 (Created) with the employee ID and a success message.
-            On failure, it returns appropriate error codes with descriptive messages.
-            </returns>
-            <response code="201">
-            Successfully recorded the attendance. Returns the employee ID and a confirmation message.
-            Example Response:
-            <code>
-            {
-                "employeeId": "123e4567-e89b-12d3-a456-426614174000",
-                "message": "Attendance added successfully."
-            }
-            </code>
-            </response>
-            <response code="400">
-            Bad Request. Returned when the input data is invalid or fails validation.
-            Example Response (Validation Error):
-            <code>
-            {
-                "timeOfAttend": ["Time of attendance is required."],
-                "latitude": ["Latitude must be between -90 and 90."]
-            }
-            </code>
-            Example Response (Business Logic Error):
-            <code>
-            {
-                "success": false,
-                "message": "Employee ID does not exist."
-            }
-            </code>
-            </response>
-            <response code="401">
-            Unauthorized. Returned when the caller is not authenticated.
-            Example Response:
-            <code>
-            {
-                "message": "Authentication required. Please provide a valid token."
-            }
-            </code>
-            </response>
-            <response code="403">
-            Forbidden. Returned when the caller lacks user privileges.
-            Example Response:
-            <code>
-            {
-                "message": "Access denied. User role required."
-            }
-            </code>
-            </response>
-            <response code="500">
-            Server Error. Returned when an unexpected error occurs during attendance recording.
-            Example Response (Generic Error):
-            <code>
-            {
-                "success": false,
-                "message": "An internal server error occurred."
-            }
-            </code>
-            Example Response (Detailed Error):
-            <code>
-            {
-                "success": false,
-                "message": "Error adding attendance. Please try again later.",
-                "error": "Database timeout occurred",
-                "timestamp": "2025-03-24T08:35:00Z"
-            }
-            </code>
-            </response>
-            <exception cref="T:System.Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
-        </member>
         <member name="M:HRSystem.Controllers.AuthenticationController.Login(HRSystem.DTO.AuthenticationDTOs.LoginDTO)">
             <summary>
             Authenticates a user and returns authentication details including a token if successful.
@@ -1143,7 +1049,7 @@
             </code>
             </response>
         </member>
-        <member name="M:HRSystem.Controllers.RoleController.AddUserToRole(System.String,System.String)">
+        <member name="M:HRSystem.Controllers.RoleController.UpdateUserRoles(HRSystem.DTO.RoleDTOs.UpdateUserRolesDTO)">
             <summary>
             Assigns a role to a specific user in the system.
             This endpoint allows an admin to add a role to a user based on their unique identifier and the role name.
@@ -2087,6 +1993,232 @@
         </member>
         <member name="M:HRSystem.Migrations.v9.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.AddEmployeeExtrahours">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddEmployeeExtrahours.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddEmployeeExtrahours.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.AddEmployeeExtrahours.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.EmployeeAbsent">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.EmployeeAbsent.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.EmployeeAbsent.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.EmployeeAbsent.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v10">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v10.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v10.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v10.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v11">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v11.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v11.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v11.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v12">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v12.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v12.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v12.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v13">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v13.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v13.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v13.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v14">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v14.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v14.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v14.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v15">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v15.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v15.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v15.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v16">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v16.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v16.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v16.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v17">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v17.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v17.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v17.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:HRSystem.Migrations.v18">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v18.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v18.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HRSystem.Migrations.v18.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:HR_System_API.Controllers.AttendanceAndLeaveController.AddAttendance(HRSystem.DTO.AttendanceDTOs.AttendanceDTO)">
+            <summary>
+            Records attendance for an employee.
+            This endpoint allows a user to submit attendance details, including time and location, for an employee.
+            </summary>
+            <remarks>
+            This endpoint requires user privileges and expects a valid JSON payload conforming to the <see cref="!:AttendanceDto"/> structure.
+            It performs validation on the input data and returns a success message with the employee ID if the attendance is recorded successfully, or an error if the operation fails.
+            </remarks>
+            <param name="attendanceDto">
+            The attendance data to record, provided in the request body as an <see cref="!:AttendanceDto"/> object.
+            <para><strong>Example Request:</strong></para>
+            <code>
+            POST /Attendance/TakeAttendance
+            {
+                "timeOfAttend": "2025-03-24T08:30:00Z",
+                "latitude": 40.7128,
+                "longitude": -74.0060,
+                "employeeId": "123e4567-e89b-12d3-a456-426614174000",
+                "branch": "Main branch"
+            }
+            </code>
+            </param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the result of the attendance recording process.
+            On success, it returns HTTP 201 (Created) with the employee ID and a success message.
+            On failure, it returns appropriate error codes with descriptive messages.
+            </returns>
+            <response code="201">
+            Successfully recorded the attendance. Returns the employee ID and a confirmation message.
+            Example Response:
+            <code>
+            {
+                "employeeId": "123e4567-e89b-12d3-a456-426614174000",
+                "message": "Attendance added successfully."
+            }
+            </code>
+            </response>
+            <response code="400">
+            Bad Request. Returned when the input data is invalid or fails validation.
+            Example Response (Validation Error):
+            <code>
+            {
+                "timeOfAttend": ["Time of attendance is required."],
+                "latitude": ["Latitude must be between -90 and 90."]
+            }
+            </code>
+            Example Response (Business Logic Error):
+            <code>
+            {
+                "success": false,
+                "message": "Employee ID does not exist."
+            }
+            </code>
+            </response>
+            <response code="401">
+            Unauthorized. Returned when the caller is not authenticated.
+            Example Response:
+            <code>
+            {
+                "message": "Authentication required. Please provide a valid token."
+            }
+            </code>
+            </response>
+            <response code="403">
+            Forbidden. Returned when the caller lacks user privileges.
+            Example Response:
+            <code>
+            {
+                "message": "Access denied. User role required."
+            }
+            </code>
+            </response>
+            <response code="500">
+            Server Error. Returned when an unexpected error occurs during attendance recording.
+            Example Response (Generic Error):
+            <code>
+            {
+                "success": false,
+                "message": "An internal server error occurred."
+            }
+            </code>
+            Example Response (Detailed Error):
+            <code>
+            {
+                "success": false,
+                "message": "Error adding attendance. Please try again later.",
+                "error": "Database timeout occurred",
+                "timestamp": "2025-03-24T08:35:00Z"
+            }
+            </code>
+            </response>
+            <exception cref="T:System.Exception">Thrown when an unexpected error occurs (e.g., database failure). Caught and returned as a 500 response with error details.</exception>
         </member>
     </members>
 </doc>

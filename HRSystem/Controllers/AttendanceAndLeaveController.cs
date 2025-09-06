@@ -1,10 +1,9 @@
-﻿using HRSystem.Services.AttendanceServices;
-using HRSystem.DTO;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using HRSystem.Helper;
-using System.Security.Claims;
 using HRSystem.UnitOfWork;
+using HRSystem.DTO.AttendanceDTOs;
+using HRSystem.DTO.AttendanceAndLeaveDTOs;
 
 namespace HR_System_API.Controllers
 {
@@ -152,7 +151,7 @@ namespace HR_System_API.Controllers
             catch (Exception ex)
             {
                 logger.LogError(ex, "Unexpected error while processing attendance for EmployeeId: {EmployeeId}", attendanceDto?.EmployeeId);
-                return StatusCode(500, new { Success = false, Message = "An unexpected error occurred. Please try again later." });
+                return StatusCode(500, new { Success = false, Message = ex.Message });
             }
         }
 
@@ -166,6 +165,7 @@ namespace HR_System_API.Controllers
         [Authorize(Roles = Roles.User)]
         public async Task<IActionResult> AddLeave([FromBody] LeaveDTO leaveDto)
         {
+            //_unitOfWork.ShiftAnalysisService.AnalyzePreviousShiftForEmployees(new DateTime(2025, 3, 24, 10, 00, 0));
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
@@ -197,271 +197,55 @@ namespace HR_System_API.Controllers
             catch (Exception ex)
             {
                 logger.LogError(ex, "Unexpected error while processing leave for EmployeeId: {EmployeeId}", leaveDto?.EmployeeId);
-                return StatusCode(500, new { Success = false, Message = "An unexpected error occurred. Please try again later." });
+                return StatusCode(500, new { Success = false, Message = ex.Message });
             }
         }
 
         #endregion
 
 
-        //#region Get All Attendances And Leaves
+        #region Take Leave By Admin
+        [HttpPost]
+        [Route("~/Attendance/TakeLeaveByAdmin")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> AddLeaveByAdmin([FromBody] LeaveByAdminDTO leaveDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                logger.LogWarning("Invalid model state for leave request. EmployeeId: {EmployeeId}, Errors: {Errors}", leaveDto?.EmployeeId, string.Join("; ", errors));
+                return BadRequest(new { Success = false, Message = "Invalid input data.", Errors = errors });
+            }
+            try
+            {
+                var result = await _unitOfWork.AttendanceAndLeaveServices.AddLeaveByAdmin(leaveDto);
+                logger.LogInformation("Successfully recorded leave for EmployeeId: {EmployeeId}", leaveDto.EmployeeId);
+                return Ok("Leave recorded successfully.");
+            }
+            catch (ArgumentNullException ex)
+            {
+                logger.LogWarning("Null leave data provided. EmployeeId: {EmployeeId}, Error: {Error}", leaveDto?.EmployeeId, ex.Message);
+                return BadRequest(new { Success = false, Message = "Leave data is required." });
+            }
+            catch (FormatException ex)
+            {
+                logger.LogWarning("Invalid time format for leave. EmployeeId: {EmployeeId}, Error: {Error}", leaveDto?.EmployeeId, ex.Message);
+                return BadRequest(new { Success = false, Message = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                logger.LogWarning("Failed to record leave. EmployeeId: {EmployeeId}, Error: {Error}", leaveDto?.EmployeeId, ex.Message);
+                return UnprocessableEntity(new { Success = false, Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Unexpected error while processing leave for EmployeeId: {EmployeeId}", leaveDto?.EmployeeId);
+                return StatusCode(500, new { Success = false, Message = "An unexpected error occurred. Please try again later." });
+            }
+        }
 
-        ///// <summary>
-        ///// Retrieves all attendance and leave records in the system.
-        ///// This endpoint allows an admin to fetch a list of attendance records, including leave details, for all employees.
-        ///// </summary>
-        ///// <remarks>
-        ///// This endpoint requires admin privileges and does not require any parameters.
-        ///// It returns a collection of attendance records with leave details if available, or an error message if no records are found.
-        ///// </remarks>
-        ///// <returns>
-        ///// Returns an <see cref="IActionResult"/> containing the result of the attendance retrieval process.
-        ///// On success, it returns HTTP 200 (OK) with a list of attendance records.
-        ///// On failure, it returns appropriate error codes with descriptive messages.
-        ///// </returns>
-        ///// <response code="200">
-        ///// Successfully retrieved the attendance and leave records. Returns a list of records.
-        ///// Example Response:
-        ///// <code>
-        ///// [
-        /////     {
-        /////         "timeOfAttend": "2025-03-24T08:30:00",
-        /////         "timeOfLeave": "2025-03-24T17:00:00",
-        /////         "latitudeOfAttend": 40.7128,
-        /////         "latitudeOfLeave": 40.7130,
-        /////         "longitudeOfAttend": -74.0060,
-        /////         "longitudeOfLeave": -74.0058,
-        /////         "employeeName": "John Doe",
-        /////         "employeeId": "123e4567-e89b-12d3-a456-426614174000",
-        /////         "branch": "New York"
-        /////     },
-        /////     {
-        /////         "timeOfAttend": "2025-03-24T09:00:00",
-        /////         "timeOfLeave": null,
-        /////         "latitudeOfAttend": 51.5074,
-        /////         "latitudeOfLeave": null,
-        /////         "longitudeOfAttend": -0.1278,
-        /////         "longitudeOfLeave": null,
-        /////         "employeeName": "Jane Smith",
-        /////         "employeeId": "987fcdeb-12ab-34cd-e567-890123456789",
-        /////         "branch": "London"
-        /////     }
-        ///// ]
-        ///// </code>
-        ///// </response>
-        ///// <response code="401">
-        ///// Unauthorized. Returned when the caller is not authenticated.
-        ///// Example Response:
-        ///// <code>
-        ///// {
-        /////     "message": "Authentication required. Please provide a valid token."
-        ///// }
-        ///// </code>
-        ///// </response>
-        ///// <response code="403">
-        ///// Forbidden. Returned when the caller lacks admin privileges.
-        ///// Example Response:
-        ///// <code>
-        ///// {
-        /////     "message": "Access denied. Admin role required."
-        ///// }
-        ///// </code>
-        ///// </response>
-        ///// <response code="404">
-        ///// Not Found. Returned when no attendance records are available.
-        ///// Example Response:
-        ///// <code>
-        ///// {
-        /////     "success": false,
-        /////     "message": "No attendance records found for date."
-        ///// }
-        ///// </code>
-        ///// </response>
-        ///// <response code="500">
-        ///// Server Error. Returned when an unexpected error occurs during retrieval.
-        ///// Example Response (Generic Error):
-        ///// <code>
-        ///// {
-        /////     "success": false,
-        /////     "message": "An error occurred while retrieving attendance records",
-        /////     "error": "Database connection failed"
-        ///// }
-        ///// </code>
-        ///// Example Response (Detailed Error):
-        ///// <code>
-        ///// {
-        /////     "success": false,
-        /////     "message": "An error occurred while retrieving attendance records",
-        /////     "error": "Query timeout occurred",
-        /////     "timestamp": "2025-03-24T10:00:00Z"
-        ///// }
-        ///// </code>
-        ///// </response>
-        //[HttpGet]
-        //[Route("~/AttendanceAndLeave/GetAll")]
-        //[Authorize(Roles = Roles.Admin)]
-        //public async Task<IActionResult> GetAttendances()
-        //{
-            
-        //    var attendance = await _unitOfWork.AttendanceAndLeaveServices.GetAllAttendancesWithLeavesAsync();
+        #endregion
 
-        //    if (attendance == null || !attendance.Any())
-        //    {
-        //        return NotFound(new
-        //        {
-        //            Success = false,
-        //            Message = $"No attendance records found for date."
-        //        });
-        //    }
-
-        //    return Ok(attendance);
-        //}
-        //#endregion
-
-
-        //#region Get Employee Attendances And Leaves
-
-        ///// <summary>
-        ///// Retrieves attendance and leave records for a specific employee.
-        ///// This endpoint allows an admin or user to fetch all attendance and leave records associated with a given employee ID.
-        ///// </summary>
-        ///// <remarks>
-        ///// This endpoint requires either admin or user privileges and expects a valid employee ID as a route parameter.
-        ///// It returns a list of attendance records if found, or an error message if the employee ID is invalid, no records exist, or an issue occurs.
-        ///// </remarks>
-        ///// <param name="empId">
-        ///// The unique identifier of the employee whose attendance records are to be retrieved (e.g., a GUID or string-based ID).
-        ///// <para><strong>Example Request:</strong></para>
-        ///// <code>
-        ///// GET /AttendanceAndLeave/123e4567-e89b-12d3-a456-426614174000
-        ///// </code>
-        ///// </param>
-        ///// <returns>
-        ///// Returns an <see cref="IActionResult"/> containing the result of the attendance retrieval process.
-        ///// On success, it returns HTTP 200 (OK) with a list of attendance records.
-        ///// On failure, it returns appropriate error codes with descriptive messages.
-        ///// </returns>
-        ///// <response code="200">
-        ///// Successfully retrieved the employee’s attendance and leave records. Returns a list of records.
-        ///// Example Response:
-        ///// <code>
-        ///// {
-        /////     "success": true,
-        /////     "data": [
-        /////         {
-        /////             "timeOfAttend": "2025-03-24T08:30:00",
-        /////             "timeOfLeave": "2025-03-24T17:00:00",
-        /////             "latitudeOfAttend": 40.7128,
-        /////             "latitudeOfLeave": 40.7130,
-        /////             "longitudeOfAttend": -74.0060,
-        /////             "longitudeOfLeave": -74.0058,
-        /////             "employeeName": "John Doe",
-        /////             "employeeId": "123e4567-e89b-12d3-a456-426614174000",
-        /////             "branch": "New York"
-        /////         },
-        /////         {
-        /////             "timeOfAttend": "2025-03-25T08:45:00",
-        /////             "timeOfLeave": null,
-        /////             "latitudeOfAttend": 40.7129,
-        /////             "latitudeOfLeave": null,
-        /////             "longitudeOfAttend": -74.0061,
-        /////             "longitudeOfLeave": null,
-        /////             "employeeName": "John Doe",
-        /////             "employeeId": "123e4567-e89b-12d3-a456-426614174000",
-        /////             "branch": "New York"
-        /////         }
-        /////     ]
-        ///// }
-        ///// </code>
-        ///// </response>
-        ///// <response code="400">
-        ///// Bad Request. Returned when the employee ID is invalid or missing.
-        ///// Example Response (Validation Error):
-        ///// <code>
-        ///// {
-        /////     "success": false,
-        /////     "message": "Employee ID is required."
-        ///// }
-        ///// </code>
-        ///// Example Response (Business Logic Error):
-        ///// <code>
-        ///// {
-        /////     "success": false,
-        /////     "message": "Invalid employee ID format."
-        ///// }
-        ///// </code>
-        ///// </response>
-        ///// <response code="401">
-        ///// Unauthorized. Returned when the caller is not authenticated.
-        ///// Example Response:
-        ///// <code>
-        ///// {
-        /////     "message": "Authentication required. Please provide a valid token."
-        ///// }
-        ///// </code>
-        ///// </response>
-        ///// <response code="403">
-        ///// Forbidden. Returned when the caller lacks sufficient privileges (neither admin nor user role).
-        ///// Example Response:
-        ///// <code>
-        ///// {
-        /////     "message": "Access denied. Admin or User role required."
-        ///// }
-        ///// </code>
-        ///// </response>
-        ///// <response code="404">
-        ///// Not Found. Returned when no attendance records are found for the given employee.
-        ///// Example Response:
-        ///// <code>
-        ///// {
-        /////     "success": false,
-        /////     "message": "No attendance records found for the given employee."
-        ///// }
-        ///// </code>
-        ///// </response>
-        ///// <response code="500">
-        ///// Server Error. Returned when an unexpected error occurs during retrieval.
-        ///// Example Response (Generic Error):
-        ///// <code>
-        ///// {
-        /////     "success": false,
-        /////     "message": "An internal server error occurred."
-        ///// }
-        ///// </code>
-        ///// Example Response (Detailed Error):
-        ///// <code>
-        ///// {
-        /////     "success": false,
-        /////     "message": "An internal server error occurred.",
-        /////     "error": "Database query failed due to timeout",
-        /////     "timestamp": "2025-03-24T09:00:00Z"
-        ///// }
-        ///// </code>
-        ///// </response>
-        //[HttpGet]
-        //[Route("~/AttendanceAndLeave/{empId}")]
-        //[Authorize(Roles = Roles.Admin + "," + Roles.User)]
-        //public async Task<IActionResult> GetEmployeeAttendances(string empId)
-        //{
-        //    if (string.IsNullOrWhiteSpace(empId))
-        //        return BadRequest(new { Success = false, Message = "Employee ID is required." });
-
-        //    try
-        //    {
-        //        var attendances = await _unitOfWork.AttendanceAndLeaveServices.GetEmployeeAttendancesAndLeavesAsync(empId);
-
-        //        if (!attendances.Any())
-        //            return NotFound(new { Success = false, Message = "No attendance records found for the given employee." });
-
-        //        return Ok(new { Success = true, Data = attendances });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, new { Success = false, Message = "An internal server error occurred." });
-        //    }
-        //}
-
-        //#endregion
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using HRSystem.Models;
-using HRSystem.DTO;
 using System.Linq.Expressions;
+using HRSystem.DTO.AttendanceDTOs;
+using HRSystem.DTO.AttendanceAndLeaveDTOs;
 
 namespace HRSystem.Services.AttendanceServices
 {
@@ -8,10 +9,7 @@ namespace HRSystem.Services.AttendanceServices
     {
         Task<bool> AddLeave(LeaveDTO model);
         Task<bool> AddAttendance(AttendanceDTO model);
-        Task<IEnumerable<AttendanceWithLeavesDto>> GetAllAttendancesWithLeavesAsync();
-        Task<IEnumerable<AttendanceWithLeavesDto>> GetEmployeeAttendancesAndLeavesAsync(string empId);
-        Task<List<string>> GetEmployeesWithoutLeave(DateTime date);
-        Task MarkEmployeesWithoutLeave(List<string> employeeIds);
+        //Task<bool> UpdateAttendanceOrLeave(AttendanceDTO model);
+        Task<bool> AddLeaveByAdmin(LeaveByAdminDTO model);
     }
-
 }

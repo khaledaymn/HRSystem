@@ -115,7 +115,8 @@ namespace HRSystem.Services.BranchServices
                 {
                     Name = branch.Name,
                     Latitude = branch.Latitude,
-                    Longitude = branch.Longitude
+                    Longitude = branch.Longitude,
+                    Radius = branch.Radius
                 };
 
                 await _unitOfWork.Repository<Branch>().ADD(newBranch);
@@ -126,7 +127,8 @@ namespace HRSystem.Services.BranchServices
                     Id = newBranch.Id,
                     Name = newBranch.Name,
                     Latitude = newBranch.Latitude,
-                    Longitude = newBranch.Longitude
+                    Longitude = newBranch.Longitude,
+                    Radius = newBranch.Radius
                 };
 
                 _logger.LogInformation("Successfully created branch with ID: {BranchId}", newBranch.Id);
@@ -181,6 +183,7 @@ namespace HRSystem.Services.BranchServices
                 {
                     existingBranch.Longitude = branch.Longitude.Value;
                 }
+
                 if (branch.Radius.HasValue)
                 {
                     existingBranch.Radius = branch.Radius.Value;

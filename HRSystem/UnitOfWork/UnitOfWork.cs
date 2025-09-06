@@ -7,10 +7,15 @@ using HRSystem.Services.AttendanceServices;
 using HRSystem.Services.AuthenticationServices;
 using HRSystem.Services.BranchServices;
 using HRSystem.Services.EmailServices;
+using HRSystem.Services.GeneralSettings;
+using HRSystem.Services.NotificationServices;
 using HRSystem.Services.OfficialVacationServices;
+using HRSystem.Services.ReportServices;
 using HRSystem.Services.RolesServices;
+using HRSystem.Services.ShiftAnalysisServices;
 using HRSystem.Services.ShiftServices;
 using HRSystem.Services.UsersServices;
+using HRSystem.Services.VacationServices;
 using HRSystem.Settings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -31,27 +36,28 @@ namespace HRSystem.UnitOfWork
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IEmailServices _emailServices;
+        private IEmailServices _emailServices;
         private readonly IOptions<AdminLogin> _adminLogin;
         private readonly IOptions<JWT> _jwt;
         private readonly ILogger<UnitOfWork> _logger;
         private readonly ConcurrentDictionary<string, object> _repositories;
+        private readonly IOptions<EmailConfiguration> _emailConfigraiton;
 
         #region Services
 
         private IAuthenticationServices _authenticationService;
-
         private IRolesServices _rolesServices;
-
         private IUsersServices _usersServices;
-
         private IBranchServices _branchServices;
-
         private IShiftServices _shiftServices;
-
         private IOfficialVacationServices _officialVacationServices;
-
         private IAttendanceAndLeaveServices _attendanceAndLeaveServices;
+        private IReportServices _reportServices;
+        private IGeneralSettingsServices _generalSettingsServices;
+        private IShiftAnalysisService _shiftAnalysisService;
+        private IVacationService _vacationService;
+        private INotificationService _notificationService;
+
         #endregion
 
         #endregion
@@ -69,12 +75,11 @@ namespace HRSystem.UnitOfWork
                     _authenticationService = new AuthenticationServices(
                         _userManager,
                         _signInManager,
-                        _emailServices,
                         _adminLogin,
                         _jwt,
-                        _usersServices,
                         _context,
-                        new Logger<AuthenticationServices>(new LoggerFactory())
+                        new Logger<AuthenticationServices>(new LoggerFactory()),
+                        this
                     );
                 }
                 return _authenticationService;
@@ -116,7 +121,8 @@ namespace HRSystem.UnitOfWork
                         _userManager,
                        this,
                        _roleManager,
-                       new Logger<UsersServices>(new LoggerFactory())
+                       new Logger<UsersServices>(new LoggerFactory()),
+                       _context
                     );
                 }
                 return _usersServices;
@@ -192,6 +198,113 @@ namespace HRSystem.UnitOfWork
 
         #endregion
 
+        #region Report Service
+
+        public IReportServices ReportServices
+        {
+            get
+            {
+                if (_reportServices == null)
+                {
+                    _reportServices = new ReportServices(_context, new Logger<ReportServices>(new LoggerFactory()));
+                }
+                return _reportServices;
+            }
+        }
+
+
+        #endregion
+
+        #region General Settings Service
+        
+        public IGeneralSettingsServices GeneralSettingsServices
+        {
+            get
+            {
+                if (_generalSettingsServices == null)
+                {
+                    _generalSettingsServices = new GeneralSettingsServices(
+                        new Logger<GeneralSettingsServices>(new LoggerFactory()),
+                        this);
+                }
+                return _generalSettingsServices;
+            }
+        }
+
+
+        #endregion
+
+        #region Shift Analysis Service
+        public IShiftAnalysisService ShiftAnalysisService
+        {
+            get
+            {
+                if (_shiftAnalysisService == null)
+                {
+                    _shiftAnalysisService = new ShiftAnalysisService(
+                        this,
+                        new Logger<ShiftAnalysisService>(new LoggerFactory()),
+                        _context);
+                }
+                return _shiftAnalysisService;
+            }
+        }
+
+        #endregion
+
+        #region Vacation Service
+
+        public IVacationService VacationService
+        {
+            get
+            {
+                if (_vacationService == null)
+                {
+                    _vacationService = new VacationService(
+                        this,
+                        new Logger<VacationService>(new LoggerFactory()),
+                        _context);
+                }
+                return _vacationService;
+            }
+        }
+
+        #endregion
+
+        #region Notification Service
+
+        public INotificationService NotificationService
+        {
+            get
+            {
+                if (_notificationService == null)
+                {
+                    _notificationService = new NotificationService(
+                        this,
+                        new Logger<NotificationService>(new LoggerFactory()));
+                }
+                return _notificationService;
+            }
+        }
+
+        #endregion
+
+        #region Email Service
+
+        public IEmailServices EmailServices
+        {
+            get
+            {
+                if (_emailServices == null)
+                {
+                    _emailServices = new EmailServices(_emailConfigraiton);
+                }
+                return _emailServices;
+            }
+        }
+
+        #endregion
+
         #endregion
 
 
@@ -201,21 +314,21 @@ namespace HRSystem.UnitOfWork
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IEmailServices emailServices,
             IOptions<AdminLogin> adminLogin,
             IOptions<JWT> jwt,
             ILogger<UnitOfWork> logger,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            IOptions<EmailConfiguration> emailConfigraiton)
         {
             _context = context;
             _roleManager = roleManager;
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailServices = emailServices;
             _adminLogin = adminLogin;
             _jwt = jwt;
             _logger = logger;
             _repositories = new ConcurrentDictionary<string, object>();
+            _emailConfigraiton = emailConfigraiton;
         }
 
 

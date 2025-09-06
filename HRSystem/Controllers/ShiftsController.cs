@@ -279,7 +279,7 @@ namespace HRSystem.Controllers
         /// ```
         /// </response>
         [HttpGet]
-        [Authorize(Roles = Roles.Admin)]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.User}")]
         [Route("~/Shifts/GetByEmployeeId/{employeeId}")]
         public async Task<IActionResult> GetShiftsByEmployeeId(string employeeId)
         {

@@ -1,5 +1,8 @@
 ﻿using HRSystem.DTO.GeneralSettingsDTOs;
+using HRSystem.Helper;
 using HRSystem.Services.GeneralSettings;
+using HRSystem.UnitOfWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +10,16 @@ namespace HRSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = Roles.Admin)]
     public class GeneralSettingsController : ControllerBase
     {
-        private readonly IGeneralSettingsServices _generalSettingsServices;
-        public GeneralSettingsController(IGeneralSettingsServices generalSettingsServices) => _generalSettingsServices = generalSettingsServices;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public GeneralSettingsController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
 
         [HttpPost]
         [Route("~/GeneralSettings/AddGeneralSetting")]
@@ -21,7 +30,7 @@ namespace HRSystem.Controllers
 
             try
             {
-                var result = await _generalSettingsServices.AddGeneralSettings(model);
+                var result = await _unitOfWork.GeneralSettingsServices.AddGeneralSettings(model);
                 return Ok(result);
             }
             catch (ArgumentException ex)
@@ -41,7 +50,7 @@ namespace HRSystem.Controllers
         {
             try
             {
-                var result = await _generalSettingsServices.GetGeneralSettings();
+                var result = await _unitOfWork.GeneralSettingsServices.GetGeneralSettings();
 
                 if (result == null)
                     return NotFound("General settings not found.");
@@ -57,17 +66,17 @@ namespace HRSystem.Controllers
 
         [HttpPut]
         [Route("~/GeneralSettings/UpdateGeneralSetting")]
-        public async Task<IActionResult> UpdateGeneralSetting([FromBody] GeneralSettingDTO model)
+        public async Task<IActionResult> UpdateGeneralSetting([FromBody] AddGeneralSettingDTO model)
         {
             if (model == null)
                 return BadRequest("Invalid data.");
 
             try
             {
-                bool isUpdated = await _generalSettingsServices.UpdateGeneralSettings(model); 
+                var result = await _unitOfWork.GeneralSettingsServices.UpdateGeneralSettings(model); 
 
-                if (!isUpdated)
-                    return StatusCode(500, "Failed to update general settings.");
+                if (result == null)
+                    return NotFound("General settings not found.");
 
                 return Ok(new { message = "General settings updated successfully." });
             }

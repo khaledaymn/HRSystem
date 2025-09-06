@@ -1,12 +1,13 @@
 ﻿using HRSystem.Extend;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRSystem.Models
 {
+    [PrimaryKey(nameof(EmployeeId),nameof(Date))]
     public class EmployeeSalary
     {
-        [Key]
         [ForeignKey("Employee")]
         public string EmployeeId { get; set; }
         public virtual ApplicationUser Employee { get; set; }

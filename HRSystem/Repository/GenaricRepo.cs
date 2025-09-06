@@ -29,6 +29,11 @@ namespace HRSystem.Repository
             await _dbSet.AddAsync(obj);
         }
 
+        public async Task AddRange(IEnumerable<T> obj)
+        {
+            await _dbSet.AddRangeAsync(obj);
+        }
+
         public void Delete(int id)
         {
             var entity = _dbSet.Find(id);

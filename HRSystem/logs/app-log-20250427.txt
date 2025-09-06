@@ -1,0 +1,690 @@
+2025-04-27 19:47:02 [Information] Start installing Hangfire SQL objects...
+2025-04-27 19:47:15 [Information] Hangfire SQL objects installed.
+2025-04-27 19:47:20 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 19:47:20 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 19:47:20 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 19:47:22 [Information] Server khaledayman:12488:2fc6b071 successfully announced in 2311.3104 ms
+2025-04-27 19:47:22 [Information] Server khaledayman:12488:2fc6b071 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 19:47:22 [Information] Server khaledayman:12488:2fc6b071 all the dispatchers started
+2025-04-27 19:48:08 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 19:48:10 [Warning] Authentication failed for email: "khaled654ayman0@gmail.com". Message: "Email or Password is incorrect!"
+2025-04-27 19:48:10 [Information] HTTP "POST" "/Account/Login" responded 400 in 7147.9529 ms
+2025-04-27 19:48:24 [Warning] Authentication failed for email: "khaled654ayman0@gmail.com". Message: "Email or Password is incorrect!"
+2025-04-27 19:48:24 [Information] HTTP "POST" "/Account/Login" responded 400 in 230.8636 ms
+2025-04-27 19:48:39 [Information] Login successful for email: "khaled654ayman0@gmail.com"
+2025-04-27 19:48:39 [Information] HTTP "POST" "/Account/Login" responded 200 in 1021.4640 ms
+2025-04-27 19:50:06 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:06 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:07 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:07 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:07 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:07 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:07 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:07 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:07 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:08 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:08 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:08 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:08 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:08 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "EmployeeShift"
+2025-04-27 19:50:09 [Information] Attempting to retrieve or create repository for entity type: "Branch"
+2025-04-27 19:50:09 [Information] Successfully retrieved 14 users.
+2025-04-27 19:50:09 [Information] HTTP "GET" "/Users/GetAll" responded 200 in 3486.5999 ms
+2025-04-27 19:51:48 [Warning] Failed to process the job '146': an exception occurred. Retry attempt 9 of 10 will be performed in 01:11:58.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 19:53:51 [Warning] Failed to process the job '141': an exception occurred. Retry attempt 9 of 10 will be performed in 01:11:22.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 20:00:09 [Warning] Failed to process the job '153': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:32.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 20:03:52 [Information] Start installing Hangfire SQL objects...
+2025-04-27 20:03:54 [Information] Hangfire SQL objects installed.
+2025-04-27 20:03:55 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 20:03:55 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 20:03:55 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 20:03:55 [Information] Server khaledayman:17256:87ffce73 successfully announced in 824.156 ms
+2025-04-27 20:03:55 [Information] Server khaledayman:17256:87ffce73 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 20:03:55 [Information] Server khaledayman:17256:87ffce73 all the dispatchers started
+2025-04-27 20:06:47 [Warning] Failed to process the job '153': an exception occurred. Retry attempt 5 of 10 will be performed in 00:04:51.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 20:07:56 [Error] Error retrieving monthly attendance and leave report
+System.Exception: An unexpected error occurred while processing the report.
+ ---> System.ArgumentException: ReportType must be specified (Daily or Monthly).
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 179
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 263
+   at HRSystem.Controllers.ReportsController.GetMonthlyAttendanceLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ReportsController.cs:line 92
+2025-04-27 20:07:56 [Error] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 500 in 615.5067 ms
+2025-04-27 20:08:15 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:08:17 [Error] Failed executing DbCommand ("75"ms) [Parameters=["@__record_EmployeeId_0='?' (Size = 450), @__record_Date_1='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Hours]
+FROM [EmployeeExtraHours] AS [e]
+WHERE [e].[EmployeeId] = @__record_EmployeeId_0 AND [e].[Date] = @__record_Date_1 AND [e].[Type] = N'OverTime'"
+2025-04-27 20:08:17 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:229150f8-2c0e-4bea-b91e-78cf04c3bbee
+Error Number:207,State:1,Class:16"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:229150f8-2c0e-4bea-b91e-78cf04c3bbee
+Error Number:207,State:1,Class:16
+2025-04-27 20:08:17 [Error] Error retrieving monthly attendance and leave report
+System.Exception: An unexpected error occurred while processing the report.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 232
+ClientConnectionId:229150f8-2c0e-4bea-b91e-78cf04c3bbee
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 263
+   at HRSystem.Controllers.ReportsController.GetMonthlyAttendanceLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ReportsController.cs:line 92
+2025-04-27 20:08:17 [Error] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 500 in 2747.0486 ms
+2025-04-27 20:10:11 [Error] Failed executing DbCommand ("67"ms) [Parameters=["@__record_EmployeeId_0='?' (Size = 450), @__record_Date_1='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Hours]
+FROM [EmployeeExtraHours] AS [e]
+WHERE [e].[EmployeeId] = @__record_EmployeeId_0 AND [e].[Date] = @__record_Date_1 AND [e].[Type] = N'OverTime'"
+2025-04-27 20:10:11 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:229150f8-2c0e-4bea-b91e-78cf04c3bbee
+Error Number:207,State:1,Class:16"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:229150f8-2c0e-4bea-b91e-78cf04c3bbee
+Error Number:207,State:1,Class:16
+2025-04-27 20:10:11 [Error] Error retrieving monthly attendance and leave report
+System.Exception: An unexpected error occurred while processing the report.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 232
+ClientConnectionId:229150f8-2c0e-4bea-b91e-78cf04c3bbee
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 263
+   at HRSystem.Controllers.ReportsController.GetMonthlyAttendanceLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ReportsController.cs:line 92
+2025-04-27 20:10:11 [Error] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 500 in 432.6708 ms
+2025-04-27 20:10:20 [Error] Failed executing DbCommand ("67"ms) [Parameters=["@__record_EmployeeId_0='?' (Size = 450), @__record_Date_1='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Hours]
+FROM [EmployeeExtraHours] AS [e]
+WHERE [e].[EmployeeId] = @__record_EmployeeId_0 AND [e].[Date] = @__record_Date_1 AND [e].[Type] = N'OverTime'"
+2025-04-27 20:10:20 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:142029ff-7ba2-4b20-9b68-58b58847f885
+Error Number:207,State:1,Class:16"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:142029ff-7ba2-4b20-9b68-58b58847f885
+Error Number:207,State:1,Class:16
+2025-04-27 20:10:20 [Error] Error retrieving monthly attendance and leave report
+System.Exception: An unexpected error occurred while processing the report.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 232
+ClientConnectionId:142029ff-7ba2-4b20-9b68-58b58847f885
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 263
+   at HRSystem.Controllers.ReportsController.GetMonthlyAttendanceLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ReportsController.cs:line 92
+2025-04-27 20:10:20 [Error] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 500 in 428.7891 ms
+2025-04-27 20:10:41 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 151.0987 ms
+2025-04-27 20:10:48 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 140.2880 ms
+2025-04-27 20:10:54 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 137.4536 ms
+2025-04-27 20:11:04 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 137.9954 ms
+2025-04-27 20:11:48 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 159.3261 ms
+2025-04-27 20:11:54 [Warning] Failed to process the job '153': an exception occurred. Retry attempt 6 of 10 will be performed in 00:12:16.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 20:14:02 [Information] Server khaledayman:17256:87ffce73 caught stopping signal...
+2025-04-27 20:14:02 [Information] Server khaledayman:17256:87ffce73 All dispatchers stopped
+2025-04-27 20:14:03 [Information] Server khaledayman:17256:87ffce73 successfully reported itself as stopped in 146.9112 ms
+2025-04-27 20:14:03 [Information] Server khaledayman:17256:87ffce73 has been stopped in total 165.1229 ms
+2025-04-27 20:16:16 [Information] Start installing Hangfire SQL objects...
+2025-04-27 20:16:20 [Information] Hangfire SQL objects installed.
+2025-04-27 20:16:22 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 20:16:22 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 20:16:22 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 20:16:23 [Information] Server khaledayman:10184:b2a509b5 successfully announced in 560.1153 ms
+2025-04-27 20:16:23 [Information] Server khaledayman:10184:b2a509b5 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 20:16:24 [Information] Server khaledayman:10184:b2a509b5 all the dispatchers started
+2025-04-27 20:17:13 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:17:19 [Error] Failed executing DbCommand ("78"ms) [Parameters=["@__record_EmployeeId_0='?' (Size = 450), @__record_Date_1='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Hours]
+FROM [EmployeeExtraHours] AS [e]
+WHERE [e].[EmployeeId] = @__record_EmployeeId_0 AND [e].[Date] = @__record_Date_1 AND [e].[Type] = N'OverTime'"
+2025-04-27 20:17:19 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:19add959-a8ef-419a-a562-2aea31232206
+Error Number:207,State:1,Class:16"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:19add959-a8ef-419a-a562-2aea31232206
+Error Number:207,State:1,Class:16
+2025-04-27 20:17:19 [Error] Error retrieving monthly attendance and leave report
+System.Exception: An unexpected error occurred while processing the report.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 232
+ClientConnectionId:19add959-a8ef-419a-a562-2aea31232206
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 263
+   at HRSystem.Controllers.ReportsController.GetMonthlyAttendanceLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ReportsController.cs:line 92
+2025-04-27 20:17:19 [Error] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 500 in 13906.2599 ms
+2025-04-27 20:20:13 [Error] Failed executing DbCommand ("71"ms) [Parameters=["@__record_EmployeeId_0='?' (Size = 450), @__record_Date_1='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Hours]
+FROM [EmployeeExtraHours] AS [e]
+WHERE [e].[EmployeeId] = @__record_EmployeeId_0 AND [e].[Date] = @__record_Date_1 AND [e].[Type] = N'OverTime'"
+2025-04-27 20:20:13 [Error] An exception occurred while iterating over the results of a query for context type '"HRSystem.DataBase.ApplicationDbContext"'."
+""Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:c17631e4-e2b6-4f60-8c1c-c6010f93bb05
+Error Number:207,State:1,Class:16"
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Type'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:c17631e4-e2b6-4f60-8c1c-c6010f93bb05
+Error Number:207,State:1,Class:16
+2025-04-27 20:21:08 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:21:47 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:21:57 [Information] Start installing Hangfire SQL objects...
+2025-04-27 20:21:58 [Information] Hangfire SQL objects installed.
+2025-04-27 20:21:59 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 20:21:59 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 20:21:59 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 20:21:59 [Information] Server khaledayman:18288:0e00b85b successfully announced in 150.3189 ms
+2025-04-27 20:21:59 [Information] Server khaledayman:18288:0e00b85b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 20:21:59 [Information] Server khaledayman:18288:0e00b85b all the dispatchers started
+2025-04-27 20:22:18 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:22:20 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 3913.9568 ms
+2025-04-27 20:24:37 [Information] Start installing Hangfire SQL objects...
+2025-04-27 20:24:38 [Information] Hangfire SQL objects installed.
+2025-04-27 20:24:38 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 20:24:38 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 20:24:38 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 20:24:38 [Information] Server khaledayman:18220:0a1b07f0 successfully announced in 166.7988 ms
+2025-04-27 20:24:38 [Information] Server khaledayman:18220:0a1b07f0 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 20:24:38 [Information] Server khaledayman:18220:0a1b07f0 all the dispatchers started
+2025-04-27 20:24:56 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:24:57 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 2227.7998 ms
+2025-04-27 20:27:02 [Information] Start installing Hangfire SQL objects...
+2025-04-27 20:27:02 [Information] Hangfire SQL objects installed.
+2025-04-27 20:27:03 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 20:27:03 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 20:27:03 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 20:27:03 [Information] Server khaledayman:9248:56effe9e successfully announced in 154.5294 ms
+2025-04-27 20:27:03 [Information] Server khaledayman:9248:56effe9e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 20:27:03 [Information] Server khaledayman:9248:56effe9e all the dispatchers started
+2025-04-27 20:27:39 [Information] Start installing Hangfire SQL objects...
+2025-04-27 20:27:40 [Information] Hangfire SQL objects installed.
+2025-04-27 20:27:40 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 20:27:40 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 20:27:40 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 20:27:41 [Information] Server khaledayman:16620:ebdd49a6 successfully announced in 151.8002 ms
+2025-04-27 20:27:41 [Information] Server khaledayman:16620:ebdd49a6 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 20:27:41 [Information] Server khaledayman:16620:ebdd49a6 all the dispatchers started
+2025-04-27 20:27:56 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:27:58 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 2485.5026 ms
+2025-04-27 20:29:04 [Information] Start installing Hangfire SQL objects...
+2025-04-27 20:29:04 [Information] Hangfire SQL objects installed.
+2025-04-27 20:29:05 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 20:29:05 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 20:29:05 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 20:29:05 [Information] Server khaledayman:7876:303c591b successfully announced in 166.9549 ms
+2025-04-27 20:29:05 [Information] Server khaledayman:7876:303c591b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 20:29:05 [Information] Server khaledayman:7876:303c591b all the dispatchers started
+2025-04-27 20:29:17 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:29:18 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 1840.3662 ms
+2025-04-27 20:29:29 [Error] Error retrieving monthly attendance and leave report
+System.Exception: An unexpected error occurred while processing the report.
+ ---> System.ArgumentException: ReportType must be specified (Daily or Monthly).
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 179
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 263
+   at HRSystem.Controllers.ReportsController.GetMonthlyAttendanceLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ReportsController.cs:line 92
+2025-04-27 20:29:29 [Error] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 500 in 147.9727 ms
+2025-04-27 20:30:40 [Information] Start installing Hangfire SQL objects...
+2025-04-27 20:30:41 [Information] Hangfire SQL objects installed.
+2025-04-27 20:30:41 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 20:30:41 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 20:30:41 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 20:30:41 [Information] Server khaledayman:13128:19f0774d successfully announced in 180.6754 ms
+2025-04-27 20:30:41 [Information] Server khaledayman:13128:19f0774d is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 20:30:41 [Information] 1 servers were removed due to timeout
+2025-04-27 20:30:41 [Information] Server khaledayman:13128:19f0774d all the dispatchers started
+2025-04-27 20:30:59 [Warning] No store type was specified for the decimal property '"Salary"' on entity type '"EmployeeSalary"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-04-27 20:31:00 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 1750.5513 ms
+2025-04-27 20:31:05 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 189.3050 ms
+2025-04-27 20:31:27 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 883.1379 ms
+2025-04-27 20:31:40 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 417.9085 ms
+2025-04-27 20:31:44 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 414.4088 ms
+2025-04-27 20:31:47 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 405.4673 ms
+2025-04-27 20:31:54 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 407.4299 ms
+2025-04-27 20:31:58 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 406.5324 ms
+2025-04-27 20:32:01 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 411.8406 ms
+2025-04-27 20:32:09 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 410.9166 ms
+2025-04-27 20:32:13 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 410.4107 ms
+2025-04-27 20:32:21 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 138.2541 ms
+2025-04-27 20:35:41 [Information] 3 servers were removed due to timeout
+2025-04-27 20:48:04 [Warning] Failed to process the job '154': an exception occurred. Retry attempt 8 of 10 will be performed in 00:43:04.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 20:50:42 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 138.6873 ms
+2025-04-27 20:50:50 [Error] Error retrieving monthly attendance and leave report
+System.Exception: An unexpected error occurred while processing the report.
+ ---> System.ArgumentException: ReportType must be specified (Daily or Monthly).
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 191
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 276
+   at HRSystem.Controllers.ReportsController.GetMonthlyAttendanceLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ReportsController.cs:line 92
+2025-04-27 20:50:51 [Error] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 500 in 219.0103 ms
+2025-04-27 20:53:26 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 408.5945 ms
+2025-04-27 20:53:55 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 415.7155 ms
+2025-04-27 20:54:23 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 404.3700 ms
+2025-04-27 20:54:25 [Error] Error retrieving monthly attendance and leave report
+System.Exception: An unexpected error occurred while processing the report.
+ ---> System.ArgumentException: ReportType must be specified (Daily or Monthly).
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 191
+   --- End of inner exception stack trace ---
+   at HRSystem.Services.ReportServices.ReportServices.GetAttendanceAndLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Services\ReportServices\ReportServices.cs:line 276
+   at HRSystem.Controllers.ReportsController.GetMonthlyAttendanceLeaveReport(AttendanceAndLeaveReportDTO dto) in E:\Courses\ITI Cources\ITI 4 Months\Freelance\Final Project\HRSystem\HRSystem\Controllers\ReportsController.cs:line 92
+2025-04-27 20:54:25 [Error] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 500 in 2.6887 ms
+2025-04-27 20:54:31 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 397.0171 ms
+2025-04-27 20:54:52 [Information] HTTP "GET" "/Reports/MonthlyAttendanceLeaveReport" responded 200 in 139.5512 ms
+2025-04-27 21:00:33 [Warning] Failed to process the job '155': an exception occurred. Retry attempt 2 of 10 will be performed in 00:00:18.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:02:21 [Warning] Failed to process the job '155': an exception occurred. Retry attempt 4 of 10 will be performed in 00:02:52.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:03:23 [Warning] Failed to process the job '140': an exception occurred. Retry attempt 10 of 10 will be performed in 01:52:46.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:03:23 [Information] HTTP "GET" "/logs/app-log-20250427.txt" responded 404 in 19.5431 ms
+2025-04-27 21:03:39 [Warning] Failed to process the job '144': an exception occurred. Retry attempt 10 of 10 will be performed in 01:54:26.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:03:55 [Warning] Failed to process the job '146': an exception occurred. Retry attempt 10 of 10 will be performed in 01:51:06.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:04:27 [Warning] Failed to process the job '142': an exception occurred. Retry attempt 10 of 10 will be performed in 01:51:36.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:04:28 [Warning] Failed to process the job '149': an exception occurred. Retry attempt 10 of 10 will be performed in 01:51:06.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:04:28 [Warning] Failed to process the job '143': an exception occurred. Retry attempt 10 of 10 will be performed in 01:50:06.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:10:21 [Warning] Failed to process the job '155': an exception occurred. Retry attempt 6 of 10 will be performed in 00:13:22.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
+2025-04-27 21:12:27 [Information] Start installing Hangfire SQL objects...
+2025-04-27 21:12:29 [Information] Hangfire SQL objects installed.
+2025-04-27 21:12:30 [Information] Starting Hangfire Server using job storage: 'SQL Server: db15913.public.databaseasp.net@db15913'
+2025-04-27 21:12:30 [Information] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-04-27 21:12:30 [Information] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-04-27 21:12:31 [Information] Server khaledayman:18456:a33fbf63 successfully announced in 367.0367 ms
+2025-04-27 21:12:31 [Information] Server khaledayman:18456:a33fbf63 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-04-27 21:12:31 [Information] Server khaledayman:18456:a33fbf63 all the dispatchers started
+2025-04-27 21:31:27 [Warning] Failed to process the job '153': an exception occurred. Retry attempt 9 of 10 will be performed in 01:08:58.
+System.InvalidOperationException: Unable to resolve service for type 'Microsoft.Extensions.Logging.Logger`1[HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices]' while attempting to activate 'HRSystem.Services.AttendanceServices.AttendanceAndLeaveServices'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Hangfire.AspNetCore.AspNetCoreJobActivatorScope.Resolve(Type type) in C:\projects\hangfire-525\src\Hangfire.NetCore\AspNetCore\AspNetCoreJobActivatorScope.cs:line 34
+   at Hangfire.Server.CoreBackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\CoreBackgroundJobPerformer.cs:line 60
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 133
+   at Hangfire.Server.BackgroundJobPerformer.InvokeServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 164
+   at Hangfire.Server.BackgroundJobPerformer.InvokeNextServerFilter(Enumerator& enumerator, IBackgroundJobPerformer innerPerformer, PerformContext context, PerformingContext preContext) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 130
+   at Hangfire.Server.BackgroundJobPerformer.PerformJobWithFilters(PerformContext context, FilterCollection`1 filters) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 119
+   at Hangfire.Server.BackgroundJobPerformer.Perform(PerformContext context) in C:\projects\hangfire-525\src\Hangfire.Core\Server\BackgroundJobPerformer.cs:line 78
+   at Hangfire.Server.Worker.PerformJob(BackgroundProcessContext context, IStorageConnection connection, String jobId, BackgroundJob backgroundJob, IReadOnlyDictionary`2& customData) in C:\projects\hangfire-525\src\Hangfire.Core\Server\Worker.cs:line 320
