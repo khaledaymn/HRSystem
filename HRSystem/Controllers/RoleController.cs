@@ -14,7 +14,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 namespace HRSystem.Controllers
 {
-    //[Authorize(Roles = Roles.Admin)] 
+    [Authorize(Roles = Roles.Admin)] 
     [ApiController]
     [Route("[controller]")]
     public class RoleController : ControllerBase
