@@ -1,6 +1,7 @@
 ﻿using HRSystem.Models;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace HRSystem.Extend
 {
@@ -18,6 +19,7 @@ namespace HRSystem.Extend
         [ForeignKey(nameof(Branch))]
         public int? BranchId { get; set; }
         public virtual Branch Branch { get; set; }
+        [JsonIgnore]
         public virtual ICollection<EmployeeShift> EmployeeShifts { get;} = new List<EmployeeShift>();
     }
 }

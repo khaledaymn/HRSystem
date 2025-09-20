@@ -28,8 +28,7 @@ namespace HRSystem.Services.VacationServices
                 var settingsRepository = _unitOfWork.Repository<GeneralSetting>().GetAll().Result.FirstOrDefault();
                 var annualVacationsHours = settingsRepository?.NumberOfVacationsInYear * settingsRepository?.NumberOfDayWorkingHours ?? 450;
 
-                var vacationRepository = _unitOfWork.Repository<EmployeeVacation>();
-                var totalVacationHoursTaken = vacationRepository.Filter(v => v.UserId == employeeId && v.Date.Year == date.Year)
+                var totalVacationHoursTaken = _unitOfWork.Repository<EmployeeVacation>().Filter(v => v.UserId == employeeId && v.Date.Year == date.Year)
                     .Sum(v => v.Hours);
 
                 var remainingLeaveHours = annualVacationsHours - totalVacationHoursTaken;
@@ -42,21 +41,21 @@ namespace HRSystem.Services.VacationServices
                         Date = date,
                         Hours = shiftHours,
                     };
-                    await vacationRepository.ADD(vacation);
+                    await _unitOfWork.Repository<EmployeeVacation>().ADD(vacation);
                     _logger.LogInformation("Added {Hours} vacation hours for EmployeeId: {EmployeeId} on {Date}", shiftHours, employeeId, date);
                 }
                 else
                 {
-                    var absenceRepository = _unitOfWork.Repository<EmployeeAbsent>();
                     var absence = new EmployeeAbsent
                     {
                         EmployeeId = employeeId,
                         AbsentDate = date,
                         Hours = shiftHours
                     };
-                    await absenceRepository.ADD(absence);
+                    await _unitOfWork.Repository<EmployeeAbsent>().ADD(absence);
                     _logger.LogInformation("Added {Hours} absence hours for EmployeeId: {EmployeeId} on {Date}", shiftHours, employeeId, date);
                 }
+                await _unitOfWork.Save();
             }
             catch (Exception ex)
             {

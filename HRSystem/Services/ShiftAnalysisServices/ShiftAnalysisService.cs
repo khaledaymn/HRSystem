@@ -127,7 +127,7 @@ namespace HRSystem.Services.ShiftAnalysisServices
 
                             if (!hasLeave)
                             {
-                                var message = $"الموظف {employee.Name} قد نسي تسجيل المغادرة لورديته يوم {previousShiftStartDate:yyyy-MM-dd} التي بدأت في الساعة {previousShift.StartTime:HH:mm} وانتهت في الساعه {previousShift.EndTime:HH:mm}.";
+                                var message = $"الموظف {employee.Name} قد نسي تسجيل المغادرة لورديته يوم {shiftStartTime:yyyy-MM-dd} التي بدأت في الساعة {previousShift.StartTime:HH:mm} وانتهت في الساعه {previousShift.EndTime:HH:mm}.";
                                 var AddNotification = new AddNotificationDTO
                                 {
                                     EmployeeId = employee.Id,

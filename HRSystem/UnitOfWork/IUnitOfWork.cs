@@ -20,7 +20,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HRSystem.UnitOfWork
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork: IDisposable
     {
         IEmailServices EmailServices { get; }
         IGeneralSettingsServices GeneralSettingsServices { get; }

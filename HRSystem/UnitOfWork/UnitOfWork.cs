@@ -243,8 +243,7 @@ namespace HRSystem.UnitOfWork
                 {
                     _shiftAnalysisService = new ShiftAnalysisService(
                         this,
-                        new Logger<ShiftAnalysisService>(new LoggerFactory()),
-                        _context);
+                        new Logger<ShiftAnalysisService>(new LoggerFactory()));
                 }
                 return _shiftAnalysisService;
             }

@@ -112,11 +112,17 @@ namespace HRSystem.Services.AttendanceServices
                 var isOvernightShift = matchingShift.Shift.EndTime.TimeOfDay < matchingShift.Shift.StartTime.TimeOfDay;
                 var checkDates = isOvernightShift ? new[] { attendanceDate, attendanceDate.AddDays(-1), attendanceDate.AddDays(1) } : new[] { attendanceDate };
                 
-                var b =  _context.AttendancesAndLeaves
-                .Where(a =>
-                    a.EmployeeId == model.EmployeeId &&
-                    checkDates.Contains(a.Time.Date) && a.Type == "Attendance");
-                
+                //var b =  _context.AttendancesAndLeaves
+                //.Where(a =>
+                //    a.EmployeeId == model.EmployeeId &&
+                //    checkDates.Contains(a.Time.Date) && a.Type == "Attendance");
+
+                //var c = b.Where(a => isOvernightShift &&
+                //         (
+                //             (a.Time.Date == attendanceDate && a.Time.TimeOfDay >= (matchingShift.Shift.StartTime.TimeOfDay - earlyArrivalWindow)) ||
+                //             (a.Time.Date == attendanceDate.AddDays(1) && a.Time.TimeOfDay <= (matchingShift.Shift.EndTime.TimeOfDay <= lateAttendanceCutoff ? matchingShift.Shift.EndTime.TimeOfDay : matchingShift.Shift.EndTime.TimeOfDay - lateAttendanceCutoff))
+                //         ));
+
                 var hasAttendedForShift = await _context.AttendancesAndLeaves
                 .AnyAsync(a =>
                     a.EmployeeId == model.EmployeeId &&
@@ -126,7 +132,7 @@ namespace HRSystem.Services.AttendanceServices
                         (isOvernightShift &&
                          (
                              (a.Time.Date == attendanceDate && a.Time.TimeOfDay >= (matchingShift.Shift.StartTime.TimeOfDay - earlyArrivalWindow)) ||
-                             (a.Time.Date == attendanceDate.AddDays(1) && a.Time.TimeOfDay <= (matchingShift.Shift.EndTime.TimeOfDay - lateAttendanceCutoff))
+                             (a.Time.Date == attendanceDate.AddDays(1) && a.Time.TimeOfDay <= (matchingShift.Shift.EndTime.TimeOfDay <= lateAttendanceCutoff ? matchingShift.Shift.EndTime.TimeOfDay : matchingShift.Shift.EndTime.TimeOfDay - lateAttendanceCutoff))
                          )) ||
                         (!isOvernightShift &&
                          a.Time.TimeOfDay >= (matchingShift.Shift.StartTime.TimeOfDay - earlyArrivalWindow) &&

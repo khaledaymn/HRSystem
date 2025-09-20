@@ -1,5 +1,6 @@
 ﻿using HRSystem.DTO.NotificationDTOs;
 using HRSystem.Helper;
+using HRSystem.Models;
 using HRSystem.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -109,5 +110,33 @@ namespace HRSystem.Controllers
         }
         #endregion
 
+
+        [HttpPost]
+        [Route("~/HangfireTest")]
+        public async Task<IActionResult> HangfireTest([FromBody]DateTime shiftStartTime)
+        {
+            try
+            {
+                //9/18/2025 12:00:00 AM
+                //{9/18/2025 9:30:00 AM}
+                //{9/18/2025 12:00:00 PM}
+
+                //var hasAttendance = await _unitOfWork.Repository<AttendanceAndLeave>().AnyAsync(a =>
+                //            a.EmployeeId == "ad8414f7-f093-4172-94cb-0c968fa787e9" &&
+                //            (a.Time.Date == previousShiftStartDate || a.Time.Date == previousShiftEndDate) &&
+                //            a.Type == "Attendance" &&
+                //            (a.Time.Date == previousShiftStartDate
+                //                ? a.Time.TimeOfDay >= previousShift.StartTime.TimeOfDay
+                //                : a.Time.TimeOfDay <= previousShift.EndTime.TimeOfDay));
+
+                await _unitOfWork.ShiftAnalysisService.AnalyzePreviousShiftForEmployees(shiftStartTime);
+                return Ok("It's OK");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error scheduling Hangfire job");
+                return Ok(ex.Message);
+            }
+        }
     }
 }
